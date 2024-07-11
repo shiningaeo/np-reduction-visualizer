@@ -8,8 +8,8 @@ import VariableWidget from './variable-widget';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <svg height="160" width="144">
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <svg height="500" width="800">
         <VariableWidget />
         <TriangleWidget />
       </svg>

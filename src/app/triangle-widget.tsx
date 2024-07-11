@@ -12,7 +12,7 @@ export default function TriangleWidget() {
                 <line x1="200" y1={Math.sqrt(3)*100} x2="100" y2="0" strokeWidth="2" stroke="black" />
                 <line x1="100" y1="0" x2="0" y2={Math.sqrt(3)*100}  strokeWidth="2" stroke="black" />
             </svg> */}
-            <svg height="128" width="128">
+            <svg x="344" y="250" height="128" width="128">
                 <line x1="16" y1="112" x2="96" y2="112"  strokeWidth="3" stroke="black" />
                 <line x1="96" y1="112" x2="56" y2="32"  strokeWidth="3" stroke="black" />
                 <line x1="56" y1="32" x2="16" y2="112"  strokeWidth="3" stroke="black" />
