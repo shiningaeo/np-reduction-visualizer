@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Animation from "./animation";
 
 export default function Viewer() {
     const [currIndex, setCurrIndex] = useState(0); // State to manage current step
@@ -10,9 +9,9 @@ export default function Viewer() {
 
     return (
         <>
-            <svg height="160" width="256">
+            {/* <svg height="160" width="256">
                 <Animation index={currIndex}/>
-            </svg>
+            </svg> */}
             <button onClick={handleClick} className="rounded-md border p-2 hover:bg-gray-100">
                 <span>Next</span>
             </button>
