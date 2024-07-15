@@ -1,4 +1,4 @@
-export default function ClauseGadget({x, vis, index, id1, id2, id3}) {
+export default function ClauseGadget({x, vis, index, id1, id2, id3, colors, borders}) {
     var color1 = "grey"
     var color2 = "grey"
     var color3 = "grey"
@@ -11,23 +11,25 @@ export default function ClauseGadget({x, vis, index, id1, id2, id3}) {
     var border2 = ""
     var border3 = ""
 
-    if (index[0] == id1) {
-        color1 = index[1]
-        if (index[1] != "") {
+    if (index >= id1) {
+        color1 = colors[0]
+        if (borders[0] != "") {
             stroke1 = 3
-            border1 = index[2]
+            border1 = borders[0]
         }
-    } else if (index[0] == id2) {
-        color2 = index[1]
-        if (index[1] != "") {
+    }
+    if (index >= id2) {
+        color2 = colors[1]
+        if (borders[1] != "") {
             stroke2 = 3
-            border2 = index[2]
+            border2 = borders[1]
         }
-    } else if (index[0] == id3) {
-        color3 = index[1]
-        if (index[1] != "") {
+    }
+    if (index >= id3) {
+        color3 = colors[2]
+        if (borders[2] != "") {
             stroke3 = 3
-            border3 = index[2]
+            border3 = borders[2]
         }
     }
 

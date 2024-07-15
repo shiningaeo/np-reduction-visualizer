@@ -18,26 +18,43 @@ export default function Home() {
   const CLAUSE_OFFSETS = OFFSETS[M-1]
 
   const COLORS = ["blue", "red", "green", "orange", "purple"]
+  const COLOR_GROUPS = [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]]
+  const BORDER_GROUPS = [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]]
+
+  // initialize COLOR_GROUPS to preserve color changes
+  var track = 0
+  for (let i = 0; i < INPUT.length; i+=3) {
+    var temp = [COLORS[Math.abs(INPUT[i])-1], COLORS[Math.abs(INPUT[i+1])-1], COLORS[Math.abs(INPUT[i+2])-1]]
+    COLOR_GROUPS[track] = temp
+    ++track
+  }
+
+  // initialize BORDER_GROUPS to preserve border changes
+  var track1 = 0
+  for (let i = 0; i < INPUT.length; i+=3) {
+    var temp1 = ["", "", ""]
+    for (let j = 0; j < 3; ++j) {
+      if (INPUT[i+j] < 0) {
+          temp1[j] = "red"
+      } 
+    }
+
+    BORDER_GROUPS[track1] = temp1
+    ++track1
+  }
+
+  console.log(BORDER_GROUPS)
 
   var vis_vars = []
   var vis_clauses = []
 
   // [<id>, <color>, <border-color>]
-  var sequence = [
-    ["a1", "", ""], ["a2", "", ""], ["a3", "", ""],
-    ["b1", "", ""], ["b2", "", ""], ["b3", "", ""],
-    ["c1", "", ""], ["c2", "", ""], ["c3", "", ""],
-    ["d1", "", ""], ["d2", "", ""], ["d3", "", ""],
-    ["e1", "", ""], ["e2", "", ""], ["e3", "", ""],
-  ]
+  var sequence = ["a1", "a2", "a3",
+                  "b1", "b2", "b3",
+                  "c1", "c2", "c3",
+                  "d1", "d2", "d3",
+                  "e1", "e2", "e3"]
 
-  // initialize sequence based on input
-  for (let i = 0; i < INPUT.length; ++i) {
-    sequence[i][1] = COLORS[Math.abs(INPUT[i])-1]
-    if (INPUT[i] < 0) {
-      sequence[i][2] = "red"
-    }
-  } // for ..input size
   
   // layout of variable widgets
   for (let i = 0; i < N; ++i) {
@@ -71,11 +88,20 @@ export default function Home() {
         <VariableGadget x={490+VAR_OFFSETS} vis={vis_vars[3]} color={COLORS[3]}/>
         <VariableGadget x={644+VAR_OFFSETS} vis={vis_vars[4]} color={COLORS[4]}/>
 
-        <ClauseGadget x={36+CLAUSE_OFFSETS}  vis={vis_clauses[0]} index={sequence[currIndex]} id1="a1" id2="a2" id3="a3"/>        
-        <ClauseGadget x={190+CLAUSE_OFFSETS} vis={vis_clauses[1]} index={sequence[currIndex]} id1="b1" id2="b2" id3="b3"/>
-        <ClauseGadget x={344+CLAUSE_OFFSETS} vis={vis_clauses[2]} index={sequence[currIndex]} id1="c1" id2="c2" id3="c3"/> 
-        <ClauseGadget x={498+CLAUSE_OFFSETS} vis={vis_clauses[3]} index={sequence[currIndex]} id1="d1" id2="d2" id3="d3"/> 
-        <ClauseGadget x={652+CLAUSE_OFFSETS} vis={vis_clauses[4]} index={sequence[currIndex]} id1="e1" id2="e2" id3="e3"/> 
+        <ClauseGadget x={36+CLAUSE_OFFSETS}  vis={vis_clauses[0]} index={sequence[currIndex]} 
+          id1="a1" id2="a2" id3="a3" colors={COLOR_GROUPS[0]} borders={BORDER_GROUPS[0]}/>        
+
+        <ClauseGadget x={190+CLAUSE_OFFSETS} vis={vis_clauses[1]} index={sequence[currIndex]} 
+          id1="b1" id2="b2" id3="b3" colors={COLOR_GROUPS[1]} borders={BORDER_GROUPS[1]}/>
+
+        <ClauseGadget x={344+CLAUSE_OFFSETS} vis={vis_clauses[2]} index={sequence[currIndex]} 
+          id1="c1" id2="c2" id3="c3" colors={COLOR_GROUPS[2]} borders={BORDER_GROUPS[2]}/> 
+
+        <ClauseGadget x={498+CLAUSE_OFFSETS} vis={vis_clauses[3]} index={sequence[currIndex]} 
+          id1="d1" id2="d2" id3="d3" colors={COLOR_GROUPS[3]} borders={BORDER_GROUPS[3]}/> 
+
+        <ClauseGadget x={652+CLAUSE_OFFSETS} vis={vis_clauses[4]} index={sequence[currIndex]} 
+          id1="e1" id2="e2" id3="e3" colors={COLOR_GROUPS[4]} borders={BORDER_GROUPS[4]}/> 
       </svg>
       <button onClick={handleClick} className="rounded-md border p-2 hover:bg-gray-100">
         <span>Next</span>
