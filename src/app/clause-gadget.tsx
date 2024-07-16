@@ -1,4 +1,4 @@
-export default function ClauseGadget({x, vis, index, id1, id2, id3, colors, borders}) {
+export default function ClauseGadget({x, index, id1, id2, id3, colors, borders}) {
     var color1 = "grey", color2 = "grey", color3 = "grey"
     var stroke1 = 0, stroke2 = 0, stroke3 = 0
     var border1 = "", border2 = "", border3 = ""
@@ -34,7 +34,7 @@ export default function ClauseGadget({x, vis, index, id1, id2, id3, colors, bord
                     stroke-width: 20;
                 }
             `}</style> */}
-            <svg x={x} y="250" height="128" width="128" visibility={vis}>
+            <svg x={x} y="250" height="128" width="128">
                 <line x1="16" y1="112" x2="96" y2="112"  strokeWidth="3" stroke="black" />
                 <line x1="96" y1="112" x2="56" y2="32"  strokeWidth="3" stroke="black" />
                 <line x1="56" y1="32" x2="16" y2="112"  strokeWidth="3" stroke="black" />

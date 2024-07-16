@@ -58,33 +58,14 @@ export default function Three_SAT_VC() {
     }
   }
 
-  var vis_vars = []
-  var vis_clauses = []
-
-  var letters = ["b", "c", "d", "e"]
-  var sequence = ["a1", "a2", "a3"]
+  var letters = ["a", "b", "c", "d", "e"]
+  var sequence = []
   var track2 = 0
-  for (let i = 0; i < INPUT.length-3; i+=3) {
+  for (let i = 0; i < INPUT.length; i+=3) {
     for (let j = 1; j < 4; ++j) {
       sequence.push(letters[track2].concat(j.toString()))
     }
     ++track2
-  }
-  
-  // layout of variable widgets
-  for (let i = 0; i < N; ++i) {
-    vis_vars.push("visible")
-  }
-  for (let i = N+1; i < 6; ++i) {
-    vis_vars.push("hidden")
-  }
-
-  // layout of clause widgets
-  for (let i = 0; i < M; ++i) {
-    vis_clauses.push("visible")
-  }
-  for (let i = M+1; i < 6; ++i) {
-    vis_clauses.push("hidden")
   }
 
   const [currIndex, setCurrIndex] = useState(-1); // State to manage current step
@@ -93,52 +74,40 @@ export default function Three_SAT_VC() {
       setCurrIndex((prevStep) => (prevStep + 1) % steps);
   }
 
+  var variables = []
+  var track3 = 28
+  for (let i = 0; i < N; ++i) {
+    variables.push(<VariableGadget key={i} x={track3 + VAR_OFFSETS} color={COLORS[i]}/>)
+    track3 += 154
+  }
+
+  var clauses = []
+  var track4 = 36
+  for (let i = 0; i < M; ++i) {
+    clauses.push(<ClauseGadget key={i} x={track4+CLAUSE_OFFSETS} index={sequence[currIndex]} 
+      id1={letters[i]+"1"} id2={letters[i]+"2"} id3={letters[i]+"3"} colors={COLOR_GROUPS[i]} borders={BORDER_GROUPS[i]}/> )
+    track4 += 154
+  }
+
+  var edges = []
+  var track6 = 54
+  for (let i = 0; i < M; ++i) {
+    edges.push(<Edge key={i%3} index={sequence[currIndex]} id={letters[i]+"1"} x1={VAR_SPOTS[i%3]} x2={track6+CLAUSE_OFFSETS} y2={362}/>)
+    edges.push(<Edge key={i%3+1} index={sequence[currIndex]} id={letters[i]+"2"} x1={VAR_SPOTS[i%3 + 1]} x2={track6+40+CLAUSE_OFFSETS} y2={282}/>)
+    edges.push(<Edge key={i%3+2} index={sequence[currIndex]} id={letters[i]+"3"} x1={VAR_SPOTS[i%3 + 2]} x2={track6+80+CLAUSE_OFFSETS} y2={362}/>)
+    track6 += 154
+  }
+
   return (
     <main className="flex flex-col items-center justify-between">
-      <label></label>
       <svg height="500" width="800">
         // difference of 154
-        <Edge index={sequence[currIndex]} id="a1" x1={VAR_SPOTS[0]} x2={54+CLAUSE_OFFSETS} y2={362}/>
-        <Edge index={sequence[currIndex]} id="a2" x1={VAR_SPOTS[1]} x2={94+CLAUSE_OFFSETS} y2={282}/>
-        <Edge index={sequence[currIndex]} id="a3" x1={VAR_SPOTS[2]} x2={134+CLAUSE_OFFSETS} y2={362}/>
 
-        <Edge index={sequence[currIndex]} id="b1" x1={VAR_SPOTS[3]} x2={208+CLAUSE_OFFSETS} y2={362}/>
-        <Edge index={sequence[currIndex]} id="b2" x1={VAR_SPOTS[4]} x2={248+CLAUSE_OFFSETS} y2={282}/>
-        <Edge index={sequence[currIndex]} id="b3" x1={VAR_SPOTS[5]} x2={288+CLAUSE_OFFSETS} y2={362}/>
+        {edges.map(y => y)}
+        
+        {variables.map(component => component)}
 
-        <Edge index={sequence[currIndex]} id="c1" x1={VAR_SPOTS[6]} x2={362+CLAUSE_OFFSETS} y2={362}/>
-        <Edge index={sequence[currIndex]} id="c2" x1={VAR_SPOTS[7]} x2={402+CLAUSE_OFFSETS} y2={282}/>
-        <Edge index={sequence[currIndex]} id="c3" x1={VAR_SPOTS[8]} x2={442+CLAUSE_OFFSETS} y2={362}/>
-
-        <Edge index={sequence[currIndex]} id="d1" x1={VAR_SPOTS[9]} x2={516+CLAUSE_OFFSETS} y2={362}/>
-        <Edge index={sequence[currIndex]} id="d2" x1={VAR_SPOTS[10]} x2={556+CLAUSE_OFFSETS} y2={282}/>
-        <Edge index={sequence[currIndex]} id="d3" x1={VAR_SPOTS[11]} x2={596+CLAUSE_OFFSETS} y2={362}/>
-
-        <Edge index={sequence[currIndex]} id="e1" x1={VAR_SPOTS[12]} x2={670+CLAUSE_OFFSETS} y2={362}/>
-        <Edge index={sequence[currIndex]} id="e2" x1={VAR_SPOTS[13]} x2={710+CLAUSE_OFFSETS} y2={282}/>
-        <Edge index={sequence[currIndex]} id="e3" x1={VAR_SPOTS[14]} x2={750+CLAUSE_OFFSETS} y2={362}/>
-
-        <VariableGadget x={28+VAR_OFFSETS}  vis={vis_vars[0]} color={COLORS[0]}/>
-        <VariableGadget x={182+VAR_OFFSETS} vis={vis_vars[1]} color={COLORS[1]}/>
-        <VariableGadget x={336+VAR_OFFSETS} vis={vis_vars[2]} color={COLORS[2]}/>        
-        <VariableGadget x={490+VAR_OFFSETS} vis={vis_vars[3]} color={COLORS[3]}/>
-        <VariableGadget x={644+VAR_OFFSETS} vis={vis_vars[4]} color={COLORS[4]}/>
-
-        <ClauseGadget x={36+CLAUSE_OFFSETS} vis={vis_clauses[0]} index={sequence[currIndex]} 
-          id1="a1" id2="a2" id3="a3" colors={COLOR_GROUPS[0]} borders={BORDER_GROUPS[0]}/>    
-            
-
-        <ClauseGadget x={190+CLAUSE_OFFSETS} vis={vis_clauses[1]} index={sequence[currIndex]} 
-          id1="b1" id2="b2" id3="b3" colors={COLOR_GROUPS[1]} borders={BORDER_GROUPS[1]}/>
-
-        <ClauseGadget x={344+CLAUSE_OFFSETS} vis={vis_clauses[2]} index={sequence[currIndex]} 
-          id1="c1" id2="c2" id3="c3" colors={COLOR_GROUPS[2]} borders={BORDER_GROUPS[2]}/> 
-
-        <ClauseGadget x={498+CLAUSE_OFFSETS} vis={vis_clauses[3]} index={sequence[currIndex]} 
-          id1="d1" id2="d2" id3="d3" colors={COLOR_GROUPS[3]} borders={BORDER_GROUPS[3]}/> 
-
-        <ClauseGadget x={652+CLAUSE_OFFSETS} vis={vis_clauses[4]} index={sequence[currIndex]} 
-          id1="e1" id2="e2" id3="e3" colors={COLOR_GROUPS[4]} borders={BORDER_GROUPS[4]}/> 
+        {clauses.map(x => x)}
       </svg>
       <button onClick={handleClick} className="rounded-md border p-2 hover:bg-gray-100">
         <span>Next</span>
