@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <main className="flex flex-col items-center justify-between">
-        {/* <Three_SAT_Input /> */}
+        <Three_SAT_Input m={3}/>
         <Three_SAT_VC />
       </main>
     </>
