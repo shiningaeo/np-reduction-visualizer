@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ClauseGadget from './clause-gadget';
 import VariableGadget from './variable-gadget';
 import Edge from './edge';
+import { stringify } from 'querystring';
 
 // 3SAT -> Vertex Cover (VC)
 
@@ -60,12 +61,17 @@ export default function Home() {
   var vis_vars = []
   var vis_clauses = []
 
-  var sequence = ["a1", "a2", "a3",
-                  "b1", "b2", "b3",
-                  "c1", "c2", "c3",
-                  "d1", "d2", "d3",
-                  "e1", "e2", "e3"]
+  var letters = ["b", "c", "d", "e"]
+  var sequence = ["a1", "a2", "a3"]
+  var track2 = 0
+  for (let i = 0; i < INPUT.length-3; i+=3) {
+    for (let j = 1; j < 4; ++j) {
+      sequence.push(letters[track2].concat(j.toString()))
+    }
+    ++track2
+  }
 
+  console.log(sequence)
   
   // layout of variable widgets
   for (let i = 0; i < N; ++i) {
