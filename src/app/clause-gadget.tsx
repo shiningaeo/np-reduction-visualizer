@@ -1,16 +1,9 @@
 export default function ClauseGadget({x, vis, index, id1, id2, id3, colors, borders}) {
-    var color1 = "grey"
-    var color2 = "grey"
-    var color3 = "grey"
+    var color1 = "grey", color2 = "grey", color3 = "grey"
+    var stroke1 = 0, stroke2 = 0, stroke3 = 0
+    var border1 = "", border2 = "", border3 = ""
 
-    var stroke1 = 0
-    var stroke2 = 0
-    var stroke3 = 0
-
-    var border1 = ""
-    var border2 = ""
-    var border3 = ""
-
+    // render color for each vertex based on value of state var index
     if (index >= id1) {
         color1 = colors[0]
         if (borders[0] != "") {

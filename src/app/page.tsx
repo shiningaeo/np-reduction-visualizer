@@ -2,16 +2,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ClauseGadget from './clause-gadget';
 import VariableGadget from './variable-gadget';
+import Edge from './edge';
 
 // 3SAT -> Vertex Cover (VC)
 
-// sample input: [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2, -1, 3, 4]
-//               5 variables, 3 clauses
+// sample input: [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2, -1, -3, 4]
+//               5 variables, 5 clauses
 
 export default function Home() {
   const N = 5
-  const M = 5
-  const INPUT = [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2, -1, 3, 4]
+  const M = 4
+  const INPUT = [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2]
 
   const OFFSETS = [308, 231, 154, 77, 0]
   const VAR_OFFSETS = OFFSETS[N-1]
@@ -20,6 +21,10 @@ export default function Home() {
   const COLORS = ["blue", "red", "green", "orange", "purple"]
   const COLOR_GROUPS = [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]]
   const BORDER_GROUPS = [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]]
+
+  const TRUE_VAR_SPOTS = [44, 198, 352, 506, 660]
+  const FALSE_VAR_SPOTS = [140, 294, 448, 602, 756]
+  var VAR_SPOTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0]
 
   // initialize COLOR_GROUPS to preserve color changes
   var track = 0
@@ -35,7 +40,7 @@ export default function Home() {
     var temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
       if (INPUT[i+j] < 0) {
-          temp1[j] = "red"
+          temp1[j] = "black"
       } 
     }
 
@@ -43,12 +48,18 @@ export default function Home() {
     ++track1
   }
 
-  console.log(BORDER_GROUPS)
+  // initialize VAR_SPOTS for drawing edges
+  for (let i = 0; i < INPUT.length; ++i) {
+    if (INPUT[i] < 0) {
+      VAR_SPOTS[i] = FALSE_VAR_SPOTS[-1*INPUT[i]-1]+VAR_OFFSETS
+    } else {
+      VAR_SPOTS[i] = TRUE_VAR_SPOTS[INPUT[i]-1]+VAR_OFFSETS
+    }
+  }
 
   var vis_vars = []
   var vis_clauses = []
 
-  // [<id>, <color>, <border-color>]
   var sequence = ["a1", "a2", "a3",
                   "b1", "b2", "b3",
                   "c1", "c2", "c3",
@@ -66,13 +77,13 @@ export default function Home() {
 
   // layout of clause widgets
   for (let i = 0; i < M; ++i) {
-    vis_vars.push("visible")
+    vis_clauses.push("visible")
   }
   for (let i = M+1; i < 6; ++i) {
-    vis_vars.push("hidden")
+    vis_clauses.push("hidden")
   }
 
-  const [currIndex, setCurrIndex] = useState(0); // State to manage current step
+  const [currIndex, setCurrIndex] = useState(-1); // State to manage current step
   var steps = sequence.length
   function handleClick() {
       setCurrIndex((prevStep) => (prevStep + 1) % steps);
@@ -82,14 +93,35 @@ export default function Home() {
     <main className="flex flex-col items-center justify-between">
       <svg height="500" width="800">
         // difference of 154
+        <Edge index={sequence[currIndex]} id="a1" x1={VAR_SPOTS[0]} x2={54+CLAUSE_OFFSETS} y2={362}/>
+        <Edge index={sequence[currIndex]} id="a2" x1={VAR_SPOTS[1]} x2={94+CLAUSE_OFFSETS} y2={282}/>
+        <Edge index={sequence[currIndex]} id="a3" x1={VAR_SPOTS[2]} x2={134+CLAUSE_OFFSETS} y2={362}/>
+
+        <Edge index={sequence[currIndex]} id="b1" x1={VAR_SPOTS[3]} x2={208+CLAUSE_OFFSETS} y2={362}/>
+        <Edge index={sequence[currIndex]} id="b2" x1={VAR_SPOTS[4]} x2={248+CLAUSE_OFFSETS} y2={282}/>
+        <Edge index={sequence[currIndex]} id="b3" x1={VAR_SPOTS[5]} x2={288+CLAUSE_OFFSETS} y2={362}/>
+
+        <Edge index={sequence[currIndex]} id="c1" x1={VAR_SPOTS[6]} x2={362+CLAUSE_OFFSETS} y2={362}/>
+        <Edge index={sequence[currIndex]} id="c2" x1={VAR_SPOTS[7]} x2={402+CLAUSE_OFFSETS} y2={282}/>
+        <Edge index={sequence[currIndex]} id="c3" x1={VAR_SPOTS[8]} x2={442+CLAUSE_OFFSETS} y2={362}/>
+
+        <Edge index={sequence[currIndex]} id="d1" x1={VAR_SPOTS[9]} x2={516+CLAUSE_OFFSETS} y2={362}/>
+        <Edge index={sequence[currIndex]} id="d2" x1={VAR_SPOTS[10]} x2={556+CLAUSE_OFFSETS} y2={282}/>
+        <Edge index={sequence[currIndex]} id="d3" x1={VAR_SPOTS[11]} x2={596+CLAUSE_OFFSETS} y2={362}/>
+
+        <Edge index={sequence[currIndex]} id="e1" x1={VAR_SPOTS[12]} x2={670+CLAUSE_OFFSETS} y2={362}/>
+        <Edge index={sequence[currIndex]} id="e2" x1={VAR_SPOTS[13]} x2={710+CLAUSE_OFFSETS} y2={282}/>
+        <Edge index={sequence[currIndex]} id="e3" x1={VAR_SPOTS[14]} x2={750+CLAUSE_OFFSETS} y2={362}/>
+
         <VariableGadget x={28+VAR_OFFSETS}  vis={vis_vars[0]} color={COLORS[0]}/>
         <VariableGadget x={182+VAR_OFFSETS} vis={vis_vars[1]} color={COLORS[1]}/>
         <VariableGadget x={336+VAR_OFFSETS} vis={vis_vars[2]} color={COLORS[2]}/>        
         <VariableGadget x={490+VAR_OFFSETS} vis={vis_vars[3]} color={COLORS[3]}/>
         <VariableGadget x={644+VAR_OFFSETS} vis={vis_vars[4]} color={COLORS[4]}/>
 
-        <ClauseGadget x={36+CLAUSE_OFFSETS}  vis={vis_clauses[0]} index={sequence[currIndex]} 
-          id1="a1" id2="a2" id3="a3" colors={COLOR_GROUPS[0]} borders={BORDER_GROUPS[0]}/>        
+        <ClauseGadget x={36+CLAUSE_OFFSETS} vis={vis_clauses[0]} index={sequence[currIndex]} 
+          id1="a1" id2="a2" id3="a3" colors={COLOR_GROUPS[0]} borders={BORDER_GROUPS[0]}/>    
+            
 
         <ClauseGadget x={190+CLAUSE_OFFSETS} vis={vis_clauses[1]} index={sequence[currIndex]} 
           id1="b1" id2="b2" id3="b3" colors={COLOR_GROUPS[1]} borders={BORDER_GROUPS[1]}/>
@@ -106,9 +138,6 @@ export default function Home() {
       <button onClick={handleClick} className="rounded-md border p-2 hover:bg-gray-100">
         <span>Next</span>
       </button>
-      {/* <div className="z-7 w-full max-w-2xl items-center justify-between font-mono text-sm lg:flex"> */}
-        {/* <Viewer /> */}
-      {/* </div> */}
     </main>
   );
 }
