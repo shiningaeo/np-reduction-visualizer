@@ -28,12 +28,12 @@ export default function ClauseGadget({x, vis, index, id1, id2, id3, colors, bord
 
     return (
         <>
-            <style jsx>{`
+            {/* <style jsx>{`
                 #test:hover {
                     stroke: orange;
                     stroke-width: 20;
                 }
-            `}</style>
+            `}</style> */}
             <svg x={x} y="250" height="128" width="128" visibility={vis}>
                 <line x1="16" y1="112" x2="96" y2="112"  strokeWidth="3" stroke="black" />
                 <line x1="96" y1="112" x2="56" y2="32"  strokeWidth="3" stroke="black" />
