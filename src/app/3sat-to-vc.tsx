@@ -24,6 +24,24 @@ export default function Three_SAT_VC() {
   const FALSE_VAR_SPOTS = [140, 294, 448, 602, 756]
   var VAR_SPOTS = []
 
+  // initialize *WALKTHROUGH SEQUENCE*
+  const LETTERS = ["a", "b", "c", "d", "e"]
+  var sequence = [] // IMPORTANT: walkthrough sequence
+  track = 0
+  for (let i = 0; i < INPUT.length; i+=3) {
+    for (let j = 1; j < 4; ++j) {
+      sequence.push(LETTERS[track].concat(j.toString()))
+    }
+    ++track
+  }
+
+  // IMPORTANT STATE VARIABLE
+  const [currIndex, setCurrIndex] = useState(-1); // State to manage current step
+  var steps = sequence.length
+  function handleClick() {
+      setCurrIndex((prevStep) => (prevStep + 1) % steps);
+  }
+
   // initialize COLOR_GROUPS to preserve color changes
   for (let i = 0; i < INPUT.length; i+=3) {
     var temp = [COLORS[Math.abs(INPUT[i])-1], COLORS[Math.abs(INPUT[i+1])-1], COLORS[Math.abs(INPUT[i+2])-1]]
@@ -52,30 +70,14 @@ export default function Three_SAT_VC() {
     }
   }
 
-  const LETTERS = ["a", "b", "c", "d", "e"]
-  var sequence = [] // IMPORTANT: walkthrough sequence
-  track = 0
-  for (let i = 0; i < INPUT.length; i+=3) {
-    for (let j = 1; j < 4; ++j) {
-      sequence.push(LETTERS[track].concat(j.toString()))
-    }
-    ++track
-  }
-
-  const [currIndex, setCurrIndex] = useState(-1); // State to manage current step
-  var steps = sequence.length
-  function handleClick() {
-      setCurrIndex((prevStep) => (prevStep + 1) % steps);
-  }
-
-  var variables = []
+  var variables = []  // variable gadgets to be rendered
   track = 28
   for (let i = 0; i < N; ++i) {
     variables.push(<VariableGadget key={i} x={track + VAR_OFFSETS} color={COLORS[i]}/>)
     track += 154
   }
 
-  var clauses = []
+  var clauses = []  // clause gadgets to be rendered
   track = 36
   for (let i = 0; i < M; ++i) {
     clauses.push(<ClauseGadget key={i} x={track+CLAUSE_OFFSETS} index={sequence[currIndex]} 
@@ -83,7 +85,7 @@ export default function Three_SAT_VC() {
     track += 154
   }
 
-  var edges = []
+  var edges = []  // edges to be rendered
   track = 54
   for (let i = 0; i < M; ++i) {
     edges.push(<Edge key={i%3} index={sequence[currIndex]} id={LETTERS[i]+"1"} x1={VAR_SPOTS[i%3]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
