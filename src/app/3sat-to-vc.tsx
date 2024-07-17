@@ -36,10 +36,10 @@ export default function Three_SAT_VC() {
   }
 
   // IMPORTANT STATE VARIABLE
-  const [currIndex, setCurrIndex] = useState(-1); // State to manage current step
+  const [currIndex, setCurrIndex] = useState(-1) // State to manage current step
   var steps = sequence.length
   function handleClick() {
-      setCurrIndex((prevStep) => (prevStep + 1) % steps);
+      setCurrIndex((prevStep) => (prevStep + 1) % steps)
   }
 
   // initialize COLOR_GROUPS to preserve color changes
@@ -96,7 +96,7 @@ export default function Three_SAT_VC() {
 
   return (
     <main className="flex flex-col items-center justify-between">
-      <svg height="500" width="800">
+      <svg height="400" width="800">
         {edges.map(edge => edge)}
         
         {variables.map(v => v)}

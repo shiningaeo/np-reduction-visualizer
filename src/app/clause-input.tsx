@@ -5,15 +5,15 @@ export default function Clause() {
             <div>
                 <p style={{display: "inline", fontSize: 30, fontWeight: 550}}>( </p>
                 <label style={{fontSize: 30, fontWeight: 550}}>X </label>
-                <input type="text" id="pin" name="pin" maxLength={1} size={1}></input>
+                <input type="number" min="1" max="5" id="pin" name="pin" maxLength={1} size={1}></input>
                 <p style={{display: "inline", fontSize: 35}}> &#8897; </p>
 
                 <label style={{fontSize: 30, fontWeight: 550}}> X </label>
-                <input type="text" id="pin" name="pin" maxLength={1} size={1}></input>
+                <input type="number"  min="1" max="5" id="pin" name="pin" maxLength={1} size={1}></input>
                 <p style={{display: "inline", fontSize: 35}}> &#8897;</p>
 
                 <label style={{fontSize: 30, fontWeight: 550}}> X </label>
-                <input type="text" id="pin" name="pin" maxLength={1} size={1}></input>
+                <input type="number"  min="1" max="5" id="pin" name="pin" maxLength={1} size={1}></input>
                 <p style={{display: "inline", fontSize: 30, fontWeight: 550}}> )</p>
             </div>
         </div>
