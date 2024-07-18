@@ -6,10 +6,10 @@ import Edge from './edge';
 
 // 3SAT -> Vertex Cover (VC)
 
-export default function Three_SAT_VC() {
-  const N = 5
-  const M = 5
-  const INPUT = [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2, -1, -3, 4]
+export default function Three_SAT_VC({N, M, INPUT}) {
+  // const N = 5
+  // const M = 5
+  // const INPUT = [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2, -1, -3, 4]
   // const INPUT = [2, 1, 3, -3, -1, 2]
 
   const OFFSETS = [308, 231, 154, 77, 0]
@@ -96,7 +96,7 @@ export default function Three_SAT_VC() {
 
   return (
     <main className="flex flex-col items-center justify-between">
-      <svg height="400" width="800">
+      <svg style={{marginTop: -30}} height="400" width="800">
         {edges.map(edge => edge)}
         
         {variables.map(v => v)}
