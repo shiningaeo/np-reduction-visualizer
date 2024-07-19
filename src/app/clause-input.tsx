@@ -1,11 +1,16 @@
-export default function Clause({N, base, changeInput}) {
+export default function Clause({N, base, changeInput, negatives, toggleNegation}) {
+    // this might be unecessary function wrapping
+    const handleClick = (index: number) => {
+        toggleNegation(index);
+    };
+
     return (
       <>
         <div style={{marginTop: 8, marginBottom: 8}}>
             <div className="flex flex-row justify-between items-center">
-                <div className="bg-gray-400 hover:bg-black" style={{zIndex:1, marginLeft:17, marginBottom:-20, width:26, height:4}}></div>
-                <div className="bg-gray-400 hover:bg-black" style={{zIndex:1, marginRight:-1, marginBottom:-20, width:26, height:4}}></div>
-                <div className="bg-gray-400 hover:bg-black" style={{zIndex:1, marginRight:54, marginBottom:-20, width:26, height:4}}></div>
+                <div onClick={() => handleClick(base*3)} className="hover:bg-black" style={{backgroundColor: negatives[base*3], zIndex:1, marginLeft:17, marginBottom:-20, width:26, height:4}}></div>
+                <div onClick={() => handleClick(base*3 +1)} className="hover:bg-black" style={{backgroundColor: negatives[base*3+1], zIndex:1, marginRight:-1, marginBottom:-20, width:26, height:4}}></div>
+                <div onClick={() => handleClick(base*3 +2)} className="hover:bg-black" style={{backgroundColor: negatives[base*3+2], zIndex:1, marginRight:54, marginBottom:-20, width:26, height:4}}></div>
             </div>
             <p style={{display: "inline", fontSize: 30, fontWeight: 550}}>( </p>
             <label style={{fontSize: 30, fontWeight: 550}}>X </label>
