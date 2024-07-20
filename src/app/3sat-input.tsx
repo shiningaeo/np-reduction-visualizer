@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Clause from "./clause-input";
 
 export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleChangeM, changeInput, toggleNegation}) {

@@ -55,7 +55,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-between">
-      <button onClick={handleSubmit} style={{zIndex:1}}>Submit</button>
+      <button onClick={handleSubmit} style={{zIndex:1, marginTop: 200}}>Submit</button>
       {!submit ? (
         <>
           <Three_SAT_Input
