@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import Clause from "./clause-input";
-import Three_SAT_VC from './3sat-to-vc';
 
-export default function Three_SAT_Input({N, M, input, negatives, handleChangeN, handleChangeM, changeInput, toggleNegation}) {
-
-
+export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleChangeM, changeInput, toggleNegation}) {
     var render = []
     for (let i = 0; i < M-1; ++i) {
         render.push(<Clause N={N} base={i} changeInput={changeInput} toggleNegation={toggleNegation} negatives={negatives} key={i}/>)

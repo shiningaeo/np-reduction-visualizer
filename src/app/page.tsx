@@ -61,7 +61,6 @@ export default function Home() {
           <Three_SAT_Input
             N={N}
             M={M}
-            input={input}
             negatives={negatives}
             handleChangeN={handleChangeN}
             handleChangeM={handleChangeM}
