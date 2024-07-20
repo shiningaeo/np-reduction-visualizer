@@ -18,11 +18,15 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #EDECEC;
+  background: #EAF1F2;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.gradient-bg {
+  background: linear-gradient(to left, #88cdd1, #6dc4d1, #6dc4d1, #6dc4d1, #6db1d1, #7ea7e0, #6d97d1);;
 }
