@@ -13,7 +13,7 @@ export default function Home() {
   const [input, setInput] = useState(Array.from({ length: M*3 }, () => 1))
 
   // negation tracker
-  const [negatives, setNegatives] = useState(Array.from({ length: M*3 }, () => "#94a3b8"))
+  const [negatives, setNegatives] = useState(Array.from({ length: 15 }, () => "#94a3b8"))
 
   const handleChangeN = (e) => {
     setN(parseInt(e.target.value));

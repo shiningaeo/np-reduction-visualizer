@@ -13,12 +13,12 @@ export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleC
         <main className="flex flex-row justify-center" style={{marginTop: 40, width: 700, height: 350}}>
             <div style={{minWidth: 200}} className="items-center">
                 <div style={{height: 155}}></div>
-                <label style={{fontSize: 30, fontWeight: 550}}> n:&nbsp;
+                <label style={{fontSize: 30, fontWeight: 550}}> n =&nbsp;
                     <input value={N} onChange={handleChangeN} name="n"
                             min="1" max="5" style={{fontWeight: "normal"}} type="number"/>
                 </label>
 
-                <label style={{fontSize: 30, fontWeight: 550}}> m:&nbsp;
+                <label style={{fontSize: 30, fontWeight: 550}}> m =&nbsp;
                     <input value={M} onChange={handleChangeM} name="m"
                             min="1" max="5" style={{fontWeight: "normal"}} type="number"/>
                 </label>
@@ -28,12 +28,6 @@ export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleC
                 {render.map(component => component)}
             </div>
             <div style={{width: 80}}></div>
-            <div>
-                <button style={{marginTop: 160, marginLeft: -30}} 
-                    className="bg-gray-100 rounded-md border p-2 hover:bg-emerald-400">
-                    <span>SUBMIT</span>
-                </button>
-            </div>
         </main>
     </>
     );

@@ -7,10 +7,10 @@ import Edge from './edge';
 // 3SAT -> Vertex Cover (VC)
 
 export default function Three_SAT_VC({N, M, INPUT}) {
-  // const N = 5
-  // const M = 5
-  // const INPUT = [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2, -1, -3, 4]
-  // const INPUT = [2, 1, 3, -3, -1, 2]
+  // N = 3
+  // M = 2
+  // // const INPUT = [1, 2, 3, 4, 5, -1, 3, 1, -2, 4, -5, 2, -1, -3, 4]
+  // INPUT = [2, 1, 3, -3, -1, 2]
 
   const OFFSETS = [308, 231, 154, 77, 0]
   const VAR_OFFSETS = OFFSETS[N-1]
@@ -22,7 +22,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
 
   const TRUE_VAR_SPOTS = [44, 198, 352, 506, 660] // difference of 154
   const FALSE_VAR_SPOTS = [140, 294, 448, 602, 756]
-  var VAR_SPOTS = []
+  var VAR_SPOTS = [] // a list of size INPUT.length
 
   // initialize *WALKTHROUGH SEQUENCE*
   const LETTERS = ["a", "b", "c", "d", "e"]
@@ -87,10 +87,10 @@ export default function Three_SAT_VC({N, M, INPUT}) {
 
   var edges = []  // edges to be rendered
   track = 54
-  for (let i = 0; i < M; ++i) {
-    edges.push(<Edge key={i%3} index={sequence[currIndex]} id={LETTERS[i]+"1"} x1={VAR_SPOTS[i%3]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
-    edges.push(<Edge key={i%3+1} index={sequence[currIndex]} id={LETTERS[i]+"2"} x1={VAR_SPOTS[i%3 + 1]} x2={track+40+CLAUSE_OFFSETS} y2={282}/>)
-    edges.push(<Edge key={i%3+2} index={sequence[currIndex]} id={LETTERS[i]+"3"} x1={VAR_SPOTS[i%3 + 2]} x2={track+80+CLAUSE_OFFSETS} y2={362}/>)
+  for (let i = 0; i < M*3; i+=3) {
+    edges.push(<Edge key={i} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
+    edges.push(<Edge key={i+1} index={sequence[currIndex]} id={LETTERS[i/3]+"2"} x1={VAR_SPOTS[i+1]} x2={track+40+CLAUSE_OFFSETS} y2={282}/>)
+    edges.push(<Edge key={i+2} index={sequence[currIndex]} id={LETTERS[i/3]+"3"} x1={VAR_SPOTS[i+2]} x2={track+80+CLAUSE_OFFSETS} y2={362}/>)
     track += 154
   }
 
