@@ -18,7 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #EAF1F2;
+  background: #FFFFFF;
 }
 
 @layer utilities {

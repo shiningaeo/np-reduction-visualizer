@@ -26,7 +26,6 @@ export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleC
             <div className="flex flex-col items-center justify-center">
                 {render.map(component => component)}
             </div>
-            <div style={{width: 80}}></div>
         </main>
     </>
     );

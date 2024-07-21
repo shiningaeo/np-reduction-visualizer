@@ -55,22 +55,28 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-between">
-      <button onClick={handleSubmit} style={{zIndex:1, marginTop: 200}}>Submit</button>
-      {!submit ? (
-        <>
-          <Three_SAT_Input
-            N={N}
-            M={M}
-            negatives={negatives}
-            handleChangeN={handleChangeN}
-            handleChangeM={handleChangeM}
-            toggleNegation={toggleNegation}
-            changeInput={changeInput}
-          />
-        </>
-      ) : (
-        <Three_SAT_VC N={N} M={M} INPUT={input} />
-      )}
+      <div style={{height: 100}}></div>
+      <div className="flex flex-row justify-center w-full">
+        <div className="flex flex-col w-1/2 justify-center items-center">
+        {!submit ? (
+          <>
+            <Three_SAT_Input
+              N={N}
+              M={M}
+              negatives={negatives}
+              handleChangeN={handleChangeN}
+              handleChangeM={handleChangeM}
+              toggleNegation={toggleNegation}
+              changeInput={changeInput}
+            />
+          </>
+        ) : (
+          <Three_SAT_VC N={N} M={M} INPUT={input} />
+        )}
+        </div>
+        <div className="w-1/2"></div>
+      </div>
+      <button onClick={handleSubmit} style={{zIndex:1, marginTop: 150}}>Submit</button>
     </main>
   );
 }
