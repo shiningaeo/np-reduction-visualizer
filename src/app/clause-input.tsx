@@ -18,11 +18,11 @@ export default function Clause({N, base, changeInput, negatives, toggleNegation}
             <p style={{display: "inline", fontSize: 35}}> &#8897; </p>
 
             <label style={{fontSize: 30, fontWeight: 550}}> X </label>
-            <input type="number"  min="1" max={N} onChange={e => changeInput(base*3+1, parseInt(e.target.value))}></input>
+            <input style={{border: "solid"}} type="number"  min="1" max={N} onChange={e => changeInput(base*3+1, parseInt(e.target.value))}></input>
             <p style={{display: "inline", fontSize: 35}}> &#8897;</p>
 
             <label style={{fontSize: 30, fontWeight: 550}}> X </label>
-            <input type="number"  min="1" max={N} onChange={e => changeInput(base*3+2, parseInt(e.target.value))}></input>
+            <input style={{border: "solid"}} type="number"  min="1" max={N} onChange={e => changeInput(base*3+2, parseInt(e.target.value))}></input>
             <p style={{display: "inline", fontSize: 30, fontWeight: 550}}> )</p>
         </div>
       </>  

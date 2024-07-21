@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{height: 68}}>
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
-            <a className={`${poppins.className} text-2xl font-bold italic`}
+            <a className={`${poppins.className} text-2xl font-bold`}
             style={{color: "#396D83", fontStyle: "italic"}}>NP VISUALIZER</a>
           </div>
           <div className="hidden md:flex space-x-8">

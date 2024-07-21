@@ -9,17 +9,17 @@ export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleC
     render.push(<Clause N={N} base={M-1} changeInput={changeInput} toggleNegation={toggleNegation} negatives={negatives} key={M-1}/>)
     return (
     <>
-        <main className="flex flex-row justify-center" style={{marginTop: 40, width: 700, height: 350}}>
-            <div style={{minWidth: 200}} className="items-center">
+        <main className="flex flex-row justify-center" style={{height: 440, marginBottom: 12, backgroundColor: "#ffffff", marginRight:50}}>
+            <div style={{minWidth: 200}} className="items-center flex flex-col">
                 <div style={{height: 155}}></div>
-                <label style={{fontSize: 30, fontWeight: 550}}> n =&nbsp;
+                <label style={{fontSize: 30, fontWeight: 550, marginTop:10}}> n =&nbsp;
                     <input value={N} onChange={handleChangeN} name="n"
-                            min="1" max="5" style={{fontWeight: "normal"}} type="number"/>
+                            min="1" max="5" style={{fontWeight: "normal", border: "solid"}} type="number"/>
                 </label>
 
-                <label style={{fontSize: 30, fontWeight: 550}}> m =&nbsp;
+                <label style={{fontSize: 30, fontWeight: 550, marginRight:8, marginTop:20}}> m =&nbsp;
                     <input value={M} onChange={handleChangeM} name="m"
-                            min="1" max="5" style={{fontWeight: "normal"}} type="number"/>
+                            min="1" max="5" style={{fontWeight: "normal", border: "solid"}} type="number"/>
                 </label>
             </div>
             <div style={{width: 30}}></div>
