@@ -34,11 +34,21 @@ export default function ClauseGadget({x, index, id1, id2, id3, colors, borders})
                     stroke-width: 20;
                 }
             `}</style> */}
-            <svg x={x} y="250" height="128" width="128">
-                <text x="56" y="112">My</text>
-                <line x1="16" y1="112" x2="96" y2="112"  strokeWidth="3" stroke="black" />
-                <line x1="96" y1="112" x2="56" y2="32"  strokeWidth="3" stroke="black" />
-                <line x1="56" y1="32" x2="16" y2="112"  strokeWidth="3" stroke="black" />
+            <svg x={x} y="250" height="300" width="200">
+            <text x="9" y="155">
+                (<tspan textDecoration="overline">X</tspan>
+                <tspan dy="5" fontSize="80%">1</tspan>
+                <tspan dy="-5"> &#8897; </tspan>
+                <tspan dy="0" textDecoration="overline">X</tspan>
+                <tspan dy="5" fontSize="80%">1</tspan>
+                <tspan dy="-5"> &#8897; </tspan>
+                <tspan dy="0" textDecoration="overline">X</tspan>
+                <tspan dy="5" fontSize="80%">1</tspan>
+                <tspan dy="-5">)</tspan>
+            </text>
+                <line x1="16" y1="112" x2="96" y2="112" strokeWidth="3" stroke="black" />
+                <line x1="96" y1="112" x2="56" y2="32" strokeWidth="3" stroke="black" />
+                <line x1="56" y1="32" x2="16" y2="112" strokeWidth="3" stroke="black" />
 
                 <circle r="16" cx="16" cy="112" fill={color1} strokeWidth={stroke1} stroke={border1} />
                 <circle r="16" cx="56" cy="32" fill={color2} strokeWidth={stroke2} stroke={border2} />
