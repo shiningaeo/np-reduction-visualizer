@@ -35,6 +35,7 @@ export default function ClauseGadget({x, index, id1, id2, id3, colors, borders})
                 }
             `}</style> */}
             <svg x={x} y="250" height="128" width="128">
+                <text x="56" y="112">My</text>
                 <line x1="16" y1="112" x2="96" y2="112"  strokeWidth="3" stroke="black" />
                 <line x1="96" y1="112" x2="56" y2="32"  strokeWidth="3" stroke="black" />
                 <line x1="56" y1="32" x2="16" y2="112"  strokeWidth="3" stroke="black" />

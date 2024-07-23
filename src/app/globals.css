@@ -27,6 +27,11 @@ body {
   }
 }
 
-.gradient-bg {
-  background: linear-gradient(to left, #88cdd1, #6dc4d1, #6dc4d1, #6dc4d1, #6db1d1, #7ea7e0, #6d97d1);;
+nav {
+  background-color: #EAF1F2;
+}
+
+.navItem {
+  margin-top: 20px;
+  color: #396D83;
 }

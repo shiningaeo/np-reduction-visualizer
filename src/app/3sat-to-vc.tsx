@@ -42,6 +42,10 @@ export default function Three_SAT_VC({N, M, INPUT}) {
       setCurrIndex((prevStep) => (prevStep + 1) % steps)
   }
 
+  function handleClickBack() {
+    setCurrIndex((prevStep) => (prevStep -1) % steps)
+}
+
   // initialize COLOR_GROUPS to preserve color changes
   for (let i = 0; i < INPUT.length; i+=3) {
     var temp = [COLORS[Math.abs(INPUT[i])-1], COLORS[Math.abs(INPUT[i+1])-1], COLORS[Math.abs(INPUT[i+2])-1]]
@@ -95,7 +99,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
   }
 
   return (
-    <main className="flex flex-col items-center justify-between">
+    <main className="flex flex-col items-center justify-between" style={{marginTop:60}}>
       <svg style={{marginTop: -30}} height="400" width="800">
         {edges.map(edge => edge)}
         
@@ -103,9 +107,14 @@ export default function Three_SAT_VC({N, M, INPUT}) {
 
         {clauses.map(clause => clause)}
       </svg>
-      <button onClick={handleClick} className="rounded-md border p-2 hover:bg-gray-100">
-        <span>Next</span>
-      </button>
+      <div className="flex flex-row" style={{marginTop:200}}>
+        <button onClick={handleClickBack} className="rounded-md border p-2 hover:bg-gray-100">
+            <span style={{fontFamily:"Times New Roman"}}>&#9194;</span>
+          </button>
+          <button onClick={handleClick} className="rounded-md border p-2 hover:bg-gray-100">
+            <span>&#9193;</span>
+          </button>
+      </div>
     </main>
   );
 }
