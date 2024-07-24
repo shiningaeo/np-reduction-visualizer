@@ -126,7 +126,16 @@ export default function Three_SAT_VC({N, M, INPUT}) {
         </main>
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
         <div className="flex flex-row w-2/12 h-full items-center justify-center">
-          <div className="w-full" style={{height:300, marginTop: 50, border: "solid 2px blue"}}></div>
+          <div className="w-full p-3" style={{height:"auto", marginTop: 50, marginBottom:200, marginLeft:-40, backgroundColor:"#b6f0e7"}}>
+            <strong>3-SAT Input Details<br></br></strong>
+            n = 5 variables<br></br>
+            m = 5 clauses<br></br>
+            k = 2m+3n = <br></br>
+            boolean expression:<br></br>
+            banana<br></br>
+            banana<br></br>
+            banana<br></br>
+          </div>
         </div>
         
         <div className="flex w-7/12 items-center justify-center">
@@ -139,15 +148,28 @@ export default function Three_SAT_VC({N, M, INPUT}) {
           </svg>
         </div>
         <div className="flex flex-row w-2/12 h-full items-center justify-center">
-          <div className="w-full" style={{height:300, marginTop: 50, border: "solid 2px blue"}}></div>
+          <div className="w-full" style={{height:300, marginTop: 50}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+            culpa qui officia deserunt mollit anim id est laborum.
+          </div>
         </div>
       </div>
-      <div className="flex flex-row" style={{marginTop:80}}>
-        <button onClick={handleClickBack} className="rounded-md border p-2 hover:bg-gray-100">
-            <span style={{fontFamily:"Times New Roman"}}>&#9194;</span>
+      <div className="flex flex-row w-3/12 justify-center items-center" style={{marginTop:80, backgroundColor:"#EAF1F2", height:54, borderRadius:10}}>
+          <button onClick={handleClickBack} className="p-2">
+              <span style={{color:"coral", fontSize:20}}>&#9664;&#9664;</span>
+            </button>
+          <button onClick={handleClickBack} className="p-2">
+            <span style={{color:"green", fontSize:20}}>&#9664;</span>
           </button>
-          <button onClick={handleClick} className="rounded-md border p-2 hover:bg-gray-100">
-            <span>&#9193;</span>
+          <span>&nbsp;&nbsp;&nbsp;</span>
+          <button onClick={handleClick} className="p-2">
+            <span style={{color:"green", fontSize:20}}>&#9654;</span>
+          </button>
+          <button onClick={handleClick} className="p-2">
+            <span style={{color:"coral", fontSize:20}}>&#9654;&#9654;</span>
           </button>
       </div>
     </main>
