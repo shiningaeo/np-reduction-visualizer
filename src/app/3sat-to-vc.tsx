@@ -79,7 +79,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
   var clauses = []  // clause gadgets to be rendered
   track = 36
   for (let i = 0; i < M; ++i) {
-    var vars = [INPUT[3*i], INPUT[3*i+1], INPUT[3*i+2]]
+    var vars = [Math.abs(INPUT[3*i]), Math.abs(INPUT[3*i+1]), Math.abs(INPUT[3*i+2])]
     console.log(vars)
     clauses.push(<ClauseGadget key={i} vars={vars} x={track+CLAUSE_OFFSETS} index={sequence[currIndex]} 
       id1={LETTERS[i]+"1"} id2={LETTERS[i]+"2"} id3={LETTERS[i]+"3"} colors={COLOR_GROUPS[i]} borders={BORDER_GROUPS[i]}/> )
