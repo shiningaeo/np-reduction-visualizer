@@ -4,6 +4,7 @@ import ClauseGadget from './clause-gadget';
 import VariableGadget from './variable-gadget';
 import Edge from './edge';
 import { poppins } from '@/app/ui/fonts';
+import OrangeBox from './box';
 
 // 3SAT -> Vertex Cover (VC)
 
@@ -12,7 +13,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
   const VAR_OFFSETS = OFFSETS[N-1]
   const CLAUSE_OFFSETS = OFFSETS[M-1]
 
-  const COLORS = ["blue", "red", "green", "orange", "purple"]
+  const COLORS = ["#2C82C9", "#D7263D", "#6AB02A", "#FF9F1C", "#8E44AD"]
   const COLOR_GROUPS = []
   const BORDER_GROUPS = []
 
@@ -21,7 +22,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
   var VAR_SPOTS = [] // a list of size INPUT.length
 
   // initialize *WALKTHROUGH SEQUENCE*
-  const LETTERS = ["a", "b", "c", "d", "e"]
+  const LETTERS = ["b", "c", "d", "e", "f"]
   var sequence = [] // IMPORTANT: walkthrough sequence
   track = 0
   for (let i = 0; i < INPUT.length; i+=3) {
@@ -125,20 +126,18 @@ export default function Three_SAT_VC({N, M, INPUT}) {
             </div>
         </main>
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
+      <OrangeBox />
         <div className="flex flex-row w-2/12 h-full items-center justify-center">
-          <div className="w-full p-3" style={{height:"auto", marginTop: 50, marginBottom:200, marginLeft:-40, backgroundColor:"#b6f0e7"}}>
-            <strong>3-SAT Input Details<br></br></strong>
-            n = 5 variables<br></br>
-            m = 5 clauses<br></br>
-            k = 2m+3n = <br></br>
-            boolean expression:<br></br>
-            banana<br></br>
-            banana<br></br>
-            banana<br></br>
+          <div className="p-3" style={{textAlign:"left", height:"auto", width:"85%", borderRadius:10, marginTop: 150, marginRight:-30, backgroundColor:"#b6f0e7"}}>
+            <strong>3-SAT INPUT DETAILS</strong><br></br>
+            <strong>n</strong> = {N} variables<br></br>
+            <strong>m</strong> = {M} clauses<br></br>
+            <strong>k</strong> = n+2m = {N + 2*M}<br></br>
           </div>
         </div>
         
         <div className="flex w-7/12 items-center justify-center">
+          <OrangeBox />
           <svg style={{marginTop: -60}} height="430" width="800">
             {edges.map(edge => edge)}
             
@@ -149,11 +148,14 @@ export default function Three_SAT_VC({N, M, INPUT}) {
         </div>
         <div className="flex flex-row w-2/12 h-full items-center justify-center">
           <div className="w-full" style={{height:300, marginTop: 50}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-            culpa qui officia deserunt mollit anim id est laborum.
+            <p>
+              For each variable, we construct a "barbell" comprised of two vertices connected
+              by an edge. One vertex corresponds to the variable equaling True, the other vertex
+              corresponds to the variable equaling False.<br></br><br></br>
+
+              In this visualizer, we assume that a negation symbol over a variable means it was 
+              assigned as False.
+            </p>
           </div>
         </div>
       </div>
