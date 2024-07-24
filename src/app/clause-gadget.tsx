@@ -1,7 +1,19 @@
-export default function ClauseGadget({x, index, id1, id2, id3, colors, borders}) {
+export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, borders}) {
     var color1 = "grey", color2 = "grey", color3 = "grey"
     var stroke1 = 0, stroke2 = 0, stroke3 = 0
     var border1 = "", border2 = "", border3 = ""
+    var bar1 = "none", bar2 = "none", bar3 = "none"
+
+    if (vars[0] < 0) {
+        bar1 = "overline"
+        vars[0] *= -1
+    } else if (vars[1] < 0) {
+        bar2 = "overline"
+        vars[1] *= -1
+    } else if (vars[2] < 0) {
+        bar3 = "overline"
+        vars[2] *= -1
+    }
 
     // render color for each vertex based on value of state var index
     if (index >= id1) {
@@ -35,17 +47,17 @@ export default function ClauseGadget({x, index, id1, id2, id3, colors, borders})
                 }
             `}</style> */}
             <svg x={x} y="250" height="300" width="200">
-            <text x="9" y="155">
-                (<tspan textDecoration="overline">X</tspan>
-                <tspan dy="5" fontSize="80%">1</tspan>
-                <tspan dy="-5"> &#8897; </tspan>
-                <tspan dy="0" textDecoration="overline">X</tspan>
-                <tspan dy="5" fontSize="80%">1</tspan>
-                <tspan dy="-5"> &#8897; </tspan>
-                <tspan dy="0" textDecoration="overline">X</tspan>
-                <tspan dy="5" fontSize="80%">1</tspan>
-                <tspan dy="-5">)</tspan>
-            </text>
+                <text x="2" y="155">
+                    ( <tspan textDecoration={bar1}>X</tspan>
+                    <tspan dy="5" fontSize="80%">{3*(Math.floor(vars[0]/3))+vars[0]%3}</tspan>
+                    <tspan dy="-5"> &#8897; </tspan>
+                    <tspan dy="0" textDecoration={bar2}>X</tspan>
+                    <tspan dy="5" fontSize="80%">{3*(Math.floor(vars[1]/3))+vars[1]%3}</tspan>
+                    <tspan dy="-5"> &#8897; </tspan>
+                    <tspan dy="0" textDecoration={bar3}>X</tspan>
+                    <tspan dy="5" fontSize="80%">{3*(Math.floor(vars[2]/3))+vars[2]%3}</tspan>
+                    <tspan dy="-5"> )</tspan>
+                </text>
                 <line x1="16" y1="112" x2="96" y2="112" strokeWidth="3" stroke="black" />
                 <line x1="96" y1="112" x2="56" y2="32" strokeWidth="3" stroke="black" />
                 <line x1="56" y1="32" x2="16" y2="112" strokeWidth="3" stroke="black" />
