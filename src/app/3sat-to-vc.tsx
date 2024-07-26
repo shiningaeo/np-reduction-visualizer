@@ -5,6 +5,7 @@ import VariableGadget from './variable-gadget';
 import Edge from './edge';
 import { poppins } from '@/app/ui/fonts';
 import OrangeBox from './box';
+import ContentBox from './info-box';
 
 // 3SAT -> Vertex Cover (VC)
 
@@ -23,7 +24,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
 
   // initialize *WALKTHROUGH SEQUENCE*
   const LETTERS = ["b", "c", "d", "e", "f"]
-  var sequence = [] // IMPORTANT: walkthrough sequence
+  var sequence = ["a0", "a1", "a2", "a3"] // IMPORTANT: walkthrough sequence
   track = 0
   for (let i = 0; i < INPUT.length; i+=3) {
     for (let j = 1; j < 4; ++j) {
@@ -33,7 +34,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
   }
 
   // IMPORTANT STATE VARIABLE
-  const [currIndex, setCurrIndex] = useState(-1) // State to manage current step
+  const [currIndex, setCurrIndex] = useState(0) // State to manage current step
   var steps = sequence.length
   function handleClick() {
       setCurrIndex((prevStep) => (prevStep + 1) % steps)
@@ -105,8 +106,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
                 <div className="flex flex-row w-2/12 justify-center items-center"></div>
                     <div className="flex flex-row w-4/12 justify-center items-center"></div>
                     <div className="flex flex-row w-8/12 justify-center items-center">
-
-                        <h1 className={`${poppins.className} font-semibold`} style={{fontSize:22, color:"#396D83"}}>3-SAT</h1>
+                      <h1 className={`${poppins.className} font-semibold`} style={{fontSize:22, color:"#396D83"}}>3-SAT</h1>
                     </div>
                 </div>
 
@@ -126,9 +126,8 @@ export default function Three_SAT_VC({N, M, INPUT}) {
             </div>
         </main>
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
-      <OrangeBox />
         <div className="flex flex-row w-2/12 h-full items-center justify-center">
-          <div className="p-3" style={{textAlign:"left", height:"auto", width:"85%", borderRadius:10, marginTop: 150, marginRight:-30, backgroundColor:"#b6f0e7"}}>
+          <div className="p-3" style={{textAlign:"left", height:"auto", width:"85%", borderRadius:10, marginTop:-135, marginRight:-30, backgroundColor:"#b6f0e7"}}>
             <strong>3-SAT INPUT DETAILS</strong><br></br>
             <strong>n</strong> = {N} variables<br></br>
             <strong>m</strong> = {M} clauses<br></br>
@@ -137,7 +136,8 @@ export default function Three_SAT_VC({N, M, INPUT}) {
         </div>
         
         <div className="flex w-7/12 items-center justify-center">
-          <OrangeBox />
+          <OrangeBox size={N} type={'N'} id={"a1"} index={sequence[currIndex]}/>
+          <OrangeBox size={M} type={'M'} id={"a2"} index={sequence[currIndex]}/>
           <svg style={{marginTop: -60}} height="430" width="800">
             {edges.map(edge => edge)}
             
@@ -147,16 +147,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
           </svg>
         </div>
         <div className="flex flex-row w-2/12 h-full items-center justify-center">
-          <div className="w-full" style={{height:300, marginTop: 50}}>
-            <p>
-              For each variable, we construct a "barbell" comprised of two vertices connected
-              by an edge. One vertex corresponds to the variable equaling True, the other vertex
-              corresponds to the variable equaling False.<br></br><br></br>
-
-              In this visualizer, we assume that a negation symbol over a variable means it was 
-              assigned as False.
-            </p>
-          </div>
+          <ContentBox id={sequence[currIndex]}/>
         </div>
       </div>
       <div className="flex flex-row w-3/12 justify-center items-center" style={{marginTop:80, backgroundColor:"#EAF1F2", height:54, borderRadius:10}}>
