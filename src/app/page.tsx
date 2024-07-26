@@ -1,8 +1,10 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Three_SAT_Input from "./3sat-input";
 import Three_SAT_VC from './3sat-to-vc';
+import Navbar from './Navbar';
 import ProblemMenu from './Problem-Menu';
+import TabMenu from './TabMenu';
 
 export default function Home() {
   // state variables from user input
@@ -54,8 +56,18 @@ export default function Home() {
       changeInput(i, input[i]*-1)
   }
 
+  // Create a reference for the target element
+  const targetRef = useRef(null);
+
+  // Function to scroll to the target element
+  const scrollToTarget = () => {
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <>
+    <Navbar targetRef={scrollToTarget}/>
     {!submit ? (
       <>
       <ProblemMenu />
@@ -105,8 +117,13 @@ export default function Home() {
       </main>
     </>
     ) : (
+      <>
       <Three_SAT_VC N={N} M={M} INPUT={input} />
+      </>
     )}
+    <div className="w-full" style={{height:300, backgroundColor:"#EAF1F2"}}>
+    <TabMenu targetRef={targetRef}/>
+    </div>
     </>
   );
 }
