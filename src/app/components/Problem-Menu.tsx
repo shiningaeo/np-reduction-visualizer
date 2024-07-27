@@ -1,4 +1,4 @@
-import { poppins } from '@/app/ui/fonts';
+import { poppins } from '../fonts/fonts';
 
 export default function ProblemMenu() {
     return (

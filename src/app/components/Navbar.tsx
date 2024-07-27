@@ -1,5 +1,5 @@
 'use client';
-import { poppins } from '@/app/ui/fonts';
+import { poppins } from '../fonts/fonts';
 
 export default function Navbar({targetRef}) {
   return (

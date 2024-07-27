@@ -1,4 +1,4 @@
-import Clause from "./clause-input";
+import Clause from "./sat-to-vc/ClauseInput";
 
 export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleChangeM, changeInput, toggleNegation}) {
     var render = []

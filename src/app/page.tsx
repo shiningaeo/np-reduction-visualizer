@@ -1,10 +1,10 @@
 'use client'
 import React, { useState, useRef } from 'react';
-import Three_SAT_Input from "./3sat-input";
-import Three_SAT_VC from './3sat-to-vc';
-import Navbar from './Navbar';
-import ProblemMenu from './Problem-Menu';
-import TabMenu from './TabMenu';
+import Three_SAT_Input from "./components/SatInput";
+import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
+import Navbar from './components/Navbar';
+import ProblemMenu from './components/Problem-Menu';
+import TabMenu from './components/TabMenu';
 
 export default function Home() {
   // state variables from user input

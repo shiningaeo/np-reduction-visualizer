@@ -1,11 +1,11 @@
 'use client'
 import React, { useState } from 'react';
-import ClauseGadget from './clause-gadget';
-import VariableGadget from './variable-gadget';
-import Edge from './edge';
-import { poppins } from '@/app/ui/fonts';
-import OrangeBox from './box';
-import ContentBox from './info-box';
+import ClauseGadget from './ClauseGadget';
+import VariableGadget from './VarGadget';
+import Edge from './Edge';
+import { poppins } from '../../fonts/fonts';
+import OrangeBox from './Box';
+import ContentBox from './ContentBox';
 
 // 3SAT -> Vertex Cover (VC)
 
