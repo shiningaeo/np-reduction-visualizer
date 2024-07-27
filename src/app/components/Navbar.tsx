@@ -1,7 +1,7 @@
 'use client';
 import { poppins } from '../fonts/fonts';
 
-export default function Navbar({targetRef}) {
+export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full" style={{zIndex:1010}}>
       <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{height: 68}}>
@@ -11,7 +11,7 @@ export default function Navbar({targetRef}) {
             style={{color: "#396D83", fontStyle: "italic"}}>NP VISUALIZER</a>
           </div>
           <div className="hidden md:flex space-x-8">
-              <a onClick={targetRef} className="hover:text-gray-900 text-lg navItem">Explanation</a>
+              <a className="hover:text-gray-900 text-lg navItem">Explanation</a>
               <a className="hover:text-gray-900 text-lg navItem" style={{marginRight:20}}>?</a>
           </div>
           <div className="flex md:hidden items-center">
