@@ -10,16 +10,16 @@ export default function ContentBox({id}) {
         </p>,
         <p>
             {/* a1 */}
-            Each variable is represented as a "barbell gadget" comprised of two "variable" vertices 
-            connected by an edge. One vertex corresponds to the variable equaling True, the other vertex
-            corresponds to the variable equaling False.<br></br><br></br>
+            Each variable is represented as a "barbell" made up of two "variable" vertices 
+            connected by an edge. One vertex represents the variable equaling True, the other vertex
+            represents the variable equaling False.<br></br><br></br>
 
             In this visualizer, we assume that a negation symbol over a variable means it was 
             assigned as False.
         </p>,
         <p>
             {/* a2 */}
-            Each clause is represented as a "triangle gadget" comprised of three "clause" vertices and three
+            Each clause is represented as a "triangle" made up of three "clause" vertices and three
             edges. There are three clause vertices because each clause has three variables.
         </p>,
         <p>
