@@ -18,9 +18,10 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   const COLOR_GROUPS = []
   const BORDER_GROUPS = []
 
-  const TRUE_VAR_SPOTS = [44, 198, 352, 506, 660] // difference of 154
-  const FALSE_VAR_SPOTS = [140, 294, 448, 602, 756]
+  const TRUE_VAR_SPOTS = [50, 204, 358, 512, 666] // difference of 154
+  const FALSE_VAR_SPOTS = [134, 288, 442, 596, 750]
   let VAR_SPOTS = [] // a list of size INPUT.length
+  let coverSize = N
 
   // initialize *WALKTHROUGH SEQUENCE*
   const LETTERS = ["b", "c", "d", "e", "f"]
@@ -32,6 +33,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
     }
     ++track
   }
+  sequence.push.apply(sequence, ["f1", "f2", "f3", "f4"])
 
   // IMPORTANT STATE VARIABLE
   const [currIndex, setCurrIndex] = useState(0) // State to manage current step
@@ -71,6 +73,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   // initialize VAR_SPOTS for drawing edges
   for (let i = 0; i < INPUT.length; ++i) {
     if (INPUT[i] < 0) {
+      ++coverSize
       VAR_SPOTS.push(FALSE_VAR_SPOTS[-1*INPUT[i]-1]+VAR_OFFSETS)
     } else {
       VAR_SPOTS.push(TRUE_VAR_SPOTS[INPUT[i]-1]+VAR_OFFSETS)
@@ -80,7 +83,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   let variables = []  // variable gadgets to be rendered
   track = 28
   for (let i = 0; i < N; ++i) {
-    variables.push(<VariableGadget key={i} x={track + VAR_OFFSETS} color={COLORS[i]} index={i}/>)
+    variables.push(<VariableGadget key={i} x={track + VAR_OFFSETS} color={COLORS[i]} num={i} index={sequence[currIndex]}/>)
     track += 154
   }
 
@@ -151,7 +154,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
           </svg>
         </div>
         <div className="flex flex-row w-2/12 h-full items-center justify-center">
-          <ContentBox id={sequence[currIndex]}/>
+          <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/>
         </div>
       </div>
       <div className="flex flex-row w-3/12 justify-center items-center" style={{marginTop:80, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>

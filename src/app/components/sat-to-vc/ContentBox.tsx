@@ -1,7 +1,16 @@
-export default function ContentBox({id}) {
+export default function ContentBox({id, coverSize, k}) {
     let spot = 0
     if (id[0] == "a") {
         spot = id[1]
+    } else if (id[0] <= "e") {
+        spot = 3
+    } else if (id[0] == "f") {
+        spot = parseInt(id[1]) + 3
+    }
+
+    let valid = true
+    if (coverSize > k) {
+        valid = false
     }
     const CONTENT = [
         <p>
@@ -31,6 +40,7 @@ export default function ContentBox({id}) {
             three edges.
         </p>,
         <p>
+            {/* f1 */}
             After all the connections have been made, we can systematically produce a subset of the vertices 
             for our vertex cover.
             <br></br><br></br>
@@ -38,10 +48,12 @@ export default function ContentBox({id}) {
             variable without the negation bar is True, but this does not have to be the case in general.
         </p>,
          <p>
+            {/* f2 */}
             In each clause, if there is a clause vertex that is not connected to a True variable vertex, we 
             add that clause vertex to our set.
         </p>,
         <p>
+            {/* f3 */}
             The budget <strong>k</strong> of our constructed vertex cover is equal to <strong>n+2m</strong>.
             <br></br><br></br>
             This is because a yes instance vertex cover should have at most one vertex from each barbell gadget
@@ -49,13 +61,27 @@ export default function ContentBox({id}) {
             that means there is at least one clause with no True variables. In which case, that would be a no
             instance.
         </p>,
-        <p>
-            The 3-SAT input was reduced to a vertex cover of a size that is less than or equal to n+2m.
-            <br></br><br></br>
-            <span style={{color:"green"}}>We reduced a yes instance of 3-SAT to a yes instance of vertex cover.</span>
-            <br></br><br></br>
-            Feel free to hover over this last slide to see the specific connections for a clause.
-        </p>
+        <>
+        {/* f4 */}
+        {valid ? (
+            <p>
+                The 3-SAT input was reduced to a vertex cover of size {coverSize}, which is less than or equal to k.
+                <br /><br />
+                <span style={{ color: "green" }}>We reduced a yes instance of 3-SAT to a yes instance of vertex cover.</span>
+                <br /><br />
+                Feel free to hover over this last slide to see the specific connections for a clause.
+            </p>
+        ) : (
+            <p>
+                The 3-SAT input was reduced to a vertex cover of size {coverSize}, which is greater than k.
+                <br /><br />
+                <span style={{ color: "green" }}>We reduced a yes instance of 3-SAT to a yes instance of vertex cover.</span>
+                <br /><br />
+                Feel free to hover over this last slide to see the specific connections for a clause.
+            </p>
+        )}
+        </>
+       
     ]
     return (
         <>

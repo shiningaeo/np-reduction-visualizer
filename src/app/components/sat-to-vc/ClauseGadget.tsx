@@ -3,6 +3,7 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
     let stroke1 = 0, stroke2 = 0, stroke3 = 0
     let border1 = "", border2 = "", border3 = ""
     let bar1 = "none", bar2 = "none", bar3 = "none"
+    let vis1 = "hidden", vis2 = "hidden", vis3 = "hidden"
 
     if (borders[0] != "") {
         bar1 = "overline"
@@ -37,6 +38,19 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
         }
     }
 
+    // render selected vertices
+    if (index >= "f2") {
+        if (borders[0] != "") {
+            vis1 = "visible"
+        }
+        if (borders[1] != "") {
+            vis2 = "visible"
+        }
+        if (borders[0] != "") {
+            vis3 = "visible"
+        }
+    }
+
     return (
         <>
             {/* <style jsx>{`
@@ -45,26 +59,31 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
                     stroke-width: 20;
                 }
             `}</style> */}
-            <svg x={x} y="250" height="300" width="200">
-                <text x="2" y="155">
-                    ( <tspan style={{ textDecoration: bar1 }}>X</tspan>
-                    <tspan dy="5" fontSize="80%">{3*(Math.floor(vars[0]/3))+vars[0]%3}</tspan>
-                    <tspan dy="-5"> &#8897; </tspan>
-                    <tspan dy="0" style={{ textDecoration: bar2 }}>X</tspan>
-                    <tspan dy="5" fontSize="80%">{3*(Math.floor(vars[1]/3))+vars[1]%3}</tspan>
-                    <tspan dy="-5"> &#8897; </tspan>
-                    <tspan dy="0" style={{ textDecoration: bar3 }}>X</tspan>
-                    <tspan dy="5" fontSize="80%">{3*(Math.floor(vars[2]/3))+vars[2]%3}</tspan>
-                    <tspan dy="-5"> )</tspan>
-                </text>
-                <line x1="16" y1="112" x2="96" y2="112" strokeWidth="3" stroke="black" />
-                <line x1="96" y1="112" x2="56" y2="32" strokeWidth="3" stroke="black" />
-                <line x1="56" y1="32" x2="16" y2="112" strokeWidth="3" stroke="black" />
+        <svg x={x} y="250" height="300" width="200">
+            <text x="2" y="155">
+                ( <tspan style={{ textDecoration: bar1 }}>X</tspan>
+                <tspan dy="5" fontSize="80%">{3 * (Math.floor(vars[0] / 3)) + (vars[0] % 3)}</tspan>
+                <tspan dy="-5"> &#8897; </tspan>
+                <tspan dy="0" style={{ textDecoration: bar2 }}>X</tspan>
+                <tspan dy="5" fontSize="80%">{3 * (Math.floor(vars[1] / 3)) + (vars[1] % 3)}</tspan>
+                <tspan dy="-5"> &#8897; </tspan>
+                <tspan dy="0" style={{ textDecoration: bar3 }}>X</tspan>
+                <tspan dy="5" fontSize="80%">{3 * (Math.floor(vars[2] / 3)) + (vars[2] % 3)}</tspan>
+                <tspan dy="-5"> )</tspan>
+            </text>
+            <line x1="22" y1="112" x2="90" y2="112" strokeWidth="3" stroke="black" />
+            <line x1="90" y1="112" x2="56" y2="32" strokeWidth="3" stroke="black" />
+            <line x1="56" y1="32" x2="22" y2="112" strokeWidth="3" stroke="black" />
 
-                <circle r="16" cx="16" cy="112" fill={color1} strokeWidth={stroke1} stroke={border1} />
-                <circle r="16" cx="56" cy="32" fill={color2} strokeWidth={stroke2} stroke={border2} />
-                <circle r="16" cx="96" cy="112" fill={color3} strokeWidth={stroke3} stroke={border3} />
-            </svg>
+            <circle r="20" cx="22" cy="112" fill="none" visibility={vis1} stroke="red" strokeWidth="3" />
+            <circle r="16" cx="22" cy="112" fill={color1} strokeWidth={stroke1} stroke={border1} />
+
+            <circle r="20" cx="56" cy="32" fill="none" visibility={vis2} stroke="red" strokeWidth="3" />
+            <circle r="16" cx="56" cy="32" fill={color2} strokeWidth={stroke2} stroke={border2} />
+
+            <circle r="20" cx="90" cy="112" fill="none" visibility={vis3} stroke="red" strokeWidth="3" />
+            <circle r="16" cx="90" cy="112" fill={color3} strokeWidth={stroke3} stroke={border3} />
+        </svg>
         </>
     );
 }
