@@ -1,11 +1,11 @@
 import { CSSProperties } from 'react';
 
 const OrangeBox = ({size, type, id, index}) => {
-    var width = 0
-    var sizes = [200, 400, 500, 650, 800]
+    let width = 0
+    let sizes = [200, 400, 500, 650, 800]
     width = sizes[size-1]
-    var top = 0
-    var height = 0
+    let top = 0
+    let height = 0
 
     if (type == 'N') {
         top = -110

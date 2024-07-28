@@ -1,7 +1,7 @@
 export default function Edge({index, id, x1, x2, y2}) {
     // FROM var gadget TO clause gadget
 
-    var vis = "hidden"
+    let vis = "hidden"
     // render visibility based on value of state var index
     if (index >= id) {
         vis = ""

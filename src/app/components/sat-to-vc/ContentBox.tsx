@@ -1,5 +1,5 @@
 export default function ContentBox({id}) {
-    var spot = 0
+    let spot = 0
     if (id[0] == "a") {
         spot = id[1]
     }

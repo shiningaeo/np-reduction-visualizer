@@ -20,12 +20,12 @@ export default function Three_SAT_VC({N, M, INPUT}) {
 
   const TRUE_VAR_SPOTS = [44, 198, 352, 506, 660] // difference of 154
   const FALSE_VAR_SPOTS = [140, 294, 448, 602, 756]
-  var VAR_SPOTS = [] // a list of size INPUT.length
+  let VAR_SPOTS = [] // a list of size INPUT.length
 
   // initialize *WALKTHROUGH SEQUENCE*
   const LETTERS = ["b", "c", "d", "e", "f"]
-  var sequence = ["a0", "a1", "a2", "a3"] // IMPORTANT: walkthrough sequence
-  track = 0
+  let sequence = ["a0", "a1", "a2", "a3"] // IMPORTANT: walkthrough sequence
+  let track = 0
   for (let i = 0; i < INPUT.length; i+=3) {
     for (let j = 1; j < 4; ++j) {
       sequence.push(LETTERS[track].concat(j.toString()))
@@ -35,7 +35,7 @@ export default function Three_SAT_VC({N, M, INPUT}) {
 
   // IMPORTANT STATE VARIABLE
   const [currIndex, setCurrIndex] = useState(0) // State to manage current step
-  var steps = sequence.length
+  let steps = sequence.length
   function handleClick() {
       setCurrIndex((prevStep) => (prevStep + 1) % steps)
   }
@@ -46,12 +46,12 @@ export default function Three_SAT_VC({N, M, INPUT}) {
 
   // initialize COLOR_GROUPS to preserve color changes
   for (let i = 0; i < INPUT.length; i+=3) {
-    var temp = [COLORS[Math.abs(INPUT[i])-1], COLORS[Math.abs(INPUT[i+1])-1], COLORS[Math.abs(INPUT[i+2])-1]]
+    let temp = [COLORS[Math.abs(INPUT[i])-1], COLORS[Math.abs(INPUT[i+1])-1], COLORS[Math.abs(INPUT[i+2])-1]]
     COLOR_GROUPS.push(temp)
   }
 
   // initialize BORDER_GROUPS to preserve border changes
-  var track = 0
+  track = 0
   for (let i = 0; i < INPUT.length; i+=3) {
     let temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
@@ -72,24 +72,24 @@ export default function Three_SAT_VC({N, M, INPUT}) {
     }
   }
 
-  var variables = []  // variable gadgets to be rendered
+  let variables = []  // variable gadgets to be rendered
   track = 28
   for (let i = 0; i < N; ++i) {
     variables.push(<VariableGadget key={i} x={track + VAR_OFFSETS} color={COLORS[i]} index={i}/>)
     track += 154
   }
 
-  var clauses = []  // clause gadgets to be rendered
+  let clauses = []  // clause gadgets to be rendered
   track = 36
   for (let i = 0; i < M; ++i) {
-    var vars = [Math.abs(INPUT[3*i]), Math.abs(INPUT[3*i+1]), Math.abs(INPUT[3*i+2])]
+    let vars = [Math.abs(INPUT[3*i]), Math.abs(INPUT[3*i+1]), Math.abs(INPUT[3*i+2])]
     console.log(vars)
     clauses.push(<ClauseGadget key={i} vars={vars} x={track+CLAUSE_OFFSETS} index={sequence[currIndex]} 
       id1={LETTERS[i]+"1"} id2={LETTERS[i]+"2"} id3={LETTERS[i]+"3"} colors={COLOR_GROUPS[i]} borders={BORDER_GROUPS[i]}/> )
     track += 154
   }
 
-  var edges = []  // edges to be rendered
+  let edges = []  // edges to be rendered
   track = 54
   for (let i = 0; i < M*3; i+=3) {
     edges.push(<Edge key={i} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)

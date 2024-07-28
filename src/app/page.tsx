@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import Three_SAT_Input from './components/SatInput';
 import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
-import ProblemMenu from './components/Problem-Menu';
+import ProblemMenu from './components/ProblemMenu';
 
 export default function Home() {
   // state variables from user input
@@ -63,6 +63,18 @@ export default function Home() {
   //     targetRef.current.scrollIntoView({ behavior: 'smooth' });
   //   }
   // };
+  let problem = [
+    <Three_SAT_Input
+      N={N}
+      M={M}
+      negatives={negatives}
+      handleChangeN={handleChangeN}
+      handleChangeM={handleChangeM}
+      toggleNegation={toggleNegation}
+      changeInput={changeInput}
+    />
+  ]
+
   return (
     <>
     {!submit ? (
@@ -74,23 +86,7 @@ export default function Home() {
           <div className="flex flex-row w-1/2" style={{borderRight: "solid 2px gray"}}>
             <div className="flex flex-col w-1/12"></div>
             <div className="flex flex-col w-11/12 h-full justify-center items-center" style={{backgroundColor:"#ffffff"}}>
-              <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10}}>
-                <p>An instance of 3-SAT is comprised of <strong>n</strong> variables, <strong>m</strong> clauses.
-                  Each clause contains 3 variables joined by &#8897; , the "or" operator. The clauses are joined by
-                  &#8896; , the "and" operator. A valid instance of 3-SAT contains an assignment of variables such that
-                  all the clauses evaluate to true.
-                </p>
-              </div>
-                  <Three_SAT_Input
-                    N={N}
-                    M={M}
-                    negatives={negatives}
-                    handleChangeN={handleChangeN}
-                    handleChangeM={handleChangeM}
-                    toggleNegation={toggleNegation}
-                    changeInput={changeInput}
-                  />
-                
+                {problem[0]}
             </div>
           </div>
 
