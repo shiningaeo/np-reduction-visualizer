@@ -1,6 +1,56 @@
+'use client'
+import React, { useState, useEffect } from 'react';
 import Clause from "./sat-to-vc/ClauseInput";
 
-export default function Three_SAT_Input({N, M, negatives, handleChangeN, handleChangeM, changeInput, toggleNegation}) {
+export default function Three_SAT_Input({ submit, onDataReceive }) {
+    // state variables from user input
+    const [N, setN] = useState(3)
+    const [M, setM] = useState(2)
+
+    // boolean sequence
+    const [input, setInput] = useState(Array.from({ length: M*3 }, () => 1))
+
+    // negation tracker
+    const [negatives, setNegatives] = useState(Array.from({ length: 15 }, () => "#94a3b8"))
+
+    useEffect(() => {
+        if (submit) {
+          console.log('Submitting data:', { N, M, input });
+          onDataReceive([N, M, input]);
+        }
+      }, [submit]);
+
+
+    const handleChangeN = (e) => {
+        setN(parseInt(e.target.value));
+    };
+
+    const handleChangeM = (e) => {
+        setM(parseInt(e.target.value));
+    };
+
+    function changeInput(i: number, newValue: number) {
+        setInput(prevInput => {
+            const newInput = [...prevInput]; // Create a copy of the previous state
+            newInput[i] = newValue; // Update the specific index
+            return newInput; // Return the updated array
+        });
+    }
+
+    // ONLY CHANGES COLOR INPUT ADJUSTMENT IS DONE IN CLAUSE-INPUT
+    function toggleNegation(i: number) {
+        setNegatives(prevInput => {
+            const nInput = [...prevInput];
+            if (nInput[i] == "black") {
+                nInput[i] = "#94a3b8"
+            } else {
+                nInput[i] = "black"
+            }
+            return nInput;
+        });
+        changeInput(i, input[i]*-1)
+    }
+    
     let render = []
     for (let i = 0; i < M-1; ++i) {
         render.push(<Clause N={N} base={i} changeInput={changeInput} toggleNegation={toggleNegation} negatives={negatives} key={i}/>)
