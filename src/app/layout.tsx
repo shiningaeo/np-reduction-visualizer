@@ -20,7 +20,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         {children}
-        <TabMenu />
+        <div id="projects">
+          <TabMenu />
+        </div>
       </body>
     </html>
   );

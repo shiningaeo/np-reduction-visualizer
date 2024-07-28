@@ -2,6 +2,13 @@
 import { poppins } from '../fonts/fonts';
 
 export default function Navbar() {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 w-full" style={{zIndex:1010}}>
       <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{height: 68}}>
@@ -11,9 +18,10 @@ export default function Navbar() {
             style={{color: "#396D83", fontStyle: "italic"}}>NP VISUALIZER</a>
           </div>
           <div className="hidden md:flex space-x-8">
-              <a className="hover:text-gray-900 text-lg navItem">Explanation</a>
+              <a onClick={() => scrollToSection('projects')} className="hover:text-gray-900 text-lg navItem">Explanation</a>
               <a className="hover:text-gray-900 text-lg navItem" style={{marginRight:20}}>?</a>
           </div>
+
           <div className="flex md:hidden items-center">
             {/* Mobile menu button */}
             <button className="text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
