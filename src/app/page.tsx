@@ -4,7 +4,6 @@ import Three_SAT_Input from './components/SatInput';
 import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
 import ProblemMenu from './components/ProblemMenu';
 import VCDescription from './components/descriptions/ VCDescription';
-import ScrollToTop from './components/ScrollToTop';
 
 export default function Home() {
   const [submit, setSubmit] = useState(false)
@@ -13,7 +12,11 @@ export default function Home() {
 
   const handleDataFromChild = (childData) => {
     setSatInput(childData);
-    setSubmit2(true)
+    if (!submit2) {
+      setSubmit2(true)
+    } else {
+      setSubmit2(false)
+    }
   };
 
   const handleSubmit = () => {
@@ -29,11 +32,9 @@ export default function Home() {
 
   return (
     <>
-    <ScrollToTop />
     {!submit2 ? (
       <>
       <ProblemMenu />
-
       <main className="flex flex-col items-center justify-between" style={{marginTop:10}}>
         <div className="flex flex-row justify-center items-start w-full h-full">
 
@@ -58,7 +59,7 @@ export default function Home() {
       </main>
     </>
     ) : (
-        <Three_SAT_VC N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} />
+        <Three_SAT_VC N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} />
     )}
     </>
   );

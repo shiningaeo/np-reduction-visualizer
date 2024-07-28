@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+'use client'
+import { useEffect } from 'react';
 
-const ScrollToTop = () => {
+const ScrollToTopOnRefresh = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -8,4 +9,4 @@ const ScrollToTop = () => {
   return null;
 };
 
-export default ScrollToTop;
+export default ScrollToTopOnRefresh;
