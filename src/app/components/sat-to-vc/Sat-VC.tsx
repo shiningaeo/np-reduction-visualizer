@@ -110,7 +110,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   return (
     <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:118}}>
       <main className="top-0 left-0 w-full" style={{height:50, marginTop: 85}}>
-          <div className="flex flex-row w-full justify-center" style={{height:300, zIndex: -100}}>
+          <div className="flex flex-row w-full justify-center" style={{height:300, zIndex: -100, marginTop:20}}>
               <div className="flex flex-row w-4/12 justify-center" style={{height:50}}>
               <div className="flex flex-row w-2/12 justify-center items-center"></div>
                   <div className="flex flex-row w-4/12 justify-center items-center"></div>
@@ -135,7 +135,8 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
           </div>
       </main>
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
-        <div className="flex flex-row w-2/12 h-full items-center justify-center">
+        <div className="flex flex-col w-2/12 h-full items-center justify-center">
+          <div className="w-full" style={{height:350}}></div>
           <div className="p-3" style={{textAlign:"left", height:"auto", width:"85%", borderRadius:10, marginTop:-135, marginRight:-30, backgroundColor:"#b6f0e7"}}>
             <strong>3-SAT INPUT DETAILS</strong><br></br>
             <strong>n</strong> = {N} variables<br></br>
@@ -144,7 +145,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
           </div>
         </div>
         
-        <div className="flex w-7/12 items-center justify-center">
+        <div className="flex w-7/12 items-center justify-center" style={{marginTop:100}}>
           <OrangeBox size={N} type={'N'} id={"a1"} index={sequence[currIndex]}/>
           <OrangeBox size={M} type={'M'} id={"a2"} index={sequence[currIndex]}/>
           <svg style={{marginTop: -60}} height="430" width="800">
@@ -155,11 +156,14 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
             {clauses.map(clause => clause)}
           </svg>
         </div>
-        <div className="flex flex-row w-2/12 h-full items-center justify-center">
-          <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/>
+        <div className="flex flex-col w-2/12 h-screen items-center justify-center">
+          <div>
+            <div className="w-full" style={{height:150}}></div>
+            <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/>
+          </div>
         </div>
       </div>
-      <div className="flex flex-row w-3/12 justify-center items-center" style={{marginTop:80, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>
+      <div className="flex flex-row w-3/12 justify-center items-center" style={{marginTop:180, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>
           <div className="flex flex-col items-center justify-center w-1/4">
             <button onClick={handleClickBack}>
                 <span style={{color:"coral", fontSize:24}}>&#9664;&#9664;</span>
@@ -188,7 +192,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
       </div>
 
       <div onClick={handleReset} className="bg-gray-200 flex items-center justify-center" 
-        style={{height:30, width:70, marginTop:30, borderRadius:10, fontSize:12}}>RESET</div>
+        style={{height:30, width:70, marginTop:30, marginBottom:-70, borderRadius:10, fontSize:12}}>RESET</div>
     </main>
   );
 }

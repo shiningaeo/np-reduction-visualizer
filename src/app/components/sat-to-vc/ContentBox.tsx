@@ -77,7 +77,7 @@ export default function ContentBox({id, coverSize, k}) {
             <p>
                 The 3-SAT input was reduced to a vertex cover of size <strong>{coverSize}</strong>, which is greater than k.
                 <br /><br />
-                <span style={{ color: "green" }}>We reduced a yes instance of 3-SAT to a yes instance of vertex cover.</span>
+                <span style={{ color:"red" }}>We reduced a no instance of 3-SAT to a no instance of vertex cover.</span>
                 <br /><br />
                 Feel free to hover over this last slide to see the specific connections for a clause.
             </p>

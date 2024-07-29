@@ -43,13 +43,13 @@ export default function Home() {
             <div className="flex flex-col w-11/12 h-full justify-center items-center" style={{backgroundColor:"#ffffff"}}>
                 {leftProblem[0]}
             </div>
-          </div>
+          </div> 
 
           <div className="flex flex-row w-1/2 h-full">
             <div className="flex flex-col w-11/12 h-full justify-center" style={{backgroundColor:"#ffffff"}}>
               {rightProblem[0]}
 
-              <div className="w-full flex flex-row justify-center items-center" style={{height:130, backgroundColor:"white"}}>
+              <div className="w-full flex flex-row justify-center items-center" style={{height:130, backgroundColor:"white", marginTop:20, marginBottom:30}}>
                 <button onClick={handleSubmit} style={{zIndex:1, backgroundColor:"#b6f0e7", padding:15}}>GENERATE</button>
               </div>
             </div>

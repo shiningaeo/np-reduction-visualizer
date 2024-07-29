@@ -65,7 +65,7 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
     render.push(<Clause N={N} base={M-1} changeInput={changeInput} toggleNegation={toggleNegation} negatives={negatives} key={M-1}/>)
     return (
     <>
-        <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10}}>
+        <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36}}>
             <p>An instance of 3-SAT is comprised of <strong>n</strong> variables, <strong>m</strong> clauses.
                 Each clause contains 3 variables joined by &#8897; , the "or" operator. The clauses are joined by
                 &#8896; , the "and" operator. A valid instance of 3-SAT contains an assignment of variables such that

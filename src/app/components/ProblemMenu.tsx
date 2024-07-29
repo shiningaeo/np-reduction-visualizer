@@ -3,7 +3,7 @@ import { poppins } from '../fonts/fonts';
 export default function ProblemMenu() {
     return (
     <>
-        <main className="top-0 left-0 w-full" style={{height:50, marginTop: 85}}>
+        <main className="top-0 left-0 w-full" style={{height:50, marginTop: 117, marginBottom:40}}>
             <div className="flex flex-row w-full justify-center" style={{height:300, zIndex: -100}}>
                 <div className="flex flex-row w-4/12 justify-center" style={{height:50}}>
                 <div className="flex flex-row w-2/12 justify-center items-center"></div>
