@@ -5,8 +5,14 @@ export default function VariableGadget({x, color, num, index}) {
     }
     return (
         <>
+        <style jsx>{`
+            #test:hover {
+                stroke: orange;
+                stroke-width: 5;
+            }
+        `}</style>
         <svg x={x} y="150" height="120" width="131">
-            <line x1="16" y1="49" x2="112" y2="49" strokeWidth="3" stroke="black" />
+            <line id="test" x1="16" y1="49" x2="112" y2="49" strokeWidth="3" stroke="black" />
             
             <circle r="20" cx="22" cy="49" visibility={vis} fill="none" stroke="red" strokeWidth="3" />
             <circle r="16" cx="22" cy="49" fill={color} />

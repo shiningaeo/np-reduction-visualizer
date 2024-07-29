@@ -53,12 +53,12 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
 
     return (
         <>
-            {/* <style jsx>{`
+            <style jsx>{`
                 #test:hover {
                     stroke: orange;
-                    stroke-width: 20;
+                    stroke-width: 5;
                 }
-            `}</style> */}
+            `}</style>
         <svg x={x} y="250" height="300" width="200">
             <text x="2" y="155">
                 ( <tspan style={{ textDecoration: bar1 }}>X</tspan>
@@ -71,9 +71,9 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
                 <tspan dy="5" fontSize="80%">{3 * (Math.floor(vars[2] / 3)) + (vars[2] % 3)}</tspan>
                 <tspan dy="-5"> )</tspan>
             </text>
-            <line x1="22" y1="112" x2="90" y2="112" strokeWidth="3" stroke="black" />
-            <line x1="90" y1="112" x2="56" y2="32" strokeWidth="3" stroke="black" />
-            <line x1="56" y1="32" x2="22" y2="112" strokeWidth="3" stroke="black" />
+            <line id="test" x1="22" y1="112" x2="90" y2="112" strokeWidth="3" stroke="black" />
+            <line id="test" x1="90" y1="112" x2="56" y2="32" strokeWidth="3" stroke="black" />
+            <line id="test" x1="56" y1="32" x2="22" y2="112" strokeWidth="3" stroke="black" />
 
             <circle r="20" cx="22" cy="112" fill="none" visibility={vis1} stroke="red" strokeWidth="3" />
             <circle r="16" cx="22" cy="112" fill={color1} strokeWidth={stroke1} stroke={border1} />

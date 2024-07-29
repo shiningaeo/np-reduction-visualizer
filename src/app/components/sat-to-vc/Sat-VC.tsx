@@ -36,7 +36,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
 
   // IMPORTANT STATE VARIABLE
-  const [currIndex, setCurrIndex] = useState(0) // State to manage current step
+  const [currIndex, setCurrIndex] = useState(0) // State0 to manage current step
   const [nextColor, setNextColor] = useState("green")
   const [backColor, setBackColor] = useState("gray")
   const [skipColor, setSkipColor] = useState("coral")
@@ -183,13 +183,17 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
           </div>
       </main>
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
-        <div className="flex flex-col w-2/12 h-full items-center justify-center">
+        <div className="flex flex-col w-2/12 h-full items-center justify-center" style={{marginTop:120}}>
           <div className="w-full" style={{height:350}}></div>
-          <div className="p-3" style={{textAlign:"left", height:"auto", width:"85%", borderRadius:10, marginTop:-135, marginRight:-30, backgroundColor:"#b6f0e7"}}>
+          <div className="p-3" style={{textAlign:"left", height:"auto", width:"85%", borderRadius:10, marginTop:-105, marginRight:-30, backgroundColor:"#b6f0e7"}}>
             <strong>3-SAT INPUT DETAILS</strong><br></br>
             <strong>n</strong> = {N} variables<br></br>
             <strong>m</strong> = {M} clauses<br></br>
             <strong>k</strong> = n+2m = {N + 2*M}<br></br>
+          </div>
+          <div className="w-full" style={{height:30}}></div>
+          <div className="w-full flex items-center justify-center p-3" style={{marginRight:-30}}>
+            <p style={{textAlign:'center'}}>Hover over any edges to see them more clearly</p>
           </div>
         </div>
         

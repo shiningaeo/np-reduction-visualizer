@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import NPDetails from './descriptions/NPDetails';
 
 export default function TabMenu() {
   // State to manage the active tab
@@ -16,28 +17,28 @@ export default function TabMenu() {
         {/* Tab menu */}
         <div className="flex border-b">
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab1' ? 'border-b-2 border-blue-500' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab1' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
             onClick={() => handleTabClick('Tab1')}
           >
-            Tab 1
+            NP Problems
           </button>
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab2' ? 'border-b-2 border-blue-500' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab2' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
             onClick={() => handleTabClick('Tab2')}
           >
-            Tab 2
+            3-SAT
           </button>
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab3' ? 'border-b-2 border-blue-500' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab3' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
             onClick={() => handleTabClick('Tab3')}
           >
-            Tab 3
+            Vertex Cover
           </button>
         </div>
 
         {/* Tab content */}
         <div className="mt-4">
-          {activeTab === 'Tab1' && <div>Content for Tab 1</div>}
+          {activeTab === 'Tab1' && <NPDetails />}
           {activeTab === 'Tab2' && <div>Content for Tab 2</div>}
           {activeTab === 'Tab3' && <div>Content for Tab 3</div>}
         </div>

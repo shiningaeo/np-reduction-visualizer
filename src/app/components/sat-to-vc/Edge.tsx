@@ -9,8 +9,14 @@ export default function Edge({index, id, x1, x2, y2}) {
 
     return (
         <>
+             <style jsx>{`
+                #test:hover {
+                    stroke: orange;
+                    stroke-width: 5;
+                }
+            `}</style>
             <svg height="500" width="800" visibility={vis}>
-                <line x1={x1} y1={199} x2={x2} y2={y2}  strokeWidth="3" stroke="black" />
+                <line id="test" x1={x1} y1={199} x2={x2} y2={y2}  strokeWidth="3" stroke="black" />
             </svg>
         </>
     );
