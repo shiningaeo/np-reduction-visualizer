@@ -28,24 +28,72 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   let sequence = ["a0", "a1", "a2", "a3"] // IMPORTANT: walkthrough sequence
   let track = 0
   for (let i = 0; i < INPUT.length; i+=3) {
-    console.log(INPUT)
     for (let j = 1; j < 4; ++j) {
       sequence.push(LETTERS[track].concat(j.toString()))
     }
     ++track
   }
   sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
-  console.log(sequence)
 
   // IMPORTANT STATE VARIABLE
   const [currIndex, setCurrIndex] = useState(0) // State to manage current step
+  const [nextColor, setNextColor] = useState("green")
+  const [backColor, setBackColor] = useState("gray")
+  const [skipColor, setSkipColor] = useState("coral")
+  const [skipBackColor, setSkipBackColor] = useState("gray")
+
   let steps = sequence.length
   function handleClick() {
-      setCurrIndex((prevStep) => (prevStep + 1) % steps)
+    setCurrIndex((prevStep) => {
+      let newIndex = prevStep + 1;
+      if (newIndex > steps - 1) {
+        newIndex = newIndex - 1
+      } else if (newIndex == steps - 1) {
+        setNextColor("gray")
+        setSkipColor("gray")
+      }
+      if (newIndex > 0) {
+        setBackColor("green")
+        setSkipBackColor("coral")
+      }
+      return newIndex;
+    });
   }
 
   function handleClickBack() {
-    setCurrIndex((prevStep) => (prevStep -1) % steps)
+    setCurrIndex((prevStep) => {
+      let newIndex = prevStep - 1;
+      if (newIndex < 0) {
+        newIndex = 0
+      } else if (newIndex == 0) {
+        setBackColor("gray")
+        setSkipBackColor("gray")
+      }
+      if (newIndex < steps-1) {
+        setNextColor("green")
+        setSkipColor("coral")
+      }
+      return newIndex;
+    });
+  }
+
+  function handleSkipFront() {
+    if (currIndex == sequence.length-1) {
+      return null
+    }
+    if (sequence[currIndex] >= "a3" && sequence[currIndex+1][0] < "g") {
+      setCurrIndex(3+M*3)
+    } else {
+      handleClick()
+    }
+  }
+
+  function handleSkipBack() {
+    if (sequence[currIndex][0] < "g" && sequence[currIndex][0] >= "b") {
+      setCurrIndex(3)
+    } else {
+      handleClickBack()
+    }
   }
 
   function handleReset() {
@@ -165,27 +213,26 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
       </div>
       <div className="flex flex-row w-3/12 justify-center items-center" style={{marginTop:180, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>
           <div className="flex flex-col items-center justify-center w-1/4">
-            <button onClick={handleClickBack}>
-                <span style={{color:"coral", fontSize:24}}>&#9664;&#9664;</span>
+            <button onClick={handleSkipBack}>
+                <span style={{color:skipBackColor, fontSize:24}}>&#9664;&#9664;</span>
             </button>
             <p style={{fontSize:12}}>skip back</p>
           </div>
           <div className="flex flex-col items-center justify-center w-1/4" style={{marginRight:-40}}>
             <button onClick={handleClickBack}>
-              <span style={{color:"green", fontSize:24}}>&#9664;</span>
+              <span style={{color:backColor, fontSize:24}}>&#9664;</span>
             </button>
             <p style={{fontSize:12}}>back</p>
           </div>
-          {/* <span>&nbsp;&nbsp;&nbsp;</span> */}
           <div className="flex flex-col items-center justify-center w-1/4">
             <button onClick={handleClick}>
-              <span style={{color:"green", fontSize:24}}>&#9654;</span>
+              <span style={{color:nextColor, fontSize:24}}>&#9654;</span>
             </button>
             <p style={{fontSize:12}}>next</p>
           </div>
           <div className="flex flex-col items-center justify-center w-1/4">
-            <button onClick={handleClick}>
-              <span style={{color:"coral", fontSize:24}}>&#9654;&#9654;</span>
+            <button onClick={handleSkipFront}>
+              <span style={{color:skipColor, fontSize:24}}>&#9654;&#9654;</span>
             </button>
             <p style={{fontSize:12}}>skip forward</p>
           </div>
