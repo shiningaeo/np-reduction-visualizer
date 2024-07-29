@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function VCDescription() {
     return (
         <>
@@ -8,7 +10,15 @@ export default function VCDescription() {
                     of the maximum cover size. In other words, a valid instance of vertex cover should have a size of at most k.
                 </p>
             </div>
-            <div className="w-full" style={{height:306, backgroundColor:"#ffffff"}}></div>
+            <div className="w-full flex flex-row justify-center items-center" style={{marginBottom:-30}}>
+                <Image
+                    src="/vertex-cover.svg"
+                    width={400}
+                    height={300}
+                    className="hidden md:block"
+                    alt="Screenshots of the dashboard project showing desktop version"
+                />
+            </div>
         </>
     );
 }

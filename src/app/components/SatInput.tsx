@@ -26,7 +26,13 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
     };
 
     const handleChangeM = (e) => {
-        setM(parseInt(e.target.value));
+        const newM = parseInt(e.target.value);
+        setM(newM);
+        setInput(prevInput => {
+            const newInput = Array.from({ length: newM * 3 }, () => 1);
+            console.log(newM)
+            return newInput;
+        });
     };
 
     function changeInput(i: number, newValue: number) {

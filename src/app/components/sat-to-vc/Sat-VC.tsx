@@ -28,12 +28,14 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   let sequence = ["a0", "a1", "a2", "a3"] // IMPORTANT: walkthrough sequence
   let track = 0
   for (let i = 0; i < INPUT.length; i+=3) {
+    console.log(INPUT)
     for (let j = 1; j < 4; ++j) {
       sequence.push(LETTERS[track].concat(j.toString()))
     }
     ++track
   }
-  sequence.push.apply(sequence, ["f1", "f2", "f3", "f4"])
+  sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
+  console.log(sequence)
 
   // IMPORTANT STATE VARIABLE
   const [currIndex, setCurrIndex] = useState(0) // State to manage current step

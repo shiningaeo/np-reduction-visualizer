@@ -1,6 +1,6 @@
 export default function VariableGadget({x, color, num, index}) {
     let vis = "hidden"
-    if (index[0] >= "f") {
+    if (index[0] >= "g") {
         vis = "visible"
     }
     return (
