@@ -157,7 +157,12 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
 
   return (
     <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:118}}>
-      <main className="top-0 left-0 w-full" style={{height:50, marginTop: 85}}>
+      <div className="w-full flex justify-left">
+        <div onClick={handleReset} className="bg-gray-200 flex items-center justify-center" 
+          style={{height:30, zIndex:2001, width:70, marginTop:85, marginBottom:-70, borderRadius:10, marginLeft:20, fontSize:16}}>RESET</div>
+      </div>
+
+      <main className="top-0 left-0 w-full" style={{height:50, marginTop: 30}}>
           <div className="flex flex-row w-full justify-center" style={{height:300, zIndex: -100, marginTop:20}}>
               <div className="flex flex-row w-4/12 justify-center" style={{height:50}}>
               <div className="flex flex-row w-2/12 justify-center items-center"></div>
@@ -241,9 +246,6 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
             <p style={{fontSize:12}}>skip forward</p>
           </div>
       </div>
-
-      <div onClick={handleReset} className="bg-gray-200 flex items-center justify-center" 
-        style={{height:30, width:70, marginTop:30, marginBottom:-70, borderRadius:10, fontSize:12}}>RESET</div>
     </main>
   );
 }

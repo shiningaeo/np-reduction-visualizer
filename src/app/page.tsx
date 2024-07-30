@@ -50,7 +50,7 @@ export default function Home() {
               {rightProblem[0]}
 
               <div className="w-full flex flex-row justify-center items-center" style={{height:130, backgroundColor:"white", marginTop:20, marginBottom:30}}>
-                <button onClick={handleSubmit} style={{zIndex:1, backgroundColor:"#b6f0e7", padding:15}}>GENERATE</button>
+                <button onClick={handleSubmit} style={{zIndex:1, backgroundColor:"#b6f0e7", padding:15, borderRadius:10}}>GENERATE</button>
               </div>
             </div>
             <div className="w-1/12"></div>

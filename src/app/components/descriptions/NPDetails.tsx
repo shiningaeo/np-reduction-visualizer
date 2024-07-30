@@ -32,7 +32,7 @@ export default function NPDetails() {
                             width={400}
                             height={300}
                             className="hidden md:block"
-                            alt="Screenshots of the dashboard project showing desktop version"
+                            alt="Is P = NP?"
                         />
                     </div>
                     <div>
@@ -56,6 +56,9 @@ export default function NPDetails() {
                         "yes" result or a "no" result.
                     </p>
                     <div className="mt-8">
+                        <p style={{marginTop:-10, marginBottom:24}}>Famous examples of NP problems include 3SAT, vertex cover, clique, 
+                            traveling salesperson (TSP), independent set, Hamiltonian path, and Hamiltonian cycle.
+                        </p>
                         <h2 className="text-xl font-semibold mb-2">Polynomial-Time Mapping Reductions</h2>
                         <p className="mb-2">
                            One method used in proving that a prolem is in NP is to construct a method of mapping instances

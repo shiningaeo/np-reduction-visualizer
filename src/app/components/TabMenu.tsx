@@ -1,6 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import NPDetails from './descriptions/NPDetails';
+import SATDetails from './descriptions/SATDetails';
+import VCDetails from './descriptions/VCDetails';
 
 export default function TabMenu() {
   // State to manage the active tab
@@ -39,8 +41,8 @@ export default function TabMenu() {
         {/* Tab content */}
         <div className="mt-4">
           {activeTab === 'Tab1' && <NPDetails />}
-          {activeTab === 'Tab2' && <div>Content for Tab 2</div>}
-          {activeTab === 'Tab3' && <div>Content for Tab 3</div>}
+          {activeTab === 'Tab2' && <SATDetails />}
+          {activeTab === 'Tab3' && <VCDetails />}
         </div>
       </div>
     </div>
