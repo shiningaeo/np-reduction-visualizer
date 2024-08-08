@@ -4,6 +4,7 @@ import Three_SAT_Input from './components/SatInput';
 import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
 import ProblemMenu from './components/ProblemMenu';
 import VCDescription from './components/descriptions/ VCDescription';
+import RotateScreen from './components/RotateScreen';
 
 export default function Home() {
   const [submit, setSubmit] = useState(false)
@@ -32,6 +33,7 @@ export default function Home() {
 
   return (
     <>
+    <RotateScreen />
     {!submit2 ? (
       <>
       <ProblemMenu />

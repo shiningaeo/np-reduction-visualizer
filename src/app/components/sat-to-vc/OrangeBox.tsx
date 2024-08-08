@@ -8,16 +8,16 @@ const OrangeBox = ({size, type, id, index}) => {
     let height = 0
 
     if (type == 'N') {
-        top = -110
+        top = -65
         height = 100
     } else {
-        top = 6
+        top = 244
         height = 175
     }
     
-    const style : CSSProperties = {
+    const style: CSSProperties = {
         width: `${width}px`, // dynamic width
-        height: `${height}px`,    // variables: 100px, clauses: 175px
+        height: `${height}px`, // variables: 100px, clauses: 175px
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -25,8 +25,7 @@ const OrangeBox = ({size, type, id, index}) => {
         fontFamily: 'Arial, sans-serif',
         borderRadius: '8px',
         border: 'solid 3px orange',
-        position: 'absolute', // or 'fixed'
-        marginTop: `${top}px`, // variables: -110px,  clauses: 6px
+        marginTop: `${top}px`, // variables: -110px, clauses: 6px
         zIndex: 1000
     };
 
@@ -34,13 +33,11 @@ const OrangeBox = ({size, type, id, index}) => {
         <>
             {index == id ? (
                 <div className="flex flex-row w-full justify-center" style={{position:"absolute", zIndex:1000, visibility:"visible"}}>
-                    <div className="orange-box" style={style}>
-                    </div>
+                    <div className="orange-box" style={style}></div>
                 </div>
             ) : (
                 <div className="flex flex-row w-full justify-center" style={{position:"absolute", zIndex:1000, visibility:"hidden"}}>
-                    <div className="orange-box" style={style}>
-                    </div>
+                    <div className="orange-box" style={style}></div>
                 </div>
             )}
         </>

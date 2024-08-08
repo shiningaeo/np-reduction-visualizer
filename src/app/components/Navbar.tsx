@@ -26,15 +26,6 @@ export default function Navbar() {
           <div className="hidden md:flex space-x-8">
               <a onClick={() => scrollToSection('projects')} className="hover:text-gray-900 text-lg navItem">I'm Confused</a>
           </div>
-
-          <div className="flex md:hidden items-center">
-            {/* Mobile menu button */}
-            <button className="text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
-              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
-              </svg>
-            </button>
-          </div>
         </div>
       </div>
     </nav>

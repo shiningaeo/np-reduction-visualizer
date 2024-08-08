@@ -4,7 +4,7 @@ import ClauseGadget from './ClauseGadget';
 import VariableGadget from './VarGadget';
 import Edge from './Edge';
 import { poppins } from '../../fonts/fonts';
-import OrangeBox from './Box';
+import OrangeBox from './OrangeBox';
 import ContentBox from './ContentBox';
 
 // 3SAT -> Vertex Cover (VC)
@@ -159,7 +159,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
     <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:118}}>
       <div className="w-full flex justify-left">
         <div onClick={handleReset} className="bg-gray-200 flex items-center justify-center" 
-          style={{height:30, zIndex:2001, width:70, marginTop:85, marginBottom:-70, borderRadius:10, marginLeft:20, fontSize:16}}>RESET</div>
+          style={{height:30, zIndex:1000, width:70, marginTop:85, marginBottom:-70, marginLeft:30, borderRadius:10, fontSize:16}}>RESET</div>
       </div>
 
       <main className="top-0 left-0 w-full" style={{height:50, marginTop: 30}}>
@@ -188,46 +188,46 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
           </div>
       </main>
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
-        <div className="flex flex-col w-2/12 h-full items-center justify-center" style={{marginTop:120}}>
+        <div className="flex flex-col w-4/12 h-full items-center justify-center" style={{marginTop:120}}>
           <div className="w-full" style={{height:350}}></div>
-          <div className="p-3" style={{textAlign:"left", height:"auto", width:"85%", borderRadius:10, marginTop:-105, marginRight:-30, backgroundColor:"#b6f0e7"}}>
-            <strong>3-SAT INPUT DETAILS</strong><br></br>
+          <div className="p-3" style={{textAlign:"left", height:"auto", width:"70%", borderRadius:10, marginTop:-105, backgroundColor:"#b6f0e7"}}>
+            <strong>3-SAT INPUT: </strong><br></br>
             <strong>n</strong> = {N} variables<br></br>
             <strong>m</strong> = {M} clauses<br></br>
             <strong>k</strong> = n+2m = {N + 2*M}<br></br>
           </div>
           <div className="w-full" style={{height:30}}></div>
-          <div className="w-full flex items-center justify-center p-3" style={{marginRight:-30}}>
-            <p style={{textAlign:'center'}}>Hover over any edges to see them more clearly</p>
+          <div className="w-full flex items-center justify-center p-3">
+            <p style={{textAlign:'center'}}>Edges are hoverable</p>
           </div>
         </div>
         
-        <div className="flex w-7/12 items-center justify-center" style={{marginTop:100}}>
-          <OrangeBox size={N} type={'N'} id={"a1"} index={sequence[currIndex]}/>
-          <OrangeBox size={M} type={'M'} id={"a2"} index={sequence[currIndex]}/>
-          <svg style={{marginTop: -60}} height="430" width="800">
-            {edges.map(edge => edge)}
-            
-            {variables.map(v => v)}
-
-            {clauses.map(clause => clause)}
-          </svg>
+        <div className="flex w-full items-center justify-center" style={{marginTop:100, marginLeft:30}}>
+          <div className="relative flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"430px"}}>
+            <svg style={{ position: 'absolute' }} height="430" width="800">
+              {edges.map(edge => edge)}
+              {variables.map(v => v)}
+              {clauses.map(clause => clause)}
+            </svg>
+            <OrangeBox size={N} type={'N'} id={"a1"} index={sequence[currIndex]} />
+            <OrangeBox size={M} type={'M'} id={"a2"} index={sequence[currIndex]} />
+          </div>
         </div>
-        <div className="flex flex-col w-2/12 h-screen items-center justify-center">
+        <div className="flex flex-col w-4/12 h-screen items-center justify-center" style={{padding:30}}>
           <div>
             <div className="w-full" style={{height:150}}></div>
             <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/>
           </div>
         </div>
       </div>
-      <div className="flex flex-row w-3/12 justify-center items-center" style={{marginTop:180, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>
+      <div className="flex flex-row w-3/12 justify-center items-center p-5" style={{marginTop:180, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>
           <div className="flex flex-col items-center justify-center w-1/4">
             <button onClick={handleSkipBack}>
                 <span style={{color:skipBackColor, fontSize:24}}>&#9664;&#9664;</span>
             </button>
             <p style={{fontSize:12}}>skip back</p>
           </div>
-          <div className="flex flex-col items-center justify-center w-1/4" style={{marginRight:-40}}>
+          <div className="flex flex-col items-center justify-center w-1/4">
             <button onClick={handleClickBack}>
               <span style={{color:backColor, fontSize:24}}>&#9664;</span>
             </button>
