@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import NPDetails from './descriptions/NPDetails';
-import SATDetails from './descriptions/SATDetails';
-import VCDetails from './descriptions/VCDetails';
+import NPDetails from './tab-content/NPDetails';
+import SATDetails from './tab-content/SATDetails';
+import VCDetails from './tab-content/VCDetails';
 
 export default function TabMenu() {
   // State to manage the active tab

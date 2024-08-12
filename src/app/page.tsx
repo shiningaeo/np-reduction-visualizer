@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import Three_SAT_Input from './components/SatInput';
 import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
 import ProblemMenu from './components/ProblemMenu';
-import VCDescription from './components/descriptions/ VCDescription';
+import VCDescription from './components/descriptions/VCDescription';
+import CLDescription from './components/descriptions/CLDescription';
 import RotateScreen from './components/RotateScreen';
 
 export default function Home() {
@@ -29,7 +30,7 @@ export default function Home() {
   };
 
   let leftProblem = [<Three_SAT_Input onDataReceive={handleDataFromChild} submit={submit}/>]
-  let rightProblem = [<VCDescription />]
+  let rightProblem = [<VCDescription />, <CLDescription />]
 
   return (
     <>
@@ -49,7 +50,7 @@ export default function Home() {
 
           <div className="flex flex-row w-1/2 h-full">
             <div className="flex flex-col w-11/12 h-full justify-center" style={{backgroundColor:"#ffffff"}}>
-              {rightProblem[0]}
+              {rightProblem[1]}
 
               <div className="w-full flex flex-row justify-center items-center" style={{height:130, backgroundColor:"white", marginTop:20, marginBottom:30}}>
                 <button onClick={handleSubmit} style={{zIndex:1, backgroundColor:"#b6f0e7", padding:15, borderRadius:10}}>GENERATE</button>

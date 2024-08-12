@@ -16,7 +16,7 @@ export default function VCDescription() {
                     width={400}
                     height={300}
                     className="hidden md:block"
-                    alt="Screenshots of the dashboard project showing desktop version"
+                    alt="Vertex cover description image"
                 />
             </div>
         </>
