@@ -10,7 +10,9 @@ import RotateScreen from './components/RotateScreen';
 export default function Home() {
   const [submit, setSubmit] = useState(false)
   const [submit2, setSubmit2] = useState(false)
-  const [satInput, setSatInput] = useState([]);
+  const [satInput, setSatInput] = useState([])
+  const [rightIndex, setRightIndex] = useState(0)
+  // VC = 0, CL = 1
 
   const handleDataFromChild = (childData) => {
     setSatInput(childData);
@@ -35,9 +37,10 @@ export default function Home() {
   return (
     <>
     <RotateScreen />
+
     {!submit2 ? (
       <>
-      <ProblemMenu />
+      <ProblemMenu activeId={rightIndex} setActiveId={setRightIndex}/>
       <main className="flex flex-col items-center justify-between" style={{marginTop:10}}>
         <div className="flex flex-row justify-center items-start w-full h-full">
 
@@ -50,7 +53,7 @@ export default function Home() {
 
           <div className="flex flex-row w-1/2 h-full">
             <div className="flex flex-col w-11/12 h-full justify-center" style={{backgroundColor:"#ffffff"}}>
-              {rightProblem[1]}
+              {rightProblem[rightIndex]}
 
               <div className="w-full flex flex-row justify-center items-center" style={{height:130, backgroundColor:"white", marginTop:20, marginBottom:30}}>
                 <button onClick={handleSubmit} style={{zIndex:1, backgroundColor:"#b6f0e7", padding:15, borderRadius:10}}>GENERATE</button>
