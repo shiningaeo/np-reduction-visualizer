@@ -164,7 +164,9 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
           </div>
         </div>
       </div>
+
       <ControlMenu currIndex={currIndex} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={M}/>
+      
     </main>
   );
 }
