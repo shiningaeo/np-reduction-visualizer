@@ -102,6 +102,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   return (
     <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:118}}>
       <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Vertex Cover"}/>
+      
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
         <div className="flex flex-col w-4/12 h-full items-center justify-center" style={{marginTop:120}}>
           <div className="w-full" style={{height:350}}></div>
