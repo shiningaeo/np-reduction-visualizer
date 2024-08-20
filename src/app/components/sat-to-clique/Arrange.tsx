@@ -8,13 +8,15 @@ import React, { useState } from 'react';
 
 function Horizontal() {
     return (
-        <svg width="300" height="100" x="500" y="250">
-            <ellipse cx="100" cy="50" rx="29" ry="20" fill="lightblue" stroke="black" stroke-width="2" />
-            <ellipse cx="180" cy="50" rx="29" ry="20" fill="lightblue" stroke="black" stroke-width="2" />
-            <ellipse cx="260" cy="50" rx="29" ry="20" fill="lightblue" stroke="black" stroke-width="2" />
+        <svg width="228" height="44" x="286" y="303">
+            <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
+            <ellipse cx="112" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
+            <ellipse cx="192" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
         </svg>
     );
 }
+
+// m = 1: x=286
 
 
 export default function Arrange() {
