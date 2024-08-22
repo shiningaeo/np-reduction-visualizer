@@ -16,27 +16,30 @@ function Horizontal(x, y) {
     );
 }
 
-function Vertical() {
-    // return (
-    //     <svg width="64" height="164" x="286" y="303">
-    //         <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
-    //         <ellipse cx="32" cy="82" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
-    //         <ellipse cx="32" cy="142" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
-    //     </svg>
-    // );
+function Vertical(x, y) {
+    return (
+        <svg width="64" height="164" x={x} y={y}>
+            <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
+            <ellipse cx="32" cy="82" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
+            <ellipse cx="32" cy="142" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
+        </svg>
+    );
 }
 
 // m = 1: Horizontal(286, 303)
-// n = 2: Horizontal(286, 183), Horizontal(286, 423)
+// m = 2: Horizontal(286, 183), Horizontal(286, 423)
+// m = 3: Vertical(150, 203), Horizontal(), Vertical()
+// m = 4: Vertical(), Horizontal(), Vertical(), Horizontal()
+// m = 5: left-right diagonals x2, right-left diagonals x2, horizontal x2
 
 
 export default function Arrange() {
 
     return (
     <>
-      {/* <Vertical /> */}
-      {Horizontal(286, 183)}
+      {Vertical(150, 203)}
       {Horizontal(286, 423)}
+      {Vertical(422, 203)}
     </>
     );
 }
