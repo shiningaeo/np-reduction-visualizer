@@ -28,8 +28,8 @@ function Vertical(x, y) {
 
 // m = 1: Horizontal(286, 303)
 // m = 2: Horizontal(286, 183), Horizontal(286, 423)
-// m = 3: Vertical(150, 203), Horizontal(), Vertical()
-// m = 4: Vertical(), Horizontal(), Vertical(), Horizontal()
+// m = 3: Vertical(150, 203), Horizontal(286, 423), Vertical(586, 203)
+// m = 4: Vertical(150, 203), Horizontal(286, 123), Vertical(586, 203), Horizontal(286, 423)
 // m = 5: left-right diagonals x2, right-left diagonals x2, horizontal x2
 
 
@@ -39,7 +39,8 @@ export default function Arrange() {
     <>
       {Vertical(150, 203)}
       {Horizontal(286, 423)}
-      {Vertical(422, 203)}
+      {Vertical(586, 203)}
+      {Horizontal(286, 123)}
     </>
     );
 }

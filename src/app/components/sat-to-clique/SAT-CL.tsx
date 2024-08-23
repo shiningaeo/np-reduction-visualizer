@@ -12,7 +12,7 @@ export default function Three_SAT_CL() {
             <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Clique"}/>
 
             <div className="flex flex-row justify-center items-center w-full h-full" style={{marginTop:30}}>
-                <div className="flex" style={{height:650, width:800, backgroundColor:"black"}}>
+                <div className="flex" style={{height:650, width:800}}>
                     <svg height="650" width="800">
                         <Arrange />
                     </svg>
