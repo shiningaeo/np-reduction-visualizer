@@ -1,10 +1,10 @@
 import { poppins } from '../fonts/fonts';
 
-export default function WalkthroughTitle({ leftProblem, rightProblem }) {
+export default function WalkthroughTitle({ leftProblem, rightProblem, handleReset }) {
     return (
         <>
         <div className="w-full flex justify-left">
-            <div className="bg-gray-200 flex items-center justify-center" 
+            <div onClick={handleReset} className="bg-gray-200 flex items-center justify-center" 
             style={{height:30, zIndex:1000, width:70, marginTop:85, marginBottom:-70, marginLeft:30, borderRadius:10, fontSize:16}}>RESET</div>
         </div>
 

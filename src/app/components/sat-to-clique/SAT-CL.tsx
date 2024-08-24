@@ -4,12 +4,16 @@ import WalkthroughTitle from '../WalkThruTitle';
 
 // 3SAT -> Clique (CL)
 
-export default function Three_SAT_CL() {
+export default function Three_SAT_CL({setSubmit, setSubmit2}) {
+    function handleReset() {
+        setSubmit2(false)
+        setSubmit(false)
+    }
 
     return (
     <>
         <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:18}}>
-            <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Clique"}/>
+            <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Clique"} handleReset={handleReset}/>
 
             <div className="flex flex-row justify-center items-center w-full h-full" style={{marginTop:30}}>
                 <div className="flex" style={{height:650, width:800}}>
