@@ -74,7 +74,7 @@ export default function Home() {
       rightIndex == 0 ? (
         <Three_SAT_VC N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} />
       ) : rightIndex == 1 ? (
-        <Three_SAT_CL setSubmit={setSubmit} setSubmit2={setSubmit2} />
+        <Three_SAT_CL N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} />
       ) : null
 
     )}
