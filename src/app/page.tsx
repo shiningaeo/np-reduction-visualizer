@@ -9,11 +9,6 @@ import RotateScreen from './components/RotateScreen';
 import Three_SAT_CL from './components/sat-to-clique/SAT-CL';
 
 export default function Home() {
-  // return (
-  // <>
-  //   <Three_SAT_CL />
-  // </>
-  // );
   const [submit, setSubmit] = useState(false)
   const [submit2, setSubmit2] = useState(false)
   const [satInput, setSatInput] = useState([])

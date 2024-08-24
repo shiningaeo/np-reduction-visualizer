@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
+// keep track of which variables we have encountered (including negation)
+
 function applyBorder(num) {
     return num < 0 ? "overline" : "none";
 }
 
-function Horizontal(x, y, trio) {
+function Horizontal(x, y, trio) {   // ellipse centers are 80 apart (x)
     return (
         <svg width="228" height="44" x={x} y={y}>
             <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
@@ -28,7 +30,7 @@ function Horizontal(x, y, trio) {
     );
 }
 
-function Vertical(x, y, trio) {
+function Vertical(x, y, trio) {     // ellipse centers are 60 apart (y)
     return (
         <svg width="64" height="164" x={x} y={y}>
             <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
