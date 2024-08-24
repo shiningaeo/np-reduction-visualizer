@@ -53,25 +53,25 @@ export default function calculatePositions() {
         ],
         
         [
-         [[100+X_OFFSET, 80+Y_OFFSET],
-          [100+X_OFFSET-X_CENTERS, 80+Y_OFFSET+Y_CENTERS],
-          [100+X_OFFSET-X_CENTERS*2, 80+Y_OFFSET+Y_CENTERS*2]],
+         [[100+X_OFFSET+32*2, 80+Y_OFFSET],
+          [100+X_OFFSET+32, 80+Y_OFFSET+Y_CENTERS],
+          [100+X_OFFSET, 80+Y_OFFSET+Y_CENTERS*2]],
         
          [[100+X_OFFSET, 300+Y_OFFSET],
-          [100+X_OFFSET+X_CENTERS, 300+Y_OFFSET+Y_CENTERS],
-          [100+X_OFFSET+X_CENTERS*2, 300+Y_OFFSET+Y_CENTERS*2]],
+          [100+X_OFFSET+32, 300+Y_OFFSET+Y_CENTERS],
+          [100+X_OFFSET+32*2, 300+Y_OFFSET+Y_CENTERS*2]],
         
          [[286+X_OFFSET, 493+Y_OFFSET], 
           [286+X_OFFSET+X_CENTERS, 493+Y_OFFSET],
           [286+X_OFFSET+X_CENTERS*2, 493+Y_OFFSET]], 
         
-         [[548+X_OFFSET, 300+Y_OFFSET],
-          [548+X_OFFSET-X_CENTERS, 300+Y_OFFSET+Y_CENTERS],
-          [548+X_OFFSET-X_CENTERS*2, 300+Y_OFFSET+Y_CENTERS*2]],
+         [[548+X_OFFSET+32*2, 300+Y_OFFSET],
+          [548+X_OFFSET+32, 300+Y_OFFSET+Y_CENTERS],
+          [548+X_OFFSET, 300+Y_OFFSET+Y_CENTERS*2]],
         
-         [[548+X_OFFSET, 300+Y_OFFSET],
-          [548+X_OFFSET+X_CENTERS, 300+Y_OFFSET+Y_CENTERS],
-          [548+X_OFFSET+X_CENTERS*2, 300+Y_OFFSET+Y_CENTERS*2]]
+         [[548+X_OFFSET, 80+Y_OFFSET],
+          [548+X_OFFSET+32, 80+Y_OFFSET+Y_CENTERS],
+          [548+X_OFFSET+32*2, 80+Y_OFFSET+Y_CENTERS*2]]
         ]
     ]
 

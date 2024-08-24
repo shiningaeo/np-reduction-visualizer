@@ -25,7 +25,6 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
     for (let i = 0; i < 3*M; i+=3) {
         for (let j = 0; j < 3; ++j) {
           if (visited.has(INPUT[i+j])) {
-            visited.delete(INPUT[i+j])
             for (let k = i+3; k < 3*M; ++k) {
               if (INPUT[k] != INPUT[i+j]*(-1)) {
                 edges.push(
@@ -36,6 +35,9 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
             }
           }
         }
+        visited.delete(INPUT[i])
+        visited.delete(INPUT[i+1])
+        visited.delete(INPUT[i+2])
     }
 
     return (
