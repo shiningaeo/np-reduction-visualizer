@@ -1,4 +1,4 @@
-export default function Edge({x1, y1, x2, y2}) {
+export default function Edge({x1, y1, x2, y2, color}) {
     // FROM var gadget TO clause gadget
 
     // let vis = "hidden"
@@ -10,7 +10,7 @@ export default function Edge({x1, y1, x2, y2}) {
     return (
         <>
             <svg height="650" width="800">
-                <line id="test" x1={x1} y1={y1} x2={x2} y2={y2}  strokeWidth="3" stroke="black" />
+                <line id="test" x1={x1} y1={y1} x2={x2} y2={y2}  strokeWidth="3" stroke={color} />
             </svg>
         </>
     );

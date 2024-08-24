@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+'use client'
 import Arrange from './Arrange';
 import WalkthroughTitle from '../WalkThruTitle';
 import calculatePositions from './edge-positions';
@@ -12,32 +12,33 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
         setSubmit(false)
     }
 
-    // [layout][clause][x(0) | y(1)]
+    // [layout][clause][var][x(0) | y(1)]
     const POSITIONS = calculatePositions()
-
-    let visited = new Set()
-    for (let i = 1; i < N+1; ++i) {
-        visited.add(i)
-        visited.add(i*(-1))
-    }
+    const EDGE_COLORS = new Map()
+    EDGE_COLORS.set(1, '#FF5733')
+    EDGE_COLORS.set(-1, '#33FF57')
+    EDGE_COLORS.set(2, '#3357FF')
+    EDGE_COLORS.set(-2, '#FF33A8')
+    EDGE_COLORS.set(3, '#A833FF')
+    EDGE_COLORS.set(-3, '#FFD733')
+    EDGE_COLORS.set(4, '#33FFF1')
+    EDGE_COLORS.set(-4, '#FF8233')
+    EDGE_COLORS.set(5, '#8DFF33')
+    EDGE_COLORS.set(-5, '#FF3333')
 
     let edges = []
     for (let i = 0; i < 3*M; i+=3) {
         for (let j = 0; j < 3; ++j) {
-          if (visited.has(INPUT[i+j])) {
-            for (let k = i+3; k < 3*M; ++k) {
-              if (INPUT[k] != INPUT[i+j]*(-1)) {
-                edges.push(
-                  <Edge key={i+j} x1={POSITIONS[M-1][i][j][0]} y1={POSITIONS[M-1][i][j][1]} 
-                  x2={POSITIONS[M-1][Math.floor(k/3)][k%3][0]} y2={POSITIONS[M-1][Math.floor(k/3)][k%3][1]}/>
-                )
-              }
+          for (let k = i+3; k < 3*M; ++k) {
+            if (INPUT[k] != INPUT[i+j]*(-1)) {
+              edges.push(
+                <Edge key={i/3+j} x1={POSITIONS[M-1][Math.floor((i+j)/3)][j][0]} y1={POSITIONS[M-1][Math.floor((i+j)/3)][j][1]} 
+                x2={POSITIONS[M-1][Math.floor(k/3)][k%3][0]} y2={POSITIONS[M-1][Math.floor(k/3)][k%3][1]}
+                color={EDGE_COLORS.get(INPUT[i+j])}/>
+              )
             }
           }
         }
-        visited.delete(INPUT[i])
-        visited.delete(INPUT[i+1])
-        visited.delete(INPUT[i+2])
     }
 
     return (
