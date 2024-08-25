@@ -46,13 +46,33 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
         <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:18}}>
             <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Clique"} handleReset={handleReset}/>
 
-            <div className="flex flex-row justify-center items-center w-full h-full" style={{marginTop:30}}>
-                <div className="flex" style={{height:650, width:800}}>
-                    <svg height="650" width="800">
-                        {edges.map(edge => edge)}
-                        <Arrange M={M} INPUT={INPUT}/>
-                    </svg>
+            <div className="flex flex-row justify-center items-center w-full h-full" style={{marginTop:-150}}>
+              <div className="flex flex-col w-4/12 h-full items-center justify-center">
+                <div className="w-full" style={{height:150}}></div>
+                <div className="p-3" style={{textAlign:"left", height:"auto", width:"50%", borderRadius:10, marginTop:-105, backgroundColor:"#b6f0e7"}}>
+                  <strong>3-SAT INPUT: </strong><br></br>
+                  <strong>n</strong> = {N} variables<br></br>
+                  <strong>m</strong> = {M} clauses<br></br>
                 </div>
+                <div className="w-full" style={{height:30}}></div>
+                <div className="w-full flex items-center justify-center p-3">
+                  <p style={{textAlign:'center'}}>Edges are hoverable</p>
+                </div>
+              </div>
+                
+              <div className="flex" style={{height:580, width:800, backgroundColor:"black"}}>
+                  <svg height="650" width="800">
+                      {edges.map(edge => edge)}
+                      <Arrange M={M} INPUT={INPUT}/>
+                  </svg>
+              </div>
+
+              <div className="flex flex-col w-4/12 h-screen items-center justify-center" style={{padding:30}}>
+                <div>
+                  <div className="w-full" style={{height:150}}></div>
+                  {/* <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/> */}
+                </div>
+              </div>
             </div>
         </main>
     </>

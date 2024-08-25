@@ -23,7 +23,7 @@ const RotateScreen = () => {
   }, []);
 
   // Threshold for the notification
-  const narrowThreshold = 1291;
+  const narrowThreshold = 1310;
 
   return (
     <>
