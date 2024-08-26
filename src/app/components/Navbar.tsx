@@ -23,7 +23,7 @@ export default function Navbar() {
             <a className={`${poppins.className} text-2xl font-bold`}
             style={{color: "#396D83", fontStyle: "italic"}}>NP VISUALIZER</a>
           </div>
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-8" style={{cursor:"pointer"}}>
               <a onClick={() => scrollToSection('projects')} className="hover:text-gray-900 text-lg navItem">I'm Confused</a>
           </div>
         </div>

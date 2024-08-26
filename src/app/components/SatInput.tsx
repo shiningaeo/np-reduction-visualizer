@@ -18,8 +18,8 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
 
     useEffect(() => {
         if (submit) {
-          console.log('Submitting data:', { N, M, input });
-          onDataReceive([N, M, input]);
+          console.log('Submitting data:', { N, M, input, assignment });
+          onDataReceive([N, M, input, assignment]);
         }
       }, [submit]);
 
@@ -90,7 +90,7 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
                         onClick={() => changeAssignment(num, 1)}
                         style={{
                             ...baseStyle,
-                            marginRight: 60,
+                            marginRight: 55,
                             backgroundColor: assignment[num-1]==1 ? "#b6f0e7" : "transparent",
                         }}
                     >True</h1>

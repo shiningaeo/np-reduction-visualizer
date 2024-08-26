@@ -17,6 +17,7 @@ export default function VariableGadget({x, color, num, index}) {
             <circle r="20" cx="22" cy="49" visibility={vis} fill="none" stroke="red" strokeWidth="3" />
             <circle r="16" cx="22" cy="49" fill={color} />
 
+            <circle r="20" cx="106" cy="49" visibility={vis} fill="none" stroke="red" strokeWidth="3" />
             <circle r="16" cx="106" cy="49" fill={color} stroke="black" strokeWidth="3" />
 
             <text x="12" y="17">

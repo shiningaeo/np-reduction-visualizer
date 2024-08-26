@@ -2,11 +2,13 @@ import { poppins } from '../fonts/fonts';
 
 export default function ProblemMenu({ activeId, setActiveId }) {
     const activeStyle = {
+        cursor:"pointer",
         fontWeight:600,
         backgroundColor:"#b6f0e7"
       };
     
       const inactiveStyle = {
+        cursor:"pointer",
         fontWeight:400,
         backgroundColor:"white"
       };

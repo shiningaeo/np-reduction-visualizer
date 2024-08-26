@@ -1,4 +1,4 @@
-export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, borders}) {
+export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, borders, assign}) {
     let color1 = "grey", color2 = "grey", color3 = "grey"
     let stroke1 = 0, stroke2 = 0, stroke3 = 0
     let border1 = "", border2 = "", border3 = ""

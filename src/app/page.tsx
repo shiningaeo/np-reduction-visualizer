@@ -57,7 +57,7 @@ export default function Home() {
               {rightProblem[rightIndex]}
 
               <div className="w-full flex flex-row justify-center items-center" style={{height:130, backgroundColor:"white", marginTop:20, marginBottom:30}}>
-                <button onClick={handleSubmit} style={{zIndex:1, backgroundColor:"#b6f0e7", padding:15, borderRadius:10}}>GENERATE</button>
+                <button onClick={handleSubmit} style={{cursor:"pointer", zIndex:1, backgroundColor:"#b6f0e7", padding:15, borderRadius:10}}>GENERATE</button>
               </div>
             </div>
             <div className="w-1/12"></div>
@@ -67,7 +67,8 @@ export default function Home() {
     </>
     ) : (
       rightIndex == 0 ? (
-        <Three_SAT_VC N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} />
+        <Three_SAT_VC N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} 
+          setSubmit2={setSubmit2} ASSIGNMENT={satInput[3]} />
       ) : rightIndex == 1 ? (
         <Three_SAT_CL N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} />
       ) : null

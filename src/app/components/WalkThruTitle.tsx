@@ -5,7 +5,7 @@ export default function WalkthroughTitle({ leftProblem, rightProblem, handleRese
         <>
         <div className="w-full flex justify-left">
             <div onClick={handleReset} className="bg-gray-200 flex items-center justify-center" 
-            style={{height:30, zIndex:1000, width:70, marginTop:85, marginBottom:-70, marginLeft:30, borderRadius:10, fontSize:16}}>RESET</div>
+            style={{cursor:"pointer", height:30, zIndex:1000, width:70, marginTop:85, marginBottom:-70, marginLeft:30, borderRadius:10, fontSize:16}}>RESET</div>
         </div>
 
         <main className="top-0 left-0 w-full" style={{height:50, marginTop: 30}}>

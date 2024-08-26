@@ -10,17 +10,18 @@ import ControlMenu from '../ControlMenu';
 
 // 3SAT -> Vertex Cover (VC)
 
-export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
+export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGNMENT}) {
   const OFFSETS = [308, 231, 154, 77, 0]
   const VAR_OFFSETS = OFFSETS[N-1]
   const CLAUSE_OFFSETS = OFFSETS[M-1]
 
   const COLORS = ["#2C82C9", "#D7263D", "#6AB02A", "#FF9F1C", "#8E44AD"]
   const COLOR_GROUPS = []
-  const BORDER_GROUPS = []
+  const BORDER_GROUPS = [] // size M, elements are lists w/ 3 items
 
   const TRUE_VAR_SPOTS = [50, 204, 358, 512, 666] // difference of 154
   const FALSE_VAR_SPOTS = [134, 288, 442, 596, 750]
+  const ASSIGNMENT_GROUPS = []
   let VAR_SPOTS = [] // a list of size INPUT.length
   let coverSize = N
 
@@ -73,6 +74,22 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
     }
   }
 
+  // initialize ASSIGNMENT_GROUPS for selecting vertices in cover
+  for (let i = 0; i < INPUT.length; i+=3) {
+    let temp1 = ["", "", ""]
+    for (let j = 0; j < 3; ++j) {
+      if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[i+j]-1] == 0) {
+        temp1[j] = "t"
+      } else if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[i+j]-1] == 1) {
+        temp1[j] = "f"
+      } else if (INPUT[i+j] < 0) {
+        temp1[j] = "f"
+      } else {
+        temp1[j] = "t"
+      }
+    }
+  }
+
   let variables = []  // variable gadgets to be rendered
   track = 28
   for (let i = 0; i < N; ++i) {
@@ -85,7 +102,8 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2}) {
   for (let i = 0; i < M; ++i) {
     let vars = [Math.abs(INPUT[3*i]), Math.abs(INPUT[3*i+1]), Math.abs(INPUT[3*i+2])]
     clauses.push(<ClauseGadget key={i} vars={vars} x={track+CLAUSE_OFFSETS} index={sequence[currIndex]} 
-      id1={LETTERS[i]+"1"} id2={LETTERS[i]+"2"} id3={LETTERS[i]+"3"} colors={COLOR_GROUPS[i]} borders={BORDER_GROUPS[i]}/> )
+      id1={LETTERS[i]+"1"} id2={LETTERS[i]+"2"} id3={LETTERS[i]+"3"} colors={COLOR_GROUPS[i]} borders={BORDER_GROUPS[i]}
+      assign={ASSIGNMENT_GROUPS[i]}/> )
     track += 154
   }
 
