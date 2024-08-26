@@ -123,45 +123,26 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
 
   function AssignmentMessage() {
     const assignmentMessage = [];
-    const losingMyMind = []
-
+  
     for (let i = 0; i < N; ++i) {
-      if (ASSIGNMENT[i] == 1) {
-        losingMyMind.push("True")
-      } else {
-        losingMyMind.push("False")
-      }
-    }
-
-    for (let i = 0; i < N; ++i) {
+      const value = ASSIGNMENT[i] === 1 ? "True" : "False";
       assignmentMessage.push(
-        <React.Fragment key={i+1}>
-          X<sub>{i+1}</sub>&nbsp;= {losingMyMind[i]}
-        </React.Fragment>
-      );
-      if (i != N-1) {
-        assignmentMessage.push(
-          <React.Fragment key={(i+1)*(-1)}>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </React.Fragment>
-        );
-      }
-    }
-
-    return (
-      <>
-        <div className="w-full flex flex-row items-center justify-center" style={{ height:20, paddingTop:30, fontSize:18, marginTop:50, marginBottom:-80 }}>
-          {assignmentMessage}
+        <div key={i+1}>
+          X<sub>{i+1}</sub>&nbsp;= {value}
         </div>
-      </>
+      );
+    }
+  
+    return (
+      <div className="w-full flex flex-col items-center justify-center" style={{ height:'auto', fontSize:18, marginTop:20, marginBottom:-80 }}>
+        {assignmentMessage}
+      </div>
     );
   }
 
   return (
     <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:118}}>
       <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Vertex Cover"} handleReset={handleReset}/>
-      
-      {AssignmentMessage()}
 
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
         <div className="flex flex-col w-4/12 h-full items-center justify-center" style={{marginTop:120}}>
@@ -176,6 +157,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
           <div className="w-full flex items-center justify-center p-3">
             <p style={{textAlign:'center'}}>Edges are hoverable</p>
           </div>
+          {AssignmentMessage()}
         </div>
         
         <div className="flex w-full items-center justify-center" style={{marginTop:100, marginLeft:30}}>
