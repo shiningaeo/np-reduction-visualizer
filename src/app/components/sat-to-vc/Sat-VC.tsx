@@ -67,7 +67,6 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   // initialize VAR_SPOTS for drawing edges
   for (let i = 0; i < INPUT.length; ++i) {
     if (INPUT[i] < 0) {
-      ++coverSize
       VAR_SPOTS.push(FALSE_VAR_SPOTS[-1*INPUT[i]-1]+VAR_OFFSETS)
     } else {
       VAR_SPOTS.push(TRUE_VAR_SPOTS[INPUT[i]-1]+VAR_OFFSETS)
@@ -78,22 +77,28 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   for (let i = 0; i < INPUT.length; i+=3) {
     let temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
-      if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[i+j]-1] == 0) {
+      if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[Math.floor((i+j)/3)]] == 1) {
         temp1[j] = "t"
-      } else if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[i+j]-1] == 1) {
+      } else if (INPUT[i+j] > 0 && ASSIGNMENT[Math.floor((i+j)/3)] == 0) {
         temp1[j] = "f"
-      } else if (INPUT[i+j] < 0) {
+        ++coverSize
+      } else if (INPUT[i+j] < 0 && ASSIGNMENT[Math.floor((i+j)/3)] == 1) {
         temp1[j] = "f"
+        ++coverSize
       } else {
         temp1[j] = "t"
       }
     }
+    ASSIGNMENT_GROUPS.push(temp1)
   }
+  console.log(ASSIGNMENT_GROUPS)
+  console.log(ASSIGNMENT)
 
   let variables = []  // variable gadgets to be rendered
   track = 28
   for (let i = 0; i < N; ++i) {
-    variables.push(<VariableGadget key={i} x={track + VAR_OFFSETS} color={COLORS[i]} num={i} index={sequence[currIndex]}/>)
+    variables.push(<VariableGadget key={i} x={track + VAR_OFFSETS} color={COLORS[i]} num={i} index={sequence[currIndex]}
+      assignment={ASSIGNMENT}/>)
     track += 154
   }
 

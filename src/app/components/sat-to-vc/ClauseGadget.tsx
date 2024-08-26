@@ -40,13 +40,13 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
 
     // render selected vertices
     if (index >= "g2") {
-        if (borders[0] != "") {
+        if (assign[0] == "f") {
             vis1 = ""
         }
-        if (borders[1] != "") {
+        if (assign[1] == "f") {
             vis2 = ""
         }
-        if (borders[2] != "") {
+        if (assign[2] == "f") {
             vis3 = ""
         }
     }

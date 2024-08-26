@@ -22,9 +22,6 @@ export default function ContentBox({id, coverSize, k}) {
             Each variable is represented as a "barbell" made up of two "variable" vertices 
             connected by an edge. One vertex represents the variable equaling True, the other vertex
             represents the variable equaling False.<br></br><br></br>
-
-            In this visualizer, we assume that a negation symbol over a variable means it was 
-            assigned as False.
         </p>,
         <p>
             {/* a2 */}
@@ -44,8 +41,7 @@ export default function ContentBox({id, coverSize, k}) {
             After all the connections have been made, we can systematically produce a subset of the vertices 
             for our vertex cover.
             <br></br><br></br>
-            First, we add all the True variable vertices to the set. For this visualizer, we assume that a 
-            variable without the negation bar is True, but this does not have to be the case in general.
+            First, we add all the True variable vertices to the set.
         </p>,
          <p>
             {/* g2 */}
