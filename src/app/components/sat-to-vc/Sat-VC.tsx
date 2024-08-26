@@ -77,12 +77,12 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   for (let i = 0; i < INPUT.length; i+=3) {
     let temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
-      if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[Math.floor((i+j)/3)]] == 1) {
+      if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[(i+j)/3]] == 1) {
         temp1[j] = "True"
-      } else if (INPUT[i+j] > 0 && ASSIGNMENT[Math.floor((i+j)/3)] == 0) {
+      } else if (INPUT[i+j] > 0 && ASSIGNMENT[(i+j)/3] == 0) {
         temp1[j] = "False"
         ++coverSize
-      } else if (INPUT[i+j] < 0 && ASSIGNMENT[Math.floor((i+j)/3)] == 1) {
+      } else if (INPUT[i+j] < 0 && ASSIGNMENT[(i+j)/3] == 1) {
         temp1[j] = "False"
         ++coverSize
       } else {

@@ -1,8 +1,10 @@
 'use client'
+import React, { useState } from 'react';
 import Arrange from './Arrange';
 import WalkthroughTitle from '../WalkThruTitle';
 import calculatePositions from './edge-positions';
 import Edge from './Edge';
+import ControlMenu from '../ControlMenu';
 
 // 3SAT -> Clique (CL)
 
@@ -11,6 +13,21 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
         setSubmit2(false)
         setSubmit(false)
     }
+
+    // IMPORTANT STATE VARIABLES
+    const [currIndex, setCurrIndex] = useState(0) // State to manage current step
+
+    // initialize *WALKTHROUGH SEQUENCE*
+    const LETTERS = ["b", "c", "d", "e", "f"]
+    let sequence = ["a0", "a1", "a2", "a3"] // IMPORTANT: walkthrough sequence
+    let track = 0
+    for (let i = 0; i < INPUT.length; i+=3) {
+      for (let j = 1; j < 4; ++j) {
+        sequence.push(LETTERS[track].concat(j.toString()))
+      }
+      ++track
+    }
+    sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
 
     // [layout][clause][var][x(0) | y(1)]
     const POSITIONS = calculatePositions()
@@ -34,7 +51,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
               edges.push(
                 <Edge key={i/3+j} x1={POSITIONS[M-1][Math.floor((i+j)/3)][j][0]} y1={POSITIONS[M-1][Math.floor((i+j)/3)][j][1]} 
                 x2={POSITIONS[M-1][Math.floor(k/3)][k%3][0]} y2={POSITIONS[M-1][Math.floor(k/3)][k%3][1]}
-                color={EDGE_COLORS.get(INPUT[i+j])}/>
+                color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} id={LETTERS[Math.floor((i+j)/3)].concat((j+1).toString())}/>
               )
             }
           }
@@ -60,7 +77,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
                 </div>
               </div>
                 
-              <div className="flex" style={{height:580, width:800, backgroundColor:"black"}}>
+              <div className="flex" style={{height:580, width:800, marginTop:-50}}>
                   <svg height="650" width="800">
                       {edges.map(edge => edge)}
                       <Arrange M={M} INPUT={INPUT}/>
@@ -73,6 +90,10 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
                   {/* <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/> */}
                 </div>
               </div>
+            </div>
+
+            <div className="w-full h-full flex flex-row justify-center" style={{marginTop:-350, marginBottom:28}}>
+              <ControlMenu currIndex={0} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={M}/>
             </div>
         </main>
     </>
