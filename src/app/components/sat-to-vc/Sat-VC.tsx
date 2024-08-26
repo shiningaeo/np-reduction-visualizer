@@ -78,15 +78,15 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     let temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
       if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[Math.floor((i+j)/3)]] == 1) {
-        temp1[j] = "t"
+        temp1[j] = "True"
       } else if (INPUT[i+j] > 0 && ASSIGNMENT[Math.floor((i+j)/3)] == 0) {
-        temp1[j] = "f"
+        temp1[j] = "False"
         ++coverSize
       } else if (INPUT[i+j] < 0 && ASSIGNMENT[Math.floor((i+j)/3)] == 1) {
-        temp1[j] = "f"
+        temp1[j] = "False"
         ++coverSize
       } else {
-        temp1[j] = "t"
+        temp1[j] = "True"
       }
     }
     ASSIGNMENT_GROUPS.push(temp1)
@@ -121,11 +121,48 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     track += 154
   }
 
+  function AssignmentMessage() {
+    const assignmentMessage = [];
+    const losingMyMind = []
+
+    for (let i = 0; i < N; ++i) {
+      if (ASSIGNMENT[i] == 1) {
+        losingMyMind.push("True")
+      } else {
+        losingMyMind.push("False")
+      }
+    }
+
+    for (let i = 0; i < N; ++i) {
+      assignmentMessage.push(
+        <React.Fragment key={i+1}>
+          X<sub>{i+1}</sub>&nbsp;= {losingMyMind[i]}
+        </React.Fragment>
+      );
+      if (i != N-1) {
+        assignmentMessage.push(
+          <React.Fragment key={(i+1)*(-1)}>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </React.Fragment>
+        );
+      }
+    }
+
+    return (
+      <>
+        <div className="w-full flex flex-row items-center justify-center" style={{ height:20, paddingTop:30, fontSize:18, marginTop:50, marginBottom:-80 }}>
+          {assignmentMessage}
+        </div>
+      </>
+    );
+  }
 
   return (
     <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:118}}>
       <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Vertex Cover"} handleReset={handleReset}/>
       
+      {AssignmentMessage()}
+
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
         <div className="flex flex-col w-4/12 h-full items-center justify-center" style={{marginTop:120}}>
           <div className="w-full" style={{height:350}}></div>
