@@ -70,7 +70,8 @@ export default function Home() {
         <Three_SAT_VC N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} 
           setSubmit2={setSubmit2} ASSIGNMENT={satInput[3]} />
       ) : rightIndex == 1 ? (
-        <Three_SAT_CL N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} />
+        <Three_SAT_CL N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} 
+          ASSIGNMENT={satInput[3]}/>
       ) : null
 
     )}

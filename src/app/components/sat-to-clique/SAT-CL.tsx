@@ -8,7 +8,7 @@ import ControlMenu from '../ControlMenu';
 
 // 3SAT -> Clique (CL)
 
-export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {    
+export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGNMENT}) {    
     function handleReset() {
         setSubmit2(false)
         setSubmit(false)
@@ -47,7 +47,8 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2}) {
     for (let i = 0; i < 3*M; i+=3) {
         for (let j = 0; j < 3; ++j) {
           for (let k = i+3; k < 3*M; ++k) {
-            if (INPUT[k] != INPUT[i+j]*(-1)) {
+            if ((INPUT[k] < 0 && ASSIGNMENT[Math.abs(INPUT[k])-1] == 0) || 
+            (INPUT[k] > 0 && ASSIGNMENT[Math.abs(INPUT[k])-1] == 1)) {
               edges.push(
                 <Edge key={i/3+j} x1={POSITIONS[M-1][Math.floor((i+j)/3)][j][0]} y1={POSITIONS[M-1][Math.floor((i+j)/3)][j][1]} 
                 x2={POSITIONS[M-1][Math.floor(k/3)][k%3][0]} y2={POSITIONS[M-1][Math.floor(k/3)][k%3][1]}

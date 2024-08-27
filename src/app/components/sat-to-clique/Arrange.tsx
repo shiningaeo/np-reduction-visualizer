@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 // keep track of which variables we have encountered (including negation)
 
 function applyBorder(num) {
