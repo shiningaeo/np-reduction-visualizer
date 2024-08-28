@@ -5,6 +5,7 @@ import WalkthroughTitle from '../WalkThruTitle';
 import calculatePositions from './edge-positions';
 import Edge from './Edge';
 import ControlMenu from '../ControlMenu';
+import ContentBox from './ContentBox';
 
 // 3SAT -> Clique (CL)
 
@@ -59,6 +60,25 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         }
     }
 
+    function AssignmentMessage() {
+      const assignmentMessage = [];
+    
+      for (let i = 0; i < N; ++i) {
+        const value = ASSIGNMENT[i] === 1 ? "True" : "False";
+        assignmentMessage.push(
+          <div key={i+1}>
+            X<sub>{i+1}</sub>&nbsp;= {value}
+          </div>
+        );
+      }
+    
+      return (
+        <div className="w-full flex flex-col items-center justify-center" style={{ height:'auto', fontSize:18, marginTop:20, marginBottom:-80 }}>
+          {assignmentMessage}
+        </div>
+      );
+    }
+
     return (
     <>
         <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:18}}>
@@ -76,6 +96,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
                 <div className="w-full flex items-center justify-center p-3">
                   <p style={{textAlign:'center'}}>Edges are hoverable</p>
                 </div>
+                {AssignmentMessage()}
               </div>
                 
               <div className="flex" style={{height:580, width:800, marginTop:-50}}>
@@ -88,7 +109,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
               <div className="flex flex-col w-4/12 h-screen items-center justify-center" style={{padding:30}}>
                 <div>
                   <div className="w-full" style={{height:150}}></div>
-                  {/* <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/> */}
+                  <ContentBox id={sequence[currIndex]} coverSize={0} k={N+2*M}/>
                 </div>
               </div>
             </div>

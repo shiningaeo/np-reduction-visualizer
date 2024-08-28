@@ -15,13 +15,13 @@ export default function ContentBox({id, coverSize, k}) {
     const CONTENT = [
         <p>
             {/* a0 */}
-            Use the next arrows to advance through a 3SAT to vertex cover reduction with the provided input.
+            Use the next arrows to advance through a 3SAT to clique reduction with the provided input.
         </p>,
         <p>
             {/* a1 */}
             Each variable is represented as a "barbell" made up of two "variable" vertices 
             connected by an edge. One vertex represents the variable equaling True, the other vertex
-            represents the variable equaling False.<br></br><br></br>
+            represents the variable equaling False.
         </p>,
         <p>
             {/* a2 */}
@@ -79,7 +79,7 @@ export default function ContentBox({id, coverSize, k}) {
 
     return (
         <>
-        <div className="w-full" style={{height:300, marginTop: 50}}>
+        <div className="w-full" style={{height:300, width:320, marginTop:-150}}>
             {CONTENT[spot]}
         </div>
         </>
