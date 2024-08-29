@@ -3,7 +3,7 @@ export default function ContentBox({id, coverSize, k}) {
     if (id[0] == "a") {
         spot = id[1]
     } else if (id[0] <= "f") {
-        spot = 3
+        spot = 2
     } else if (id[0] == "g") {
         spot = parseInt(id[1]) + 3
     }
@@ -19,22 +19,12 @@ export default function ContentBox({id, coverSize, k}) {
         </p>,
         <p>
             {/* a1 */}
-            Each variable is represented as a "barbell" made up of two "variable" vertices 
-            connected by an edge. One vertex represents the variable equaling True, the other vertex
-            represents the variable equaling False.
+            Each clause is represented as a group of three vertices, each vertex represents a variable in that clause.
         </p>,
         <p>
             {/* a2 */}
-            Each clause is represented as a "triangle" made up of three "clause" vertices and three
-            edges. There are three clause vertices because each clause has three variables.
-        </p>,
-        <p>
-            {/* a3 */}
-            For each clause, we add an edge that connects each clause vertex to a variable vertex.
-            The connected variable vertices correspond to the variables found in the clause.
-            <br></br><br></br>
-            A variable vertex may have more than two edges attached to it, but every clause vertex will have 
-            three edges.
+            For each variable, we place an edge between it and any variable that is <br>not it's negation</br> and <br>not 
+            in the same clause</br>.
         </p>,
         <p>
             {/* g1 */}

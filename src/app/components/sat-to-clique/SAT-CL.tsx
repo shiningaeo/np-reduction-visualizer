@@ -20,7 +20,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
 
     // initialize *WALKTHROUGH SEQUENCE*
     const LETTERS = ["b", "c", "d", "e", "f"]
-    let sequence = ["a0", "a1", "a2", "a3"] // IMPORTANT: walkthrough sequence
+    let sequence = ["a0", "a1", "a2"] // IMPORTANT: walkthrough sequence
     let track = 0
     for (let i = 0; i < INPUT.length; i+=3) {
       for (let j = 1; j < 4; ++j) {
@@ -115,7 +115,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
             </div>
 
             <div className="w-full h-full flex flex-row justify-center" style={{marginTop:-350, marginBottom:28}}>
-              <ControlMenu currIndex={0} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={M}/>
+              <ControlMenu currIndex={0} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={M} introEnd={"a2"}/>
             </div>
         </main>
     </>

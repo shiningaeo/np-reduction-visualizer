@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx }) {
+export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx, introEnd }) {
     const [nextColor, setNextColor] = useState("green")
     const [backColor, setBackColor] = useState("gray")
     const [skipColor, setSkipColor] = useState("coral")
