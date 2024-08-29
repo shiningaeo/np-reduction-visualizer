@@ -45,11 +45,17 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     EDGE_COLORS.set(-5, '#FF3333')
 
     let edges = []
+    let numFrames = 0
     for (let i = 0; i < 3*M; i+=3) {
+        let flag = true
         for (let j = 0; j < 3; ++j) {
           for (let k = i+3; k < 3*M; ++k) {
             if ((INPUT[k] < 0 && ASSIGNMENT[Math.abs(INPUT[k])-1] == 0) || 
             (INPUT[k] > 0 && ASSIGNMENT[Math.abs(INPUT[k])-1] == 1)) {
+              if (flag) {
+                ++numFrames
+                flag = false
+              }
               edges.push(
                 <Edge key={i/3+j} x1={POSITIONS[M-1][Math.floor((i+j)/3)][j][0]} y1={POSITIONS[M-1][Math.floor((i+j)/3)][j][1]} 
                 x2={POSITIONS[M-1][Math.floor(k/3)][k%3][0]} y2={POSITIONS[M-1][Math.floor(k/3)][k%3][1]}
@@ -58,6 +64,13 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
             }
           }
         }
+    }
+
+    // delete not needed sequence elements
+    // a0, a1, a2, b1, b2, b3, c1, c2, c3, d1, d2, d3, etc
+    // 0   1   2   3   4   5   6   7   8   9   10  11
+    if (numFrames > 0) {
+      sequence.splice(3+3*numFrames, INPUT.length - 3*numFrames)
     }
 
     function AssignmentMessage() {

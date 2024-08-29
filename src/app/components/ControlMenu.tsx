@@ -25,41 +25,41 @@ export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx
     }
 
     function handleClickBack() {
-        setCurrIndex((prevStep) => {
-        let newIndex = prevStep - 1;
-        if (newIndex < 0) {
-            newIndex = 0
-        } else if (newIndex == 0) {
-            setBackColor("gray")
-            setSkipBackColor("gray")
-        }
-        if (newIndex < steps-1) {
-            setNextColor("green")
-            setSkipColor("coral")
-        }
-        return newIndex;
-        });
+      setCurrIndex((prevStep) => {
+      let newIndex = prevStep - 1;
+      if (newIndex < 0) {
+          newIndex = 0
+      } else if (newIndex == 0) {
+          setBackColor("gray")
+          setSkipBackColor("gray")
+      }
+      if (newIndex < steps-1) {
+          setNextColor("green")
+          setSkipColor("coral")
+      }
+      return newIndex;
+      });
     }
 
     function handleSkipBack() {
-        // be careful when doing logic for other proofs ...
-        if (sequence[currIndex][0] < "g" && sequence[currIndex][0] >= "b") {
-          setCurrIndex(3)
-        } else {
-          handleClickBack()
-        }
+      // be careful when doing logic for other proofs ...
+      if (sequence[currIndex][0] < "g" && sequence[currIndex][0] >= "b") {
+        setCurrIndex(3)
+      } else {
+        handleClickBack()
       }
+    }
 
     function handleSkipFront() {
-        if (currIndex == sequence.length-1) {
-            return null
-        }
-        // be careful when doing logic for other proofs ...
-        if (sequence[currIndex] >= "a3" && sequence[currIndex+1][0] < "g") {
-            setCurrIndex(3+skipIdx*3)
-        } else {
-            handleClick()
-        }
+      if (currIndex == sequence.length-1) {
+          return null
+      }
+      // be careful when doing logic for other proofs ...
+      if (sequence[currIndex] >= introEnd && sequence[currIndex+1][0] < "g") {
+          setCurrIndex(3+skipIdx*3)
+      } else {
+          handleClick()
+      }
     }
     
 

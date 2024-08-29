@@ -23,8 +23,8 @@ export default function ContentBox({id, coverSize, k}) {
         </p>,
         <p>
             {/* a2 */}
-            For each variable, we place an edge between it and any variable that is <br>not it's negation</br> and <br>not 
-            in the same clause</br>.
+            For each variable, we place an edge between it and any variable that is <strong>not it's negation</strong> and 
+            <strong> not in the same clause</strong>.
         </p>,
         <p>
             {/* g1 */}
