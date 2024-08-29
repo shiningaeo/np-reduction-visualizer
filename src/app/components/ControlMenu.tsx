@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx, introEnd }) {
+export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx, skipBackIdx, introEnd }) {
     const [nextColor, setNextColor] = useState("green")
     const [backColor, setBackColor] = useState("gray")
     const [skipColor, setSkipColor] = useState("coral")
@@ -44,7 +44,7 @@ export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx
     function handleSkipBack() {
       // be careful when doing logic for other proofs ...
       if (sequence[currIndex][0] < "g" && sequence[currIndex][0] >= "b") {
-        setCurrIndex(3)
+        setCurrIndex(skipBackIdx)
       } else {
         handleClickBack()
       }

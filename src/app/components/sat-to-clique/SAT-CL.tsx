@@ -131,7 +131,8 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
             </div>
 
             <div className="w-full h-full flex flex-row justify-center" style={{marginTop:-350, marginBottom:28}}>
-              <ControlMenu currIndex={currIndex} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={sequence.indexOf("g1")-1} introEnd={"a2"}/>
+              <ControlMenu currIndex={currIndex} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={sequence.indexOf("g1")-1} 
+                introEnd={"a2"} skipBackIdx={2}/>
             </div>
         </main>
     </>
