@@ -80,13 +80,14 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
       if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[(i+j)/3]] == 1) {
         temp1[j] = "True"
       } else if (INPUT[i+j] > 0 && ASSIGNMENT[(i+j)/3] == 0) {
-        temp1[j] = "False"
-        ++coverSize
+        temp1[j] = "True"
+        
       } else if (INPUT[i+j] < 0 && ASSIGNMENT[(i+j)/3] == 1) {
         temp1[j] = "False"
         ++coverSize
       } else {
-        temp1[j] = "True"
+        temp1[j] = "False"
+        ++coverSize
       }
     }
     ASSIGNMENT_GROUPS.push(temp1)
