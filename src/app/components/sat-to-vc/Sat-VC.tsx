@@ -36,6 +36,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     ++track
   }
   sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
+  console.log(INPUT)
 
   // IMPORTANT STATE VARIABLES
   const [currIndex, setCurrIndex] = useState(0) // State to manage current step
@@ -74,20 +75,21 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   }
 
   // initialize ASSIGNMENT_GROUPS for selecting vertices in cover
+  // 0 = false
+  // 1 = true
   for (let i = 0; i < INPUT.length; i+=3) {
     let temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
-      if (INPUT[i+j] < 0 && ASSIGNMENT[INPUT[(i+j)/3]] == 1) {
-        temp1[j] = "True"
-      } else if (INPUT[i+j] > 0 && ASSIGNMENT[(i+j)/3] == 0) {
-        temp1[j] = "True"
-        
-      } else if (INPUT[i+j] < 0 && ASSIGNMENT[(i+j)/3] == 1) {
+      if (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 1) {
         temp1[j] = "False"
         ++coverSize
+      } else if (INPUT[i+j] > 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) {
+        temp1[j] = "False"
+        ++coverSize
+      } else if (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) {
+        temp1[j] = "True"
       } else {
-        temp1[j] = "False"
-        ++coverSize
+        temp1[j] = "True"
       }
     }
     ASSIGNMENT_GROUPS.push(temp1)

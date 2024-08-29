@@ -60,14 +60,16 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
         changeInput(i, input[i]*-1)
     }
 
-    function changeAssignment(num, val) {
-        if (assignment[num-1] != val) {
-            setAssignment(prevInput => {
-                const newInput = [...prevInput]; // Create a copy of the previous state
-                newInput[num-1] = val; // Update the specific index
-                return newInput; // Return the updated array
-            });
-        }
+    function changeAssignment(index: number, value: number) {
+        // Assuming `setAssignment` is the state updater function
+        setAssignment(prevAssignment => {
+            // Create a new copy of the assignment array
+            const newAssignment = [...prevAssignment];
+            // Update the specific index
+            newAssignment[index - 1] = value;
+            // Return the new array to update state
+            return newAssignment;
+        });
     }
 
     function AssignmentLine( {num} ) {
