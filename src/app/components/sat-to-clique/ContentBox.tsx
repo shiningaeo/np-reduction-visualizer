@@ -2,10 +2,10 @@ export default function ContentBox({id, coverSize, k}) {
     let spot = 0
     if (id[0] == "a") {
         spot = id[1]
-    } else if (id[0] <= "f") {
+    } else if (id < "g1") {
         spot = 2
     } else if (id[0] == "g") {
-        spot = parseInt(id[1]) + 3
+        spot = parseInt(id[1]) + 2
     }
 
     let valid = true
@@ -25,18 +25,6 @@ export default function ContentBox({id, coverSize, k}) {
             {/* a2 */}
             For each variable, we place an edge between it and any variable that is <strong>not it's negation</strong> and 
             <strong> not in the same clause</strong>.
-        </p>,
-        <p>
-            {/* g1 */}
-            After all the connections have been made, we can systematically produce a subset of the vertices 
-            for our vertex cover.
-            <br></br><br></br>
-            First, we add all the True variable vertices to the set.
-        </p>,
-         <p>
-            {/* g2 */}
-            In each clause, if there is a clause vertex that is not connected to a True variable vertex, we 
-            add that clause vertex to our set.
         </p>,
         <p>
             {/* g3 */}

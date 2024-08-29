@@ -46,32 +46,35 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
 
     let edges = []
     let numFrames = 0
+    let number = 0
     for (let i = 0; i < 3*M; i+=3) {
-        let flag = true
         for (let j = 0; j < 3; ++j) {
+          let flag = true
           for (let k = i+3; k < 3*M; ++k) {
-            if ((INPUT[k] < 0 && ASSIGNMENT[Math.abs(INPUT[k])-1] == 0) || 
-            (INPUT[k] > 0 && ASSIGNMENT[Math.abs(INPUT[k])-1] == 1)) {
+            if (INPUT[k] != INPUT[i+j]*(-1)) {
               if (flag) {
                 ++numFrames
                 flag = false
               }
               edges.push(
-                <Edge key={i/3+j} x1={POSITIONS[M-1][Math.floor((i+j)/3)][j][0]} y1={POSITIONS[M-1][Math.floor((i+j)/3)][j][1]} 
+                <Edge key={number} x1={POSITIONS[M-1][Math.floor((i+j)/3)][j][0]} y1={POSITIONS[M-1][Math.floor((i+j)/3)][j][1]} 
                 x2={POSITIONS[M-1][Math.floor(k/3)][k%3][0]} y2={POSITIONS[M-1][Math.floor(k/3)][k%3][1]}
                 color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} id={LETTERS[Math.floor((i+j)/3)].concat((j+1).toString())}/>
               )
+              console.log(LETTERS[Math.floor((i+j)/3)].concat((j+1).toString()))
+              ++number
             }
           }
         }
     }
 
     // delete not needed sequence elements
-    // a0, a1, a2, b1, b2, b3, c1, c2, c3, d1, d2, d3, etc
-    // 0   1   2   3   4   5   6   7   8   9   10  11
+    // a0, a1, a2, b1, b2, b3, c1, c2, c3, d1, d2, d3, g
+    // 0   1   2   3   4   5   6   7   8   9   10  11  12
     if (numFrames > 0) {
-      sequence.splice(3+3*numFrames, INPUT.length - 3*numFrames)
+      sequence.splice(3+numFrames, INPUT.length - numFrames)
     }
+    console.log(sequence)
 
     function AssignmentMessage() {
       const assignmentMessage = [];
@@ -128,7 +131,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
             </div>
 
             <div className="w-full h-full flex flex-row justify-center" style={{marginTop:-350, marginBottom:28}}>
-              <ControlMenu currIndex={0} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={M} introEnd={"a2"}/>
+              <ControlMenu currIndex={currIndex} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={sequence.indexOf("g1")-1} introEnd={"a2"}/>
             </div>
         </main>
     </>

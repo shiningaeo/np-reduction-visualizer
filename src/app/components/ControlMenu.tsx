@@ -54,9 +54,10 @@ export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx
       if (currIndex == sequence.length-1) {
           return null
       }
+
       // be careful when doing logic for other proofs ...
       if (sequence[currIndex] >= introEnd && sequence[currIndex+1][0] < "g") {
-          setCurrIndex(3+skipIdx*3)
+          setCurrIndex(skipIdx)
       } else {
           handleClick()
       }
