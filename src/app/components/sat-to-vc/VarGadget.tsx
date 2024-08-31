@@ -1,6 +1,8 @@
 export default function VariableGadget({x, color, num, index, assignment}) {
     let vis1 = "hidden"
     let vis2 = "hidden"
+    let color1 = color
+    let color2 = color
     if (index[0] >= "g") {
         if (assignment[num] == 1) {
             vis1 = ""
@@ -8,6 +10,15 @@ export default function VariableGadget({x, color, num, index, assignment}) {
             vis2 = ""
         }
     }
+
+    if (index >= "g3") {
+        if (vis1 == "") {
+            color2 = "grey"
+        } else {
+            color1 = "grey"
+        }
+    }
+
     return (
         <>
         <style jsx>{`
@@ -19,11 +30,13 @@ export default function VariableGadget({x, color, num, index, assignment}) {
         <svg x={x} y="150" height="120" width="131">
             <line id="test" x1="16" y1="49" x2="112" y2="49" strokeWidth="3" stroke="black" />
             
-            <circle r="20" cx="22" cy="49" visibility={vis1} fill="none" stroke="red" strokeWidth="3" />
-            <circle r="16" cx="22" cy="49" fill={color} />
+            <circle r="20" cx="22" cy="49" visibility={vis1} fill="#FFD700" stroke="#FFD700" 
+                strokeWidth="3" strokeOpacity="0.6" fillOpacity="0.6"/>
+            <circle r="16" cx="22" cy="49" fill={color1} />
 
-            <circle r="20" cx="106" cy="49" visibility={vis2} fill="none" stroke="red" strokeWidth="3" />
-            <circle r="16" cx="106" cy="49" fill={color} stroke="black" strokeWidth="3" />
+            <circle r="20" cx="106" cy="49" visibility={vis2} fill="#FFD700" stroke="#FFD700" 
+                strokeWidth="3" strokeOpacity="0.6" fillOpacity="0.6"/>
+            <circle r="16" cx="106" cy="49" fill={color2} stroke="black" strokeWidth="3" />
 
             <text x="12" y="17">
             <tspan>X</tspan>

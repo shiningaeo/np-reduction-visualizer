@@ -5,6 +5,7 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
     let bar1 = "none", bar2 = "none", bar3 = "none"
     let vis1 = "hidden", vis2 = "hidden", vis3 = "hidden"
 
+    // render borders for negated variables
     if (borders[0] != "") {
         bar1 = "overline"
     }
@@ -39,17 +40,41 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
     }
 
     // render selected vertices
+    let trueIdx = -1
+    // let falseInst = false
+    if (JSON.stringify(assign) === JSON.stringify(["True", "False", "False"])) {
+        trueIdx = 0
+    } else if (JSON.stringify(assign) === JSON.stringify(["False", "True", "False"])) {
+        trueIdx = 1
+    } else if (JSON.stringify(assign) === JSON.stringify(["False", "False", "True"])) {
+        trueIdx = 2
+    }
+
+    // render selected vertices
     if (index >= "g2") {
-        if (assign[0] == "False") {
+        if (trueIdx == -1 || trueIdx == 1) {
             vis1 = ""
-        }
-        if (assign[1] == "False") {
+            vis3 = ""
+        } else if (trueIdx == 0) {
+            vis2 = ""
+            vis3 = ""
+        } else {
+            vis1 = ""
             vis2 = ""
         }
-        if (assign[2] == "False") {
-            vis3 = ""
+    }
+
+    if (index >= "g3") {
+        if (trueIdx == -1 || trueIdx == 1) {
+            color2 = "grey"
+        } else if (trueIdx == 0) {
+            color1 = "grey"
+        } else {
+            color3 = "grey"
         }
     }
+
+    // need to do styling for uncovered edges
 
     return (
         <>
@@ -75,13 +100,16 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
             <line id="test" x1="90" y1="112" x2="56" y2="32" strokeWidth="3" stroke="black" />
             <line id="test" x1="56" y1="32" x2="22" y2="112" strokeWidth="3" stroke="black" />
 
-            <circle r="20" cx="22" cy="112" fill="none" visibility={vis1} stroke="red" strokeWidth="3" />
+            <circle r="20" cx="22" cy="112" fill="#FFD700" visibility={vis1} stroke="#FFD700" 
+                strokeWidth="3" strokeOpacity="0.6" fillOpacity="0.6"/>
             <circle r="16" cx="22" cy="112" fill={color1} strokeWidth={stroke1} stroke={border1} />
-
-            <circle r="20" cx="56" cy="32" fill="none" visibility={vis2} stroke="red" strokeWidth="3" />
+            
+            <circle r="20" cx="56" cy="32" fill="#FFD700" visibility={vis2} stroke="#FFD700" 
+                strokeWidth="3" strokeOpacity="0.6" fillOpacity="0.6"/>
             <circle r="16" cx="56" cy="32" fill={color2} strokeWidth={stroke2} stroke={border2} />
-
-            <circle r="20" cx="90" cy="112" fill="none" visibility={vis3} stroke="red" strokeWidth="3" />
+            
+            <circle r="20" cx="90" cy="112" fill="#FFD700" visibility={vis3} stroke="#FFD700" 
+                strokeWidth="3" strokeOpacity="0.6" fillOpacity="0.6"/>
             <circle r="16" cx="90" cy="112" fill={color3} strokeWidth={stroke3} stroke={border3} />
         </svg>
         </>

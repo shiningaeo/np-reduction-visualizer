@@ -24,6 +24,8 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   const ASSIGNMENT_GROUPS = []
   let VAR_SPOTS = [] // a list of size INPUT.length
   let coverSize = N
+  let falseInstances = []
+  let uncovered = new Set()
 
   // initialize *WALKTHROUGH SEQUENCE*
   const LETTERS = ["b", "c", "d", "e", "f"]
@@ -91,7 +93,16 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
       } else {
         temp1[j] = "True"
       }
+      if (j == 2) {
+        if (JSON.stringify(temp1) === JSON.stringify(["False", "False", "False"])) {
+          falseInstances.push("f")
+          uncovered.add(INPUT[i+1])
+        } else {
+          falseInstances.push("t")
+        }
+      }
     }
+
     ASSIGNMENT_GROUPS.push(temp1)
   }
   console.log(ASSIGNMENT_GROUPS)
@@ -108,6 +119,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   let clauses = []  // clause gadgets to be rendered
   track = 36
   for (let i = 0; i < M; ++i) {
+    
     let vars = [Math.abs(INPUT[3*i]), Math.abs(INPUT[3*i+1]), Math.abs(INPUT[3*i+2])]
     clauses.push(<ClauseGadget key={i} vars={vars} x={track+CLAUSE_OFFSETS} index={sequence[currIndex]} 
       id1={LETTERS[i]+"1"} id2={LETTERS[i]+"2"} id3={LETTERS[i]+"3"} colors={COLOR_GROUPS[i]} borders={BORDER_GROUPS[i]}
@@ -118,9 +130,13 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   let edges = []  // edges to be rendered
   track = 54
   for (let i = 0; i < M*3; i+=3) {
-    edges.push(<Edge key={i} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
-    edges.push(<Edge key={i+1} index={sequence[currIndex]} id={LETTERS[i/3]+"2"} x1={VAR_SPOTS[i+1]} x2={track+40+CLAUSE_OFFSETS} y2={282}/>)
-    edges.push(<Edge key={i+2} index={sequence[currIndex]} id={LETTERS[i/3]+"3"} x1={VAR_SPOTS[i+2]} x2={track+80+CLAUSE_OFFSETS} y2={362}/>)
+    let temp3 = true
+    if (falseInstances[i] == "f") {
+      temp3 = false
+    }
+    edges.push(<Edge key={i} falseInst={true} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
+    edges.push(<Edge key={i+1} falseInst={temp3} index={sequence[currIndex]} id={LETTERS[i/3]+"2"} x1={VAR_SPOTS[i+1]} x2={track+40+CLAUSE_OFFSETS} y2={282}/>)
+    edges.push(<Edge key={i+2} falseInst={true} index={sequence[currIndex]} id={LETTERS[i/3]+"3"} x1={VAR_SPOTS[i+2]} x2={track+80+CLAUSE_OFFSETS} y2={362}/>)
     track += 154
   }
 
