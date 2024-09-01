@@ -96,7 +96,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
       if (j == 2) {
         if (JSON.stringify(temp1) === JSON.stringify(["False", "False", "False"])) {
           falseInstances.push("f")
-          uncovered.add(INPUT[i+1])
+          uncovered.add(INPUT[i+1]) // false instance, keep track of all false clauses
         } else {
           falseInstances.push("t")
         }
@@ -132,6 +132,8 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   for (let i = 0; i < M*3; i+=3) {
     let temp3 = true
     if (falseInstances[i] == "f") {
+      temp3 = false
+    } else if (uncovered.has(INPUT[i]) || uncovered.has(INPUT[i+1]) || uncovered.has(INPUT[i+2])) {
       temp3 = false
     }
     edges.push(<Edge key={i} falseInst={true} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
