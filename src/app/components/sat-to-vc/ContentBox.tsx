@@ -1,4 +1,4 @@
-export default function ContentBox({id, coverSize, k}) {
+export default function ContentBox({id, validInstance, k}) {
     let spot = 0
     if (id[0] == "a") {
         spot = id[1]
@@ -8,10 +8,6 @@ export default function ContentBox({id, coverSize, k}) {
         spot = parseInt(id[1]) + 3
     }
 
-    let valid = true
-    if (coverSize > k) {
-        valid = false
-    }
     const CONTENT = [
         <p>
             {/* a0 */}
@@ -20,13 +16,12 @@ export default function ContentBox({id, coverSize, k}) {
         <p>
             {/* a1 */}
             Each variable is represented as a "barbell" made up of two "variable" vertices 
-            connected by an edge. One vertex represents the variable equaling True, the other vertex
-            represents the variable equaling False.<br></br><br></br>
+            connected by an edge. One vertex represents the negation of the variable.
         </p>,
         <p>
             {/* a2 */}
             Each clause is represented as a "triangle" made up of three "clause" vertices and three
-            edges. There are three clause vertices because each clause has three variables.
+            edges. There are three vertices in a clause because each clause has three variables.
         </p>,
         <p>
             {/* a3 */}
@@ -41,7 +36,7 @@ export default function ContentBox({id, coverSize, k}) {
             After all the connections have been made, we can systematically produce a subset of the vertices 
             for our vertex cover.
             <br></br><br></br>
-            First, we add all the True variable vertices to the set.
+            First, we add all the variable vertices that evaluate to True to the set.
         </p>,
          <p>
             {/* g2 */}
@@ -61,15 +56,15 @@ export default function ContentBox({id, coverSize, k}) {
         </p>,
         <>
         {/* g4 */}
-        {valid ? (
+        {validInstance ? (
             <p>
-                The 3-SAT input was reduced to a vertex cover of size <strong>{coverSize}</strong>, which is less than or equal to k.
+                The 3-SAT input was reduced to a valid vertex cover of size k.
                 <br /><br />
                 <span style={{ color: "green" }}>We reduced a yes instance of 3-SAT to a yes instance of vertex cover.</span>
             </p>
         ) : (
             <p>
-                The 3-SAT input was reduced to a vertex cover of size <strong>{coverSize}</strong>, which is greater than k.
+                The resulting vertex cover instance is size k, but there are uncovered edges highlighted in red.
                 <br /><br />
                 <span style={{ color:"red" }}>We reduced a no instance of 3-SAT to a no instance of vertex cover.</span>
             </p>

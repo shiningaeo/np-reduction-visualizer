@@ -25,7 +25,7 @@ export default function Edge({index, id, x1, x2, y2, falseInst}) {
             `}</style>
             <svg height="500" width="800" visibility={vis}>
                 <line id="test" x1={x1} y1={199} x2={x2} y2={y2} strokeWidth={strokeSize} stroke={color} />
-                <line id="test" x1={x1} y1={199} x2={x2} y2={y2} visibility={vis2} strokeWidth="15" strokeOpacity={0.5} stroke="red" />
+                <line x1={x1} y1={199} x2={x2} y2={y2} visibility={vis2} strokeWidth="15" strokeOpacity={0.5} stroke="red" />
             </svg>
         </>
     );

@@ -23,7 +23,6 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   const FALSE_VAR_SPOTS = [134, 288, 442, 596, 750]
   const ASSIGNMENT_GROUPS = []
   let VAR_SPOTS = [] // a list of size INPUT.length
-  let coverSize = N
   let falseInstances = []
   let uncovered = new Set()
 
@@ -84,10 +83,8 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     for (let j = 0; j < 3; ++j) {
       if (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 1) {
         temp1[j] = "False"
-        ++coverSize
       } else if (INPUT[i+j] > 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) {
         temp1[j] = "False"
-        ++coverSize
       } else if (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) {
         temp1[j] = "True"
       } else {
@@ -105,8 +102,8 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
 
     ASSIGNMENT_GROUPS.push(temp1)
   }
-  console.log(ASSIGNMENT_GROUPS)
-  console.log(ASSIGNMENT)
+
+  console.log(falseInstances)
 
   let variables = []  // variable gadgets to be rendered
   track = 28
@@ -130,15 +127,21 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   let edges = []  // edges to be rendered
   track = 54
   for (let i = 0; i < M*3; i+=3) {
-    let temp3 = true
-    if (falseInstances[i] == "f") {
-      temp3 = false
-    } else if (uncovered.has(INPUT[i]) || uncovered.has(INPUT[i+1]) || uncovered.has(INPUT[i+2])) {
-      temp3 = false
+    let tempA = true
+    let tempB = true
+    let tempC = true
+    if (falseInstances[i/3] == "f") {
+        tempB = false
+    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["False", "False", "True"] && uncovered.has(INPUT[i+2]))) {
+      tempC = false
+    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["True", "False", "False"] && uncovered.has(INPUT[i]))) {
+      tempA = false
+    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["False", "True", "False"] && uncovered.has(INPUT[i+1]))) {
+      tempB = false
     }
-    edges.push(<Edge key={i} falseInst={true} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
-    edges.push(<Edge key={i+1} falseInst={temp3} index={sequence[currIndex]} id={LETTERS[i/3]+"2"} x1={VAR_SPOTS[i+1]} x2={track+40+CLAUSE_OFFSETS} y2={282}/>)
-    edges.push(<Edge key={i+2} falseInst={true} index={sequence[currIndex]} id={LETTERS[i/3]+"3"} x1={VAR_SPOTS[i+2]} x2={track+80+CLAUSE_OFFSETS} y2={362}/>)
+    edges.push(<Edge key={i} falseInst={tempA} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
+    edges.push(<Edge key={i+1} falseInst={tempB} index={sequence[currIndex]} id={LETTERS[i/3]+"2"} x1={VAR_SPOTS[i+1]} x2={track+40+CLAUSE_OFFSETS} y2={282}/>)
+    edges.push(<Edge key={i+2} falseInst={tempC} index={sequence[currIndex]} id={LETTERS[i/3]+"3"} x1={VAR_SPOTS[i+2]} x2={track+80+CLAUSE_OFFSETS} y2={362}/>)
     track += 154
   }
 
@@ -195,7 +198,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         <div className="flex flex-col w-4/12 h-screen items-center justify-center" style={{padding:30}}>
           <div>
             <div className="w-full" style={{height:150}}></div>
-            <ContentBox id={sequence[currIndex]} coverSize={coverSize} k={N+2*M}/>
+            <ContentBox id={sequence[currIndex]} validInstance={uncovered.size == 0} k={N+2*M}/>
           </div>
         </div>
       </div>
