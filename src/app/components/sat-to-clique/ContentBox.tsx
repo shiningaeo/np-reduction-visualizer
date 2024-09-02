@@ -1,4 +1,4 @@
-export default function ContentBox({id, coverSize, k}) {
+export default function ContentBox({id, valid}) {
     let spot = 0
     if (id[0] == "a") {
         spot = id[1]
@@ -8,10 +8,6 @@ export default function ContentBox({id, coverSize, k}) {
         spot = parseInt(id[1]) + 2
     }
 
-    let valid = true
-    if (coverSize > k) {
-        valid = false
-    }
     const CONTENT = [
         <p>
             {/* a0 */}
@@ -27,29 +23,29 @@ export default function ContentBox({id, coverSize, k}) {
             <strong> not in the same clause</strong>.
         </p>,
         <p>
-            {/* g3 */}
-            The budget <strong>k</strong> of our constructed vertex cover is equal to <strong>n+2m</strong>.
-            <br></br><br></br>
-            This is because a yes instance vertex cover should have at most one vertex from each barbell gadget
-            and two vertices from each triangle gadget.
-            <br></br><br></br>
-            If there are more than n+2m vertices in the cover, then 
-            that means there is at least one clause with no True variables. In which case, that would be a no
-            instance.
+            {/* g1 */}
+            The budget <strong>k</strong> of our constructed clique instance is equal to <strong>m</strong>.
+            <br /><br />
+            This is because a yes instance of 3SAT should allow for the construction of a clique comprised of one
+            true literal from each clause.
+            <br /><br />
+            In the case of a no instance, it would not be possible to create a clique of size k in this carefully
+            created instance of clique.
         </p>,
         <>
-        {/* g4 */}
+        {/* g2 */}
         {valid ? (
             <p>
-                The 3-SAT input was reduced to a vertex cover of size <strong>{coverSize}</strong>, which is less than or equal to k.
+                The 3-SAT input was turned into a clique with a budget of k=m, and there does exist a clique of size m.
+                One such m-sized clique is highlighted in red.
                 <br /><br />
-                <span style={{ color: "green" }}>We reduced a yes instance of 3-SAT to a yes instance of vertex cover.</span>
+                <span style={{ color: "green" }}>We reduced a yes instance of 3-SAT to a yes instance of clique.</span>
             </p>
         ) : (
             <p>
-                The 3-SAT input was reduced to a vertex cover of size <strong>{coverSize}</strong>, which is greater than k.
+                The 3-SAT input was turned into a vertex cover with a budget of k=m, but there does NOT exist a clique of size m.
                 <br /><br />
-                <span style={{ color:"red" }}>We reduced a no instance of 3-SAT to a no instance of vertex cover.</span>
+                <span style={{ color:"red" }}>We reduced a no instance of 3-SAT to a no instance of clique.</span>
             </p>
         )}
         </>

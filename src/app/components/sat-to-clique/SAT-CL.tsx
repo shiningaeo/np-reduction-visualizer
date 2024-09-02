@@ -18,6 +18,8 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     // IMPORTANT STATE VARIABLES
     const [currIndex, setCurrIndex] = useState(0) // State to manage current step
 
+    let falseInstance = false
+
     // initialize *WALKTHROUGH SEQUENCE*
     const LETTERS = ["b", "c", "d", "e", "f"]
     let sequence = ["a0", "a1", "a2"] // IMPORTANT: walkthrough sequence
@@ -28,7 +30,8 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
       }
       ++track
     }
-    sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
+    sequence.push.apply(sequence, ["g1", "g2"])
+    console.log(sequence)
 
     // [layout][clause][var][x(0) | y(1)]
     const POSITIONS = calculatePositions()
@@ -47,34 +50,83 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     let edges = []
     let numFrames = 0
     let number = 0
+    let sampleClique = [] // positions of vertices in sample
+
+    for (let i = 0; i < 3*M; i+=3) {
+      let foundTrue = false
+      for (let j = 0; j < 3; ++j) {
+        if (ASSIGNMENT[INPUT[i]-1] == 1 && !foundTrue) {
+          let x = POSITIONS[M-1][Math.floor((i+j)/3)][j][0]
+          let y = POSITIONS[M-1][Math.floor((i+j)/3)][j][1]
+          sampleClique.push([x, y])
+          foundTrue = true
+          ++number
+        } // sampleClique vertices
+      }
+    }
+    if (number != M) {
+      falseInstance = true
+    }
+
+    for (let i = 0; i < 3*M; i+=3) {
+      for (let j = 0; j < 3; ++j) {
+        let flag = true
+        for (let k = i+3; k < 3*M; ++k) {
+          if (INPUT[k] != INPUT[i+j]*(-1)) {
+            if (flag) {
+              ++numFrames
+              flag = false
+            }
+          }
+        }
+      }
+    }
+
+    // delete not needed sequence elements
+    if (numFrames > 0) {
+      sequence.splice(3+numFrames, INPUT.length - numFrames)
+    } // WHAT DOES THIS DO AGAIN?? -> I think it's b/c you don't need M*3 steps, i.e. last clause not needed
+
     for (let i = 0; i < 3*M; i+=3) {
         for (let j = 0; j < 3; ++j) {
-          let flag = true
           for (let k = i+3; k < 3*M; ++k) {
+            let partOfSample = false
             if (INPUT[k] != INPUT[i+j]*(-1)) {
-              if (flag) {
-                ++numFrames
-                flag = false
+
+              let clauseIdx = Math.floor((i+j)/3)
+              let kIdx = Math.floor(k/3)
+              let x1 = POSITIONS[M-1][clauseIdx][j][0]
+              let y1 = POSITIONS[M-1][clauseIdx][j][1]
+              let x2 = POSITIONS[M-1][kIdx][k%3][0]
+              let y2 = POSITIONS[M-1][kIdx][k%3][1]
+
+              if (!falseInstance && !partOfSample) {
+                if (sampleClique[clauseIdx][0] === x1 && sampleClique[clauseIdx][1] === y1 
+                  && sampleClique[kIdx][0] === x2 && sampleClique[kIdx][1] === y2) {
+                  partOfSample = true
+                  edges.push(
+                    <Edge key={number} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
+                    id={LETTERS[clauseIdx].concat((j+1).toString())} inSample={true}/>
+                  )
+                } else {
+                  edges.push(
+                    <Edge key={number} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
+                    id={LETTERS[clauseIdx].concat((j+1).toString())} inSample={false}/>
+                  )
+                }
+              } else {
+                edges.push(
+                  <Edge key={number} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
+                    id={LETTERS[clauseIdx].concat((j+1).toString())} inSample={false}/>
+                )
               }
-              edges.push(
-                <Edge key={number} x1={POSITIONS[M-1][Math.floor((i+j)/3)][j][0]} y1={POSITIONS[M-1][Math.floor((i+j)/3)][j][1]} 
-                x2={POSITIONS[M-1][Math.floor(k/3)][k%3][0]} y2={POSITIONS[M-1][Math.floor(k/3)][k%3][1]}
-                color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} id={LETTERS[Math.floor((i+j)/3)].concat((j+1).toString())}/>
-              )
-              console.log(LETTERS[Math.floor((i+j)/3)].concat((j+1).toString()))
-              ++number
             }
           }
         }
     }
 
-    // delete not needed sequence elements
-    // a0, a1, a2, b1, b2, b3, c1, c2, c3, d1, d2, d3, g
-    // 0   1   2   3   4   5   6   7   8   9   10  11  12
-    if (numFrames > 0) {
-      sequence.splice(3+numFrames, INPUT.length - numFrames)
-    }
     console.log(sequence)
+    console.log(sequence[currIndex])
 
     function AssignmentMessage() {
       const assignmentMessage = [];
@@ -125,7 +177,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
               <div className="flex flex-col w-4/12 h-screen items-center justify-center" style={{padding:30}}>
                 <div>
                   <div className="w-full" style={{height:150}}></div>
-                  <ContentBox id={sequence[currIndex]} coverSize={0} k={N+2*M}/>
+                  <ContentBox id={sequence[currIndex]} valid={!falseInstance}/>
                 </div>
               </div>
             </div>
