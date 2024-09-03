@@ -21,7 +21,10 @@ export default function GraphInput() {
     return (
     <>
         <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36}}>
-            <p>hi
+            <p>A vertex cover instance is a graph with <strong>V</strong> vertices, <strong>E</strong> edges, and
+                a budget of size <strong>k</strong>. In a valid vertex cover instance, there is a subset of the vertices such that 
+                every edge has at least one endpoint in the subset. The vertex cover problem is typically from the perspective
+                of the maximum cover size. In other words, a valid instance of vertex cover should have a size of at most k.
             </p>
         </div>
         <GraphLayout edges={edges} toggleEdge={toggleEdge}/>

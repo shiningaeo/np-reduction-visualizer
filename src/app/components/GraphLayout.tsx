@@ -30,7 +30,7 @@ export default function GraphLayout({ edges, toggleEdge }) {
     ]
     return (
     <>
-        <main className="flex flex-row justify-center w-full" style={{height:440, marginBottom:12, backgroundColor:"#ffffff", marginRight:50, marginTop:40}}>
+        <main className="flex flex-row justify-center w-full" style={{height:440, marginBottom:12, backgroundColor:"#ffffff", marginRight:50}}>
             <div className="flex flex-col" style={{height:285, marginTop:50}}>
                 {layouts[0]}
             </div>

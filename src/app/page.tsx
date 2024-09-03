@@ -1,20 +1,21 @@
 'use client'
 import React, { useState } from 'react';
-import Three_SAT_Input from './components/SatInput';
-import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
 import ProblemMenu from './components/ProblemMenu';
 import VCDescription from './components/descriptions/VCDescription';
 import CLDescription from './components/descriptions/CLDescription';
 import SCDescription from './components/descriptions/SCDescription';
-import RotateScreen from './components/RotateScreen';
-import Three_SAT_CL from './components/sat-to-clique/SAT-CL';
+import Three_SAT_Input from './components/SatInput';
 import GraphInput from './components/GraphInput';
+import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
+import Three_SAT_CL from './components/sat-to-clique/SAT-CL';
+import VC_SC from './components/vc-to-sc/VC-SC';
+import RotateScreen from './components/RotateScreen';
 
 export default function Home() {
   const [submit, setSubmit] = useState(false)
   const [submit2, setSubmit2] = useState(false)
   const [satInput, setSatInput] = useState([])
-  const [leftIndex, setLeftIndex] = useState(0)
+  const [leftIndex, setLeftIndex] = useState(0)   // 3SAT = 0, VC = 1
   const [rightIndex, setRightIndex] = useState(0) // VC = 0, CL = 1
 
   const handleDataFromChild = (childData) => {
@@ -27,11 +28,20 @@ export default function Home() {
   };
 
   const handleSubmit = () => {
-    if (!submit) {
-      setSubmit(true);
+    if (rightIndex == 0 || rightIndex == 1) {
+      if (!submit) {
+        setSubmit(true);
+      } else {
+        setSubmit(false);
+      }
     } else {
-      setSubmit(false);
+      if (!submit2) {
+        setSubmit2(true)
+      } else {
+        setSubmit2(false)
+      }
     }
+    
   };
 
   let leftProblem = [<Three_SAT_Input onDataReceive={handleDataFromChild} submit={submit}/>, <GraphInput />]
@@ -68,16 +78,17 @@ export default function Home() {
       </main>
     </>
     ) : (
-      rightIndex == 0 ? (
+      rightIndex === 0 ? (
         <Three_SAT_VC N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} 
           setSubmit2={setSubmit2} ASSIGNMENT={satInput[3]} />
-      ) : rightIndex == 1 ? (
+      ) : rightIndex === 1 ? (
         <Three_SAT_CL N={satInput[0]} M={satInput[1]} INPUT={satInput[2]} setSubmit={setSubmit} setSubmit2={setSubmit2} 
           ASSIGNMENT={satInput[3]}/>
+      ) : rightIndex === 2 ? (
+        <VC_SC setSubmit={setSubmit} setSubmit2={setSubmit2}/>
       ) : null
 
     )}
-    
     </>
   );
 }

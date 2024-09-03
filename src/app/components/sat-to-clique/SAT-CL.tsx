@@ -31,7 +31,6 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
       ++track
     }
     sequence.push.apply(sequence, ["g1", "g2"])
-    console.log(sequence)
 
     // [layout][clause][var][x(0) | y(1)]
     const POSITIONS = calculatePositions()
@@ -124,9 +123,6 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
           }
         }
     }
-
-    console.log(sequence)
-    console.log(sequence[currIndex])
 
     function AssignmentMessage() {
       const assignmentMessage = [];
