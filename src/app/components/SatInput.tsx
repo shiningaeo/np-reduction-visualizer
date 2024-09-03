@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import Clause from "./sat-to-vc/ClauseInput";
+import Clause from "./ClauseInput";
 
 export default function Three_SAT_Input({ submit, onDataReceive }) {
     // state variables from user input

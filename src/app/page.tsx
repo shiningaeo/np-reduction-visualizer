@@ -5,15 +5,17 @@ import Three_SAT_VC from './components/sat-to-vc/Sat-VC';
 import ProblemMenu from './components/ProblemMenu';
 import VCDescription from './components/descriptions/VCDescription';
 import CLDescription from './components/descriptions/CLDescription';
+import SCDescription from './components/descriptions/SCDescription';
 import RotateScreen from './components/RotateScreen';
 import Three_SAT_CL from './components/sat-to-clique/SAT-CL';
+import GraphInput from './components/GraphInput';
 
 export default function Home() {
   const [submit, setSubmit] = useState(false)
   const [submit2, setSubmit2] = useState(false)
   const [satInput, setSatInput] = useState([])
-  const [rightIndex, setRightIndex] = useState(0)
-  // VC = 0, CL = 1
+  const [leftIndex, setLeftIndex] = useState(0)
+  const [rightIndex, setRightIndex] = useState(0) // VC = 0, CL = 1
 
   const handleDataFromChild = (childData) => {
     setSatInput(childData);
@@ -32,8 +34,8 @@ export default function Home() {
     }
   };
 
-  let leftProblem = [<Three_SAT_Input onDataReceive={handleDataFromChild} submit={submit}/>]
-  let rightProblem = [<VCDescription />, <CLDescription />]
+  let leftProblem = [<Three_SAT_Input onDataReceive={handleDataFromChild} submit={submit}/>, <GraphInput />]
+  let rightProblem = [<VCDescription />, <CLDescription />, <SCDescription />]
 
   return (
     <>
@@ -41,14 +43,14 @@ export default function Home() {
 
     {!submit2 ? (
       <>
-      <ProblemMenu activeId={rightIndex} setActiveId={setRightIndex}/>
+      <ProblemMenu rightIdx={rightIndex} setRightIdx={setRightIndex} leftIdx={leftIndex} setLeftIdx={setLeftIndex}/>
       <main className="flex flex-col items-center justify-between" style={{marginTop:10}}>
         <div className="flex flex-row justify-center items-start w-full h-full">
 
           <div className="flex flex-row w-1/2" style={{borderRight: "solid 2px gray"}}>
             <div className="flex flex-col w-1/12"></div>
             <div className="flex flex-col w-11/12 h-full justify-center items-center" style={{backgroundColor:"#ffffff"}}>
-                {leftProblem[0]}
+                {leftProblem[leftIndex]}
             </div>
           </div> 
 
