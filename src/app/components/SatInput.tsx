@@ -21,7 +21,7 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
           console.log('Submitting data:', { N, M, input, assignment });
           onDataReceive([N, M, input, assignment]);
         }
-      }, [submit]);
+    }, [submit]);
 
 
     const handleChangeN = (e) => {

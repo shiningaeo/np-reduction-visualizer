@@ -1,8 +1,8 @@
 'use client'
-import React, { useState } from 'react';
-import GraphLayout from "./GraphLayout";
+import React, { useState, useEffect } from 'react';
+import GraphInputLayout from "./GraphInputLayout";
 
-export default function GraphInput() {
+export default function GraphInput({submit, onDataReceive}) {
     const [V, setV] = useState(6)
     const [edges, setEdges] = useState(Array.from({ length: V*(V-1)/2 }, () => "#D3D3D3"))
 
@@ -18,6 +18,13 @@ export default function GraphInput() {
         });
     }
 
+    useEffect(() => {
+        if (submit) {
+          console.log('Submitting data:', { edges, V });
+          onDataReceive([edges, V]);
+        }
+    }, [submit]);
+
     return (
     <>
         <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36}}>
@@ -27,7 +34,7 @@ export default function GraphInput() {
                 of the maximum cover size. In other words, a valid instance of vertex cover should have a size of at most k.
             </p>
         </div>
-        <GraphLayout edges={edges} toggleEdge={toggleEdge}/>
+        <GraphInputLayout edges={edges} toggleEdge={toggleEdge} />
     </>
     );
 }
