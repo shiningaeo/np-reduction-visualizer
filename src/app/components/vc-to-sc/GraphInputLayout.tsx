@@ -20,12 +20,12 @@ export default function GraphInputLayout({ edges, toggleEdge }) {
             <line id="line12" x1="107" y1="324" x2="265" y2="324" onClick={() => handleClick(12)} stroke={edges[12]} strokeWidth="10"/>
             <line id="line13" x1="27.6753" y1="172.776" x2="267.675" y2="324.776" onClick={() => handleClick(13)} stroke={edges[13]} strokeWidth="10"/>
             <line id="line14" x1="29.4005" y1="174.626" x2="111.4" y2="326.626" onClick={() => handleClick(14)} stroke={edges[14]} strokeWidth="10"/>
-            <circle id="circle1" cx="102" cy="27" r="25" fill="#0000FF"/>
-            <circle id="circle2" cx="260" cy="27" r="25" fill="#0000FF"/>
-            <circle id="circle3" cx="102" cy="329" r="25" fill="#0000FF"/>
-            <circle id="circle4" cx="260" cy="329" r="25" fill="#0000FF"/>
-            <circle id="circle5" cx="25" cy="172" r="25" fill="#0000FF"/>
-            <circle id="circle6" cx="347" cy="172" r="25" fill="#0000FF"/>
+            <circle id="circle1" cx="102" cy="27" r="25" fill="#2C82C9"/>
+            <circle id="circle2" cx="260" cy="27" r="25" fill="#2C82C9"/>
+            <circle id="circle3" cx="102" cy="329" r="25" fill="#2C82C9"/>
+            <circle id="circle4" cx="260" cy="329" r="25" fill="#2C82C9"/>
+            <circle id="circle5" cx="25" cy="172" r="25" fill="#2C82C9"/>
+            <circle id="circle6" cx="347" cy="172" r="25" fill="#2C82C9"/>
         </svg>
     ]
     return (
