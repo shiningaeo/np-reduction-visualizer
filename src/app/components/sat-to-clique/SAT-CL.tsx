@@ -54,7 +54,8 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     for (let i = 0; i < 3*M; i+=3) {
       let foundTrue = false
       for (let j = 0; j < 3; ++j) {
-        if (ASSIGNMENT[INPUT[i]-1] == 1 && !foundTrue) {
+        if ((!foundTrue && ASSIGNMENT[INPUT[Math.floor((i+j)/3)]] == 1 && INPUT[i+j] > 0)
+          || ((!foundTrue && ASSIGNMENT[INPUT[Math.floor((i+j)/3)]] == 0 && INPUT[i+j] < 0))) {
           let x = POSITIONS[M-1][Math.floor((i+j)/3)][j][0]
           let y = POSITIONS[M-1][Math.floor((i+j)/3)][j][1]
           sampleClique.push([x, y])
@@ -66,6 +67,8 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     if (number != M) {
       falseInstance = true
     }
+
+    console.log(sampleClique)
 
     for (let i = 0; i < 3*M; i+=3) {
       for (let j = 0; j < 3; ++j) {
