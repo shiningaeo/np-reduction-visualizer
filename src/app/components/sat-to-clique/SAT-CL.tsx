@@ -51,13 +51,15 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     let number = 0
     let sampleClique = [] // positions of vertices in sample
 
+    console.log(INPUT)
+
     for (let i = 0; i < 3*M; i+=3) {
       let foundTrue = false
       for (let j = 0; j < 3; ++j) {
-        if ((!foundTrue && ASSIGNMENT[INPUT[Math.floor((i+j)/3)]] == 1 && INPUT[i+j] > 0)
-          || ((!foundTrue && ASSIGNMENT[INPUT[Math.floor((i+j)/3)]] == 0 && INPUT[i+j] < 0))) {
-          let x = POSITIONS[M-1][Math.floor((i+j)/3)][j][0]
-          let y = POSITIONS[M-1][Math.floor((i+j)/3)][j][1]
+        if ((!foundTrue && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 1 && INPUT[i+j] > 0)
+          || ((!foundTrue && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0 && INPUT[i+j] < 0))) {
+          let x = POSITIONS[M-1][i/3][j][0]
+          let y = POSITIONS[M-1][i/3][j][1]
           sampleClique.push([x, y])
           foundTrue = true
           ++number

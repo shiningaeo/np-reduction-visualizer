@@ -6,7 +6,7 @@ export default function calculatePositions() {
     const X_CENTERS = 80 // dist. bw centers of ellipses horiz
     const Y_CENTERS = 60 // dist. bw center of ellipses vert
 
-    // [layout][clause][var][x(0) | y(1)]
+    // [layout - 1][clause][var][x(0) | y(1)]
     const POSITIONS = [
         [[[286+X_OFFSET, 303+Y_OFFSET], 
           [286+X_OFFSET+X_CENTERS, 303+Y_OFFSET],

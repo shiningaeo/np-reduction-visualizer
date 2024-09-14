@@ -109,7 +109,7 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
         );
     }
 
-    let assignments = []
+    let assignments = []    // not the same as assignment var
     for (let i = 1; i < N+1; ++i) {
         assignments.push(<AssignmentLine key={i} num={i}/>)
     }
