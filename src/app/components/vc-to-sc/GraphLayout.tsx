@@ -1,4 +1,25 @@
-export default function GraphLayout({visibleSet}) {
+export default function GraphLayout({visibleSet, index, vMap}) {
+    const getVisibilityEdge = (id: number) => {
+        let str1 = "b" + vMap[id][0]
+        let str2 = "b" + vMap[id][1]
+
+        if ((index == str1 || index == str2) && (visibleSet.has(id))) {
+            return ""
+        } else {
+            return "hidden"
+        }
+    };
+
+    const getVisibilityV = (id: number) => {
+        if (index[1] == id && index[0] == "b") {
+            return ""
+        } else {
+            return "hidden"
+        }
+    };
+
+
+
     let layouts = [
         <svg width="500" height="440" viewBox="0 0 500 440">
             <rect width="500" height="440" fill="white"/>
@@ -19,6 +40,23 @@ export default function GraphLayout({visibleSet}) {
             <line id="line13" visibility={visibleSet.has(13) ? 'visible' : 'hidden'} x1="90.3376" y1="217.888" x2="330.338" y2="369.888" stroke="black" stroke-width="5"/>
             <line id="line14" visibility={visibleSet.has(14) ? 'visible' : 'hidden'} x1="91.2002" y1="218.813" x2="173.2" y2="370.813" stroke="black" stroke-width="5"/>
 
+            {/* edge highlighters */}
+            <line visibility={getVisibilityEdge(0)} x1="86.8132" y1="216.788" x2="168.813" y2="68.7884" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(1)} x1="329.032" y1="70.4998" x2="171.032" y2="72.4998" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(2)} x1="326.785" y1="373.159" x2="168.785" y2="71.1589" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(3)} x1="168.5" y1="372" x2="168.5" y2="70"strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(4)} x1="409.688" y1="220.128" x2="169.688" y2="72.1279" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(5)} x1="87.675" y1="217.88" x2="327.675" y2="67.88" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(6)} x1="168.785" y1="370.841" x2="326.785" y2="68.8411" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(7)} x1="326.5" y1="372" x2="326.5" y2="70" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(8)} x1="408.813" y1="219.212" x2="326.813" y2="71.2116" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(9)} x1="89" y1="217.5" x2="411" y2="217.5" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(10)} x1="326.8" y1="370.813" x2="408.8" y2="218.813" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(11)} x1="169.662" y1="369.888" x2="409.662" y2="217.888" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(12)} x1="171" y1="369.5" x2="329" y2="369.5" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(13)} x1="90.3376" y1="217.888" x2="330.338" y2="369.888" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            <line visibility={getVisibilityEdge(14)} x1="91.2002" y1="218.813" x2="173.2" y2="370.813" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+
             {/* edge labels */}
             <path id="line0label" visibility={visibleSet.has(0) ? 'visible' : 'hidden'} d="M117.957 131.909V145H116.372V133.571H116.295L113.099 135.693V134.082L116.372 131.909H117.957Z" fill="black"/>
             <path id="line1label" visibility={visibleSet.has(1) ? 'visible' : 'hidden'} d="M212.355 64V62.8494L216.676 58.1193C217.183 57.5653 217.601 57.0838 217.929 56.6747C218.257 56.2614 218.5 55.8736 218.658 55.5114C218.82 55.1449 218.901 54.7614 218.901 54.3608C218.901 53.9006 218.79 53.5021 218.568 53.1655C218.351 52.8288 218.053 52.5689 217.673 52.3857C217.294 52.2024 216.868 52.1108 216.395 52.1108C215.892 52.1108 215.453 52.2152 215.078 52.424C214.707 52.6286 214.42 52.9162 214.215 53.2869C214.015 53.6577 213.915 54.0923 213.915 54.5909H212.406C212.406 53.8239 212.583 53.1506 212.937 52.571C213.29 51.9915 213.772 51.5398 214.381 51.2159C214.995 50.892 215.683 50.7301 216.446 50.7301C217.213 50.7301 217.893 50.892 218.485 51.2159C219.077 51.5398 219.542 51.9766 219.879 52.5263C220.215 53.076 220.384 53.6875 220.384 54.3608C220.384 54.8423 220.296 55.3132 220.121 55.7734C219.951 56.2294 219.653 56.7386 219.227 57.3011C218.805 57.8594 218.219 58.5412 217.469 59.3466L214.528 62.4915V62.5938H220.614V64H212.355Z" fill="black"/>
@@ -35,6 +73,14 @@ export default function GraphLayout({visibleSet}) {
             <path id="line12label" visibility={visibleSet.has(12) ? 'visible' : 'hidden'} d="M207.957 377.909V391H206.372V379.571H206.295L203.099 381.693V380.082L206.372 377.909H207.957ZM216.146 391.179C215.302 391.179 214.55 391.034 213.889 390.744C213.233 390.455 212.711 390.052 212.323 389.536C211.94 389.016 211.731 388.413 211.697 387.727H213.308C213.342 388.149 213.487 388.513 213.742 388.82C213.998 389.123 214.332 389.357 214.746 389.523C215.159 389.69 215.617 389.773 216.12 389.773C216.683 389.773 217.181 389.675 217.616 389.479C218.05 389.283 218.391 389.01 218.638 388.661C218.886 388.311 219.009 387.906 219.009 387.446C219.009 386.964 218.89 386.54 218.651 386.174C218.413 385.803 218.063 385.513 217.603 385.305C217.143 385.096 216.58 384.991 215.915 384.991H214.867V383.585H215.915C216.435 383.585 216.891 383.491 217.283 383.304C217.68 383.116 217.989 382.852 218.21 382.511C218.436 382.17 218.549 381.77 218.549 381.31C218.549 380.866 218.451 380.481 218.255 380.153C218.059 379.825 217.782 379.569 217.424 379.386C217.07 379.202 216.653 379.111 216.171 379.111C215.719 379.111 215.293 379.194 214.893 379.36C214.496 379.522 214.173 379.759 213.921 380.07C213.67 380.376 213.533 380.747 213.512 381.182H211.978C212.004 380.496 212.21 379.895 212.598 379.379C212.986 378.859 213.493 378.455 214.119 378.165C214.75 377.875 215.442 377.73 216.197 377.73C217.006 377.73 217.701 377.894 218.281 378.222C218.86 378.546 219.305 378.974 219.616 379.507C219.928 380.04 220.083 380.615 220.083 381.233C220.083 381.97 219.889 382.599 219.501 383.119C219.118 383.638 218.596 383.999 217.935 384.199V384.301C218.762 384.437 219.408 384.789 219.872 385.356C220.337 385.918 220.569 386.615 220.569 387.446C220.569 388.158 220.375 388.797 219.987 389.364C219.604 389.926 219.08 390.369 218.415 390.693C217.75 391.017 216.994 391.179 216.146 391.179Z" fill="black"/>
             <path id="line13label" visibility={visibleSet.has(13) ? 'visible' : 'hidden'} d="M264.957 340.909V354H263.372V342.571H263.295L260.099 344.693V343.082L263.372 340.909H264.957ZM268.415 351.315V350.011L274.168 340.909H275.114V342.929H274.475L270.129 349.807V349.909H277.876V351.315H268.415ZM274.577 354V350.919V350.312V340.909H276.086V354H274.577Z" fill="black"/>
             <path id="line14label" visibility={visibleSet.has(14) ? 'visible' : 'hidden'} d="M111.957 290.909V304H110.372V292.571H110.295L107.099 294.693V293.082L110.372 290.909H111.957ZM119.813 304.179C119.063 304.179 118.388 304.03 117.787 303.732C117.186 303.433 116.705 303.024 116.342 302.504C115.98 301.984 115.782 301.392 115.748 300.727H117.282C117.342 301.32 117.61 301.81 118.087 302.197C118.569 302.581 119.144 302.773 119.813 302.773C120.35 302.773 120.827 302.647 121.245 302.396C121.667 302.144 121.997 301.799 122.236 301.36C122.479 300.917 122.6 300.416 122.6 299.858C122.6 299.287 122.474 298.778 122.223 298.33C121.976 297.879 121.635 297.523 121.2 297.263C120.766 297.003 120.269 296.871 119.711 296.866C119.31 296.862 118.899 296.924 118.477 297.052C118.055 297.175 117.708 297.335 117.435 297.531L115.952 297.352L116.745 290.909H123.546V292.315H118.075L117.614 296.176H117.691C117.96 295.963 118.296 295.786 118.701 295.646C119.106 295.505 119.528 295.435 119.967 295.435C120.768 295.435 121.482 295.626 122.108 296.01C122.739 296.389 123.233 296.909 123.591 297.57C123.953 298.23 124.134 298.984 124.134 299.832C124.134 300.668 123.947 301.413 123.572 302.07C123.201 302.722 122.69 303.237 122.038 303.616C121.386 303.991 120.644 304.179 119.813 304.179Z" fill="black"/>
+
+            {/* vertex highlighters */}
+            <circle visibility={getVisibilityV(1)} cx="171" cy="68" r="40" fill="orange" opacity="0.5"/>
+            <circle visibility={getVisibilityV(2)} cx="329" cy="68" r="40" fill="orange" opacity="0.5" />
+            <circle visibility={getVisibilityV(3)} cx="171" cy="372" r="40" fill="orange" opacity="0.5"/>
+            <circle visibility={getVisibilityV(4)} cx="329" cy="372" r="40" fill="orange" opacity="0.5"/>
+            <circle visibility={getVisibilityV(5)} cx="89" cy="218" r="40" fill="orange" opacity="0.5"/>
+            <circle visibility={getVisibilityV(6)} cx="411" cy="218" r="40" fill="orange" opacity="0.5"/>
 
             {/* vertices */}
             <circle id="circle1" cx="171" cy="68" r="25" fill="#2C82C9"/>

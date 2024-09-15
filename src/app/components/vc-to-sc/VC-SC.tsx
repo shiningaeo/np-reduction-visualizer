@@ -13,8 +13,14 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V}) {
     const [currIndex, setCurrIndex] = useState(0) // State to manage current step
 
     // initialize *WALKTHROUGH SEQUENCE*
-    const LETTERS = ["b", "c", "d", "e", "f"]
+    const LETTERS = ["b"]
     let sequence = ["a0", "a1", "a2"] // IMPORTANT: walkthrough sequence
+    for (let j = 1; j < V+1; ++j) {
+        sequence.push(LETTERS[0] + j)
+    }
+    console.log(sequence)
+
+    sequence.push.apply(sequence, ["g1", "g2"])
 
     const NUM_EDGES = edges.filter(item => item === "black").length
     const visibleSet: Set<number> = new Set()
@@ -52,7 +58,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V}) {
 
             <div className="flex flex-row justify-center items-center w-full h-full">
                 <div className="flex flex-row justify-center items-center" style={{zIndex:1000, marginTop:30, height:500, width:900}}>
-                    <GraphLayout visibleSet={visibleSet}/>
+                    <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP[0]}/>
 
                     <div style={{width:50}}></div>
                     <div className="flex flex-col justify-start items-center p-3" style={{width:300, height:400, fontSize:22, marginTop:80}}>
