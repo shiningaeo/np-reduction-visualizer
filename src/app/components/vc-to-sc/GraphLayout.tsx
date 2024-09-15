@@ -54,10 +54,91 @@ export default function GraphLayout({visibleSet}) {
 
         </svg>
     ]
+    
 
     return (
     <>
         {layouts[0]}
+
+        {/* hover styles */}
+        <style jsx>{`
+            :global(#line0:hover),
+            :global(#line0:hover ~ #line0label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line1:hover),
+            :global(#line1:hover ~ #line1label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line2:hover),
+            :global(#line2:hover ~ #line2label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line3:hover),
+            :global(#line3:hover ~ #line3label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line4:hover),
+            :global(#line4:hover ~ #line4label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line5:hover),
+            :global(#line5:hover ~ #line5label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line6:hover),
+            :global(#line6:hover ~ #line6label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line7:hover),
+            :global(#line7:hover ~ #line7label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line8:hover),
+            :global(#line8:hover ~ #line8label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line9:hover),
+            :global(#line9:hover ~ #line9label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line10:hover),
+            :global(#line10:hover ~ #line10label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line11:hover),
+            :global(#line11:hover ~ #line11label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line12:hover),
+            :global(#line12:hover ~ #line12label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line13:hover),
+            :global(#line13:hover ~ #line13label) {
+                stroke: orange;
+                fill: orange;
+            }
+            :global(#line14:hover),
+            :global(#line14:hover ~ #line14label) {
+                stroke: orange;
+                fill: orange;
+            }
+        `}</style>
+        
     </>
     );
 }

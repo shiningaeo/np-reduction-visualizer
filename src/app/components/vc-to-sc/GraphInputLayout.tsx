@@ -38,11 +38,3 @@ export default function GraphInputLayout({ edges, toggleEdge }) {
     </>
     );
 }
-
-// 6 Vertices:
-// const circle1Lines = [lines 0-4];
-// const circle2Lines = [line1, lines5-8];
-// const circle3Lines = [lines2-3, lines12-14];
-// const circle4Lines = [line2, line7, lines12-13];
-// const circle5Lines = [line0, line5, line9, lines13-14];
-// const circle6Lines = [line4, lines8-11];
