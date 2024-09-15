@@ -4,7 +4,7 @@ import WalkthroughTitle from "../WalkThruTitle";
 import ControlMenu from "../ControlMenu";
 import GraphLayout from "./GraphLayout";
 
-export default function VC_SC({setSubmit, setSubmit2, edges, V}) {
+export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     function handleReset() {
         setSubmit2(false)
         setSubmit(false)
@@ -70,23 +70,48 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V}) {
                                     <h1 style={{fontWeight:500, marginBottom:40}}>U =</h1>
                                 </div>
                                 
-                                <h1>S<sub>1</sub> =</h1>
-                                <h1>S<sub>2</sub> =</h1>
-                                <h1>S<sub>3</sub> =</h1>
-                                <h1>S<sub>4</sub> =</h1>
-                                <h1>S<sub>5</sub> =</h1>
-                                <h1>S<sub>6</sub> =</h1>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b1" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>S<sub>1</sub> =</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b2" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>S<sub>2</sub> =</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b3" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>S<sub>3</sub> =</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b4" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>S<sub>4</sub> =</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b5" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>S<sub>5</sub> =</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b6" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>S<sub>6</sub> =</h1>
+                                </span>
+
                             </div>
                             <div className="flex flex-col" style={{marginLeft:-10, fontWeight:500, width:250}}>
                                 <div style={{height:100}}>
                                     <h1 style={{fontWeight:500}}>&#123; {u_subset.join(', ')} &#125;</h1>
                                 </div>
-                                <h1>&#123; {subsets[0].join(', ')} &#125;</h1>
-                                <h1>&#123; {subsets[1].join(', ')} &#125;</h1>
-                                <h1>&#123; {subsets[2].join(', ')} &#125;</h1>
-                                <h1>&#123; {subsets[3].join(', ')} &#125;</h1>
-                                <h1>&#123; {subsets[4].join(', ')} &#125;</h1>
-                                <h1>&#123; {subsets[5].join(', ')} &#125;</h1>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b1" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>{sequence[currIndex] >= "b1" ? `{ ${subsets[0].join(', ')} }` : '{ }'}</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b2" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>{sequence[currIndex] >= "b2" ? `{ ${subsets[1].join(', ')} }` : '{ }'}</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b3" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>{sequence[currIndex] >= "b3" ? `{ ${subsets[2].join(', ')} }` : '{ }'}</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b4" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>{sequence[currIndex] >= "b4" ? `{ ${subsets[3].join(', ')} }` : '{ }'}</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b5" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>{sequence[currIndex] >= "b5" ? `{ ${subsets[4].join(', ')} }` : '{ }'}</h1>
+                                </span>
+                                <span style={{ backgroundColor: sequence[currIndex] == "b6" ? "#b6f0e7" : "transparent" }}>
+                                    <h1>{sequence[currIndex] >= "b6" ? `{ ${subsets[5].join(', ')} }` : '{ }'}</h1>
+                                </span>
                             </div>
                         </div>
                     </div>

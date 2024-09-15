@@ -18,10 +18,22 @@ export default function GraphInput({submit, onDataReceive}) {
         });
     }
 
+    const [k, setK] = useState(1)
+
+    const handleK = (newK) => {
+        setK(newK); // Assuming you have a state variable k and a setK function to update it
+    };
+
+    const spanStyle = {
+        backgroundColor: "#b6f0e7",
+        width: 20,
+    };
+
+
     useEffect(() => {
         if (submit) {
-          console.log('Submitting data:', { edges, V });
-          onDataReceive([edges, V]);
+          console.log('Submitting data:', { edges, V, k });
+          onDataReceive([edges, V, k]);
         }
     }, [submit]);
 
@@ -34,7 +46,18 @@ export default function GraphInput({submit, onDataReceive}) {
                 of the maximum cover size. In other words, a valid instance of vertex cover should have a size of at most k.
             </p>
         </div>
-        <GraphInputLayout edges={edges} toggleEdge={toggleEdge} />
+        <div className="flex flex-col items-center justify-center">
+            <GraphInputLayout edges={edges} toggleEdge={toggleEdge} />
+            <div className="flex flex-row w-full space-x-4" style={{fontWeight:500, fontSize:30, marginTop:-33}}>
+                <h1>k = </h1>
+                <span onClick={() => handleK(1)} style={{backgroundColor: k == 1 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>1</h1></span>
+                <span onClick={() => handleK(2)} style={{backgroundColor: k == 2 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>2</h1></span>
+                <span onClick={() => handleK(3)} style={{backgroundColor: k == 3 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>3</h1></span>
+                <span onClick={() => handleK(4)} style={{backgroundColor: k == 4 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>4</h1></span>
+                <span onClick={() => handleK(5)} style={{backgroundColor: k == 5 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>5</h1></span>
+                <span onClick={() => handleK(6)} style={{backgroundColor: k == 6 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>6</h1></span>
+            </div>
+        </div>
     </>
     );
 }
