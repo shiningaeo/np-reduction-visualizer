@@ -13,6 +13,8 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
 
     const [currIndex, setCurrIndex] = useState(0) // State to manage current step
     const [valid, setValid] = useState(false)
+    const [tempArray, setTempArray] = useState([]); // Array to hold the elements of temp
+
 
     // initialize *WALKTHROUGH SEQUENCE*
     const LETTERS = ["b"]
@@ -56,7 +58,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
 
     useEffect(() => {
         isSetCover();
-    }, [sequence[currIndex], subsets]);
+    }, [sequence, currIndex, subsets, visibleSet, k]);
 
     function* combinationN(array, n) {
         if (n === 1) {
@@ -73,25 +75,29 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
         }
       }
       
-
-    function isSetCover() {
-        const combinations = Array.from(combinationN([1,2,3,4,5,6], k))
-
-        if (subsets.length != 0) {
+    
+      function isSetCover() {
+        const combinations = Array.from(combinationN([1, 2, 3, 4, 5, 6], k));
+        let temp = new Set()
+        let temp1 = new Set()
+        
+        if (subsets.length !== 0) {
             for (let i = 0; i < combinations.length; ++i) {
-
-                const temp = new Set()
+                temp = new Set();
                 for (let j = 0; j < k; ++j) {
-                    let v = subsets[combinations[i][j]-1]
+                    let v = subsets[combinations[i][j] - 1];
                     for (let z = 0; z < v.length; ++z) {
-                        if (visibleSet.has(v[z]-1)) {
-                            temp.add(v[z]-1)
+                        if (visibleSet.has(v[z] - 1)) {
+                            temp.add(v[z] - 1);
+                            temp1.add(combinations[i][j] - 1)
                         }
                     }
                 }
-                if (temp.size == visibleSet.size) {
-                    setValid(true)
-                    break
+                
+                if (temp.size === visibleSet.size) {
+                    setValid(true);
+                    setTempArray(Array.from(temp1)); // Update tempArray with the elements of temp1
+                    break;
                 }
             }
         }
@@ -156,22 +162,22 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                                 <div style={{height:100}}>
                                     <h1 style={{fontWeight:500}}>&#123; {u_subset.join(', ')} &#125;</h1>
                                 </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b1" ? "#b6f0e7" : "transparent" }}>
+                                <div style={{ backgroundColor: sequence[currIndex] == "b1" || (sequence[currIndex] >= "g" && tempArray.includes(0)) ? "#b6f0e7" : "transparent" }}>
                                     <h1>{sequence[currIndex] >= "b1" ? `{ ${subsets[0].join(', ')} }` : '{ }'}</h1>
                                 </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b2" ? "#b6f0e7" : "transparent" }}>
+                                <div style={{ backgroundColor: sequence[currIndex] == "b2" || (sequence[currIndex] >= "g" && tempArray.includes(1)) ? "#b6f0e7" : "transparent" }}>
                                     <h1>{sequence[currIndex] >= "b2" ? `{ ${subsets[1].join(', ')} }` : '{ }'}</h1>
                                 </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b3" ? "#b6f0e7" : "transparent" }}>
+                                <div style={{ backgroundColor: sequence[currIndex] == "b3" || (sequence[currIndex] >= "g" && tempArray.includes(2)) ? "#b6f0e7" : "transparent" }}>
                                     <h1>{sequence[currIndex] >= "b3" ? `{ ${subsets[2].join(', ')} }` : '{ }'}</h1>
                                 </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b4" ? "#b6f0e7" : "transparent" }}>
+                                <div style={{ backgroundColor: sequence[currIndex] == "b4" || (sequence[currIndex] >= "g" && tempArray.includes(3)) ? "#b6f0e7" : "transparent" }}>
                                     <h1>{sequence[currIndex] >= "b4" ? `{ ${subsets[3].join(', ')} }` : '{ }'}</h1>
                                 </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b5" ? "#b6f0e7" : "transparent" }}>
+                                <div style={{ backgroundColor: sequence[currIndex] == "b5" || (sequence[currIndex] >= "g" && tempArray.includes(4)) ? "#b6f0e7" : "transparent" }}>
                                     <h1>{sequence[currIndex] >= "b5" ? `{ ${subsets[4].join(', ')} }` : '{ }'}</h1>
                                 </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b6" ? "#b6f0e7" : "transparent" }}>
+                                <div style={{ backgroundColor: sequence[currIndex] == "b6" || (sequence[currIndex] >= "g" && tempArray.includes(5)) ? "#b6f0e7" : "transparent" }}>
                                     <h1>{sequence[currIndex] >= "b6" ? `{ ${subsets[5].join(', ')} }` : '{ }'}</h1>
                                 </div>
                             </div>
