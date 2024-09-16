@@ -25,39 +25,73 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
 
 
     const handleChangeN = (e) => {
-        setN(parseInt(e.target.value));
+        let newN = parseInt(e.target.value);
+    
+        // Ensure N is within the allowed range
+        if (newN >= 1 && newN <= 5) {
+            setN(newN);
+        } else if (newN < 1) {
+            setN(1);  // Set to minimum value if below range
+        } else if (newN > 5) {
+            setN(5);  // Set to maximum value if above range
+        }
     };
-
+    
     const handleChangeM = (e) => {
-        const newM = parseInt(e.target.value);
-        setM(newM);
-        setInput(prevInput => {
-            const newInput = Array.from({ length: newM * 3 }, () => 1);
-            console.log(newM)
-            return newInput;
-        });
+        let newM = parseInt(e.target.value);
+    
+        // Ensure M is within the allowed range
+        if (newM >= 1 && newM <= 5) {
+            setM(newM);
+            setInput(prevInput => {
+                const newInput = Array.from({ length: newM * 3 }, () => 1);
+                console.log(newM);
+                return newInput;
+            });
+        } else if (newM < 1) {
+            setM(1);  // Set to minimum value if below range
+        } else if (newM > 5) {
+            setM(5);  // Set to maximum value if above range
+        }
     };
+    
 
-    function changeInput(i: number, newValue: number) {
-        setInput(prevInput => {
-            const newInput = [...prevInput]; // Create a copy of the previous state
-            newInput[i] = newValue; // Update the specific index
-            return newInput; // Return the updated array
-        });
+    function handleInputChange(i: number, newValue: number) {
+        if (newValue >= 1 && newValue <= N) {  // Check if value is within the allowed range
+            setInput(prevInput => {
+                const newInput = [...prevInput]; // Create a copy of the previous state
+                newInput[i] = newValue; // Update the specific index
+                return newInput; // Return the updated array
+            });
+        } else if (newValue < 1) {
+            setInput(prevInput => {
+                const newInput = [...prevInput];
+                newInput[i] = 1;  // If value is less than 1, set it to the minimum
+                return newInput;
+            });
+        } else if (newValue > N) {
+            setInput(prevInput => {
+                const newInput = [...prevInput];
+                newInput[i] = N;  // If value is greater than N, set it to the maximum
+                return newInput;
+            });
+        }
     }
 
     // ONLY CHANGES COLOR, INPUT ADJUSTMENT IS DONE IN CLAUSE-INPUT
     function toggleNegation(i: number) {
         setNegatives(prevInput => {
             const nInput = [...prevInput];
-            if (nInput[i] == "black") {
-                nInput[i] = "#94a3b8"
-            } else {
-                nInput[i] = "black"
-            }
+            nInput[i] = nInput[i] === "black" ? "#94a3b8" : "black";  // Toggle color
             return nInput;
         });
-        changeInput(i, input[i]*-1)
+    
+        // Negate the input without applying the range validation
+        setInput(prevInput => {
+            const newInput = [...prevInput];
+            newInput[i] = prevInput[i] * -1;  // Negate the current value
+            return newInput;
+        });
     }
 
     function changeAssignment(index: number, value: number) {
@@ -116,10 +150,10 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
     
     let render = []
     for (let i = 0; i < M-1; ++i) {
-        render.push(<Clause N={N} base={i} changeInput={changeInput} toggleNegation={toggleNegation} negatives={negatives} key={i}/>)
+        render.push(<Clause N={N} base={i} changeInput={handleInputChange} M={M} toggleNegation={toggleNegation} negatives={negatives} key={i}/>)
         render.push(<p key={(i+1)*-1} style={{fontSize:35, margin:-15}}>&#8896;</p>)
     }
-    render.push(<Clause N={N} base={M-1} changeInput={changeInput} toggleNegation={toggleNegation} negatives={negatives} key={M-1}/>)
+    render.push(<Clause N={N} base={M-1} changeInput={handleInputChange} M={M} toggleNegation={toggleNegation} negatives={negatives} key={M-1}/>)
     return (
     <>
         <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36}}>
