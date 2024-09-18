@@ -21,14 +21,8 @@ export default function GraphInput({submit, onDataReceive}) {
     const [k, setK] = useState(1)
 
     const handleK = (newK) => {
-        setK(newK); // Assuming you have a state variable k and a setK function to update it
+        setK(newK);
     };
-
-    const spanStyle = {
-        backgroundColor: "#b6f0e7",
-        width: 20,
-    };
-
 
     useEffect(() => {
         if (submit) {
@@ -48,8 +42,8 @@ export default function GraphInput({submit, onDataReceive}) {
         </div>
         <div className="flex flex-col items-center justify-center">
             <GraphInputLayout edges={edges} toggleEdge={toggleEdge} />
-            <div className="flex flex-row w-full space-x-4" style={{fontWeight:500, fontSize:30, marginTop:-33}}>
-                <h1>k = </h1>
+            <div className="flex flex-row w-full space-x-4" style={{fontWeight:500, fontSize:30, marginTop:-33, userSelect:"none"}}>
+                <span><h1>k = </h1></span>
                 <span onClick={() => handleK(1)} style={{backgroundColor: k == 1 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>1</h1></span>
                 <span onClick={() => handleK(2)} style={{backgroundColor: k == 2 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>2</h1></span>
                 <span onClick={() => handleK(3)} style={{backgroundColor: k == 3 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>3</h1></span>
