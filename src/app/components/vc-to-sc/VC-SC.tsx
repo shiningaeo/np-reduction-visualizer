@@ -126,7 +126,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                 </div>
 
                 <div className="flex flex-row justify-center items-center" style={{zIndex:1000, marginTop:30, height:500, width:900}}>
-                    <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP[0]}/>
+                    <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP[0]} V={V}/>
 
                     <div style={{width:50}}></div>
                     <div className="flex flex-col justify-start items-center p-3" style={{width:300, height:400, fontSize:22, marginTop:80}}>

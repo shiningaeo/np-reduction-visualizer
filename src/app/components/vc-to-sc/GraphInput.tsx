@@ -18,6 +18,19 @@ export default function GraphInput({submit, onDataReceive}) {
         });
     }
 
+    const handleChangeV = (e) => {
+        let newV = parseInt(e.target.value);
+    
+        // Ensure N is within the allowed range
+        if (newV >= 3 && newV <= 6) {
+            setV(newV);
+        } else if (newV < 3) {
+            setV(3);  // Set to minimum value if below range
+        } else if (newV > 6) {
+            setV(6);  // Set to maximum value if above range
+        }
+    };
+
     const [k, setK] = useState(1)
 
     const handleK = (newK) => {
@@ -31,6 +44,23 @@ export default function GraphInput({submit, onDataReceive}) {
         }
     }, [submit]);
 
+    const kSpans  = Array.from({ length: V }, (_, index) => {
+        const value = index + 1;
+        return (
+          <span
+            key={value}
+            onClick={() => handleK(value)}
+            style={{
+              backgroundColor: k === value ? "#b6f0e7" : "transparent",
+              cursor: "pointer",
+              width: 20
+            }}
+          >
+            <h1>{value}</h1>
+          </span>
+        );
+    });
+
     return (
     <>
         <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36}}>
@@ -41,15 +71,16 @@ export default function GraphInput({submit, onDataReceive}) {
             </p>
         </div>
         <div className="flex flex-col items-center justify-center">
-            <GraphInputLayout edges={edges} toggleEdge={toggleEdge} />
-            <div className="flex flex-row w-full space-x-4" style={{fontWeight:500, fontSize:30, marginTop:-33, userSelect:"none"}}>
+            <GraphInputLayout edges={edges} toggleEdge={toggleEdge} V={V} />
+            <div className="flex flex-row items-center justify-center" style={{marginTop:-83, userSelect:"none"}}>
+                <label style={{fontSize:30, fontWeight:500, marginRight:50}}> V =&nbsp;
+                    <input name="V" value={V} min="3" max="6" style={{fontWeight:"normal", border:"solid"}} type="number"
+                    onChange={handleChangeV}/>
+                </label>
+            </div>
+            <div className="flex flex-row w-full space-x-4" style={{fontWeight:500, fontSize:30, marginTop:20, userSelect:"none"}}>
                 <span><h1>k = </h1></span>
-                <span onClick={() => handleK(1)} style={{backgroundColor: k == 1 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>1</h1></span>
-                <span onClick={() => handleK(2)} style={{backgroundColor: k == 2 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>2</h1></span>
-                <span onClick={() => handleK(3)} style={{backgroundColor: k == 3 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>3</h1></span>
-                <span onClick={() => handleK(4)} style={{backgroundColor: k == 4 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>4</h1></span>
-                <span onClick={() => handleK(5)} style={{backgroundColor: k == 5 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>5</h1></span>
-                <span onClick={() => handleK(6)} style={{backgroundColor: k == 6 ? "#b6f0e7" : "transparent", cursor:'pointer', width:20}}><h1>6</h1></span>
+                {kSpans}
             </div>
         </div>
     </>

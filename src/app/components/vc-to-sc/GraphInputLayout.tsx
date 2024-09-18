@@ -1,9 +1,10 @@
-export default function GraphInputLayout({ edges, toggleEdge }) {
+export default function GraphInputLayout({ edges, toggleEdge, V }) {
     const handleClick = (index: number) => {
         toggleEdge(index);
     };
 
     let layouts = [
+        // V = 3
         <svg width="297.6" height="284.8" viewBox="0 0 308 282" fill="none">
             <g transform="scale(0.75 0.75)" transform-origin="154 141">
                 <line id="line00" onClick={() => handleClick(0)} stroke={edges[0]} x1="20.6301" y1="254.57" x2="149.63" y2="22.5702" strokeWidth="10"/>
@@ -15,6 +16,7 @@ export default function GraphInputLayout({ edges, toggleEdge }) {
             </g>
         </svg>,
 
+        // V = 4
         <svg width="297.6" height="284.8" viewBox="0 0 383 383" fill="black" transform="translate(-40, -30)">
             <line id="line00" onClick={() => handleClick(0)} stroke={edges[0]} x1="134" y1="340" x2="134" y2="100" strokeWidth="10"/>
             <line id="line01" onClick={() => handleClick(1)} stroke={edges[1]} x1="362.367" y1="343.436" x2="135.367" y2="103.436" strokeWidth="10"/>
@@ -28,6 +30,7 @@ export default function GraphInputLayout({ edges, toggleEdge }) {
             <circle id="circle4" cx="134" cy="340" r="25" fill="#2C82C9"/>
         </svg>,
 
+        // V = 5
         <svg width="297.6" height="284.8" viewBox="0 0 372 356" fill="none">
             <line id="line00" onClick={() => handleClick(0)} stroke={edges[0]} x1="21.945" y1="136.042" x2="170.945" y2="21.0418" strokeWidth="10"/>
             <line id="line01" onClick={() => handleClick(1)} stroke={edges[1]} x1="80.2415" y1="302.465" x2="170.241" y2="23.465" strokeWidth="10"/>
@@ -46,6 +49,7 @@ export default function GraphInputLayout({ edges, toggleEdge }) {
             <circle id="circle5" cx="265" cy="304" r="25" fill="#2C82C9"/>
         </svg>,
 
+        // V = 6
         <svg width="297.6" height="284.8" viewBox="0 0 372 356" fill="none">
             <line id="line00" onClick={() => handleClick(0)} stroke={edges[0]} x1="20.6264" y1="172.577" x2="102.626" y2="24.5768" strokeWidth="10"/>
             <line id="line01" onClick={() => handleClick(1)} stroke={edges[1]} x1="265.063" y1="29.9996" x2="107.063" y2="31.9996" strokeWidth="10"/>
@@ -70,11 +74,12 @@ export default function GraphInputLayout({ edges, toggleEdge }) {
             <circle id="circle6" cx="347" cy="172" r="25" fill="#2C82C9"/>
         </svg>
     ]
+
     return (
     <>
         <main className="flex flex-row justify-center w-full" style={{height:440, backgroundColor:"white", marginRight:50}}>
             <div className="flex flex-col items-center" style={{marginTop:50}}>
-                {layouts[3]}
+                {layouts[V-3]}
             </div>
         </main>
     </>
