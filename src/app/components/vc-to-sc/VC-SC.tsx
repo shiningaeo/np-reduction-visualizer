@@ -36,7 +36,10 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
 
     // circle nums = [V-1][edge#-1]
     const VERTEX_MAP = [
-        [[1,5], [1,2], [1,4], [1,3], [1,6], [2,5], [2,3], [2,4], [2,6], [5,6], [4,6], [3,6], [3,4], [4,5], [3,5]]   // 6 vertices
+        [[1,2], [1,3], [2,3]],
+        [[1,4], [1,3], [1,2], [2,4], [3,4], [2,3]],
+        [[1,2], [1,4], [1,5], [1,3], [2,3], [3,4], [4,5], [3,5], [2,5], [2,4]],
+        [[1,5], [1,2], [1,4], [1,3], [1,6], [2,5], [2,3], [2,4], [2,6], [5,6], [4,6], [3,6], [3,4], [4,5], [3,5]]   // V = 6
     ] // circle numbers for each edge
 
     
@@ -47,8 +50,8 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     
 
     for (const item of visibleSet) {
-        subsets[VERTEX_MAP[0][item][0]-1].push(item+1)
-        subsets[VERTEX_MAP[0][item][1]-1].push(item+1)
+        subsets[VERTEX_MAP[V-3][item][0]-1].push(item+1)
+        subsets[VERTEX_MAP[V-3][item][1]-1].push(item+1)
         u_subset.push(item+1)
     }
 
@@ -77,7 +80,8 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
       
     
       function isSetCover() {
-        const combinations = Array.from(combinationN([1, 2, 3, 4, 5, 6], k));
+        const numbersArray = Array.from({ length: V }, (_, i) => i + 1);
+        const combinations = Array.from(combinationN(numbersArray, k));
         let temp = new Set()
         let temp1 = new Set()
         
@@ -103,6 +107,37 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
         }
     }
 
+    const identifiers = [
+        { id: 'b1', label: 'S1' },
+        { id: 'b2', label: 'S2' },
+        { id: 'b3', label: 'S3' },
+        { id: 'b4', label: 'S4' },
+        { id: 'b5', label: 'S5' },
+        { id: 'b6', label: 'S6' },
+    ];
+
+    const spans = []
+    for (let i = 0; i < V; ++i) {
+        const { id, label } = identifiers[i];
+        spans.push(<span key={id} style={{ backgroundColor: sequence[currIndex] === id ? "#b6f0e7" : "transparent" }}>
+          <h1>{"S"}<sub>{id.slice(-1)}</sub> =</h1>
+        </span>)
+    }
+
+    const divs = []
+    for (let i = 0; i < V; ++i) {
+        const { id, label } = identifiers[i];
+        divs.push(
+            <div 
+          key={id} 
+          style={{ 
+            backgroundColor: sequence[currIndex] === id || (sequence[currIndex] >= "g" && tempArray.includes(i)) ? "#b6f0e7" : "transparent" 
+          }}
+        >
+          <h1>{sequence[currIndex] >= id ? `{ ${subsets[i].join(', ')} }` : '{ }'}</h1>
+        </div>
+        )
+    }
 
     return (
     <>
@@ -126,7 +161,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                 </div>
 
                 <div className="flex flex-row justify-center items-center" style={{zIndex:1000, marginTop:30, height:500, width:900}}>
-                    <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP[0]} V={V}/>
+                    <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP} V={V}/>
 
                     <div style={{width:50}}></div>
                     <div className="flex flex-col justify-start items-center p-3" style={{width:300, height:400, fontSize:22, marginTop:80}}>
@@ -138,48 +173,13 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                                     <h1 style={{fontWeight:500, marginBottom:40}}>U =</h1>
                                 </div>
                                 
-                                <span style={{ backgroundColor: sequence[currIndex] == "b1" ? "#b6f0e7" : "transparent" }}>
-                                    <h1>S<sub>1</sub> =</h1>
-                                </span>
-                                <span style={{ backgroundColor: sequence[currIndex] == "b2" ? "#b6f0e7" : "transparent" }}>
-                                    <h1>S<sub>2</sub> =</h1>
-                                </span>
-                                <span style={{ backgroundColor: sequence[currIndex] == "b3" ? "#b6f0e7" : "transparent" }}>
-                                    <h1>S<sub>3</sub> =</h1>
-                                </span>
-                                <span style={{ backgroundColor: sequence[currIndex] == "b4" ? "#b6f0e7" : "transparent" }}>
-                                    <h1>S<sub>4</sub> =</h1>
-                                </span>
-                                <span style={{ backgroundColor: sequence[currIndex] == "b5" ? "#b6f0e7" : "transparent" }}>
-                                    <h1>S<sub>5</sub> =</h1>
-                                </span>
-                                <span style={{ backgroundColor: sequence[currIndex] == "b6" ? "#b6f0e7" : "transparent" }}>
-                                    <h1>S<sub>6</sub> =</h1>
-                                </span>
-
+                                {spans}
                             </div>
                             <div className="flex flex-col" style={{marginLeft:-10, fontWeight:500, width:250}}>
                                 <div style={{height:100}}>
                                     <h1 style={{fontWeight:500}}>&#123; {u_subset.join(', ')} &#125;</h1>
                                 </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b1" || (sequence[currIndex] >= "g" && tempArray.includes(0)) ? "#b6f0e7" : "transparent" }}>
-                                    <h1>{sequence[currIndex] >= "b1" ? `{ ${subsets[0].join(', ')} }` : '{ }'}</h1>
-                                </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b2" || (sequence[currIndex] >= "g" && tempArray.includes(1)) ? "#b6f0e7" : "transparent" }}>
-                                    <h1>{sequence[currIndex] >= "b2" ? `{ ${subsets[1].join(', ')} }` : '{ }'}</h1>
-                                </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b3" || (sequence[currIndex] >= "g" && tempArray.includes(2)) ? "#b6f0e7" : "transparent" }}>
-                                    <h1>{sequence[currIndex] >= "b3" ? `{ ${subsets[2].join(', ')} }` : '{ }'}</h1>
-                                </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b4" || (sequence[currIndex] >= "g" && tempArray.includes(3)) ? "#b6f0e7" : "transparent" }}>
-                                    <h1>{sequence[currIndex] >= "b4" ? `{ ${subsets[3].join(', ')} }` : '{ }'}</h1>
-                                </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b5" || (sequence[currIndex] >= "g" && tempArray.includes(4)) ? "#b6f0e7" : "transparent" }}>
-                                    <h1>{sequence[currIndex] >= "b5" ? `{ ${subsets[4].join(', ')} }` : '{ }'}</h1>
-                                </div>
-                                <div style={{ backgroundColor: sequence[currIndex] == "b6" || (sequence[currIndex] >= "g" && tempArray.includes(5)) ? "#b6f0e7" : "transparent" }}>
-                                    <h1>{sequence[currIndex] >= "b6" ? `{ ${subsets[5].join(', ')} }` : '{ }'}</h1>
-                                </div>
+                                {divs}
                             </div>
                         </div>
                     </div>

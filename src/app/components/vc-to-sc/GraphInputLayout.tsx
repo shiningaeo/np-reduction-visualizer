@@ -5,8 +5,8 @@ export default function GraphInputLayout({ edges, toggleEdge, V }) {
 
     let layouts = [
         // V = 3
-        <svg width="297.6" height="284.8" viewBox="0 0 308 282" fill="none">
-            <g transform="scale(0.75 0.75)" transform-origin="154 141">
+        <svg width="297.6" height="284.8" viewBox="0 0 308 282" fill="none" transform="translate(40, 30)">
+            <g transform="scale(0.75 0.75)">
                 <line id="line00" onClick={() => handleClick(0)} stroke={edges[0]} x1="20.6301" y1="254.57" x2="149.63" y2="22.5702" strokeWidth="10"/>
                 <line id="line01" onClick={() => handleClick(1)} stroke={edges[1]} x1="278.63" y1="259.43" x2="149.63" y2="27.4298" strokeWidth="10"/>
                 <line id="line02" onClick={() => handleClick(2)} stroke={edges[2]} x1="283" y1="262" x2="25" y2="262" strokeWidth="10"/>

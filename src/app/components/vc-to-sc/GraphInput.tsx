@@ -73,12 +73,12 @@ export default function GraphInput({submit, onDataReceive}) {
         <div className="flex flex-col items-center justify-center">
             <GraphInputLayout edges={edges} toggleEdge={toggleEdge} V={V} />
             <div className="flex flex-row items-center justify-center" style={{marginTop:-83, userSelect:"none"}}>
-                <label style={{fontSize:30, fontWeight:500, marginRight:50}}> V =&nbsp;
+                <label style={{fontSize:26, fontWeight:500, marginRight:50}}> V =&nbsp;
                     <input name="V" value={V} min="3" max="6" style={{fontWeight:"normal", border:"solid"}} type="number"
                     onChange={handleChangeV}/>
                 </label>
             </div>
-            <div className="flex flex-row w-full space-x-4" style={{fontWeight:500, fontSize:30, marginTop:20, userSelect:"none"}}>
+            <div className="flex flex-row w-full space-x-4" style={{fontWeight:500, fontSize:26, marginTop:20, userSelect:"none"}}>
                 <span><h1>k = </h1></span>
                 {kSpans}
             </div>
