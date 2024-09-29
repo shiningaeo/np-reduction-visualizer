@@ -17,6 +17,7 @@ export default function VCDescription() {
                     height={300}
                     className="hidden md:block"
                     alt="Vertex cover description image"
+                    priority
                 />
             </div>
         </>

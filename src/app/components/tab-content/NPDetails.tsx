@@ -33,6 +33,7 @@ export default function NPDetails() {
                             height={300}
                             className="hidden md:block"
                             alt="Is P = NP?"
+                            style={{width:"auto", height:"auto"}}
                         />
                     </div>
                     <div>
@@ -75,6 +76,7 @@ export default function NPDetails() {
                                 height={300}
                                 className="hidden md:block"
                                 alt="Screenshots of the dashboard project showing desktop version"
+                                style={{width:"auto", height:"auto"}}
                             />
                         </div>
                     </div>

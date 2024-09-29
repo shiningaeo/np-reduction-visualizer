@@ -4,9 +4,9 @@ function applyBorder(num) {
     return num < 0 ? "overline" : "none";
 }
 
-function Horizontal(x, y, trio) {   // ellipse centers are 80 apart (x)
+function Horizontal(x, y, trio, num) {   // ellipse centers are 80 apart (x)
     return (
-        <svg width="228" height="44" x={x} y={y}>
+        <svg width="228" height="44" x={x} y={y} key={num}>
             <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
             <text x="32" y="27" fontSize="16" textAnchor="middle" fill="black">
                 <tspan dy="0" style={{ textDecoration: applyBorder(trio[0]) }}>X</tspan>
@@ -28,9 +28,9 @@ function Horizontal(x, y, trio) {   // ellipse centers are 80 apart (x)
     );
 }
 
-function Vertical(x, y, trio) {     // ellipse centers are 60 apart (y)
+function Vertical(x, y, trio, num) {     // ellipse centers are 60 apart (y)
     return (
-        <svg width="64" height="164" x={x} y={y}>
+        <svg width="64" height="164" x={x} y={y} key={num}>
             <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
             <text x="32" y="27" fontSize="16" textAnchor="middle" fill="black">
                 <tspan dy="0" style={{ textDecoration: applyBorder(trio[0]) }}>X</tspan>
@@ -52,9 +52,9 @@ function Vertical(x, y, trio) {     // ellipse centers are 60 apart (y)
     );
 }
 
-function LeftUp(x, y, trio) {
+function LeftUp(x, y, trio, num) {
     return (
-        <svg width="192" height="164" x={x} y={y}>
+        <svg width="192" height="164" x={x} y={y} key={num}>
             <ellipse cx="32" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
             <text x="32" y="27" fontSize="16" textAnchor="middle" fill="black">
                 <tspan dy="0" style={{ textDecoration: applyBorder(trio[0]) }}>X</tspan>
@@ -76,9 +76,9 @@ function LeftUp(x, y, trio) {
     );
 } // only used when M >= 5
 
-function RightUp(x, y, trio) {
+function RightUp(x, y, trio, num) {
     return (
-        <svg width="192" height="164" x={x} y={y}>
+        <svg width="192" height="164" x={x} y={y} key={num}>
             <ellipse cx="96" cy="22" rx="30" ry="20" fill="lightblue" stroke="black" strokeWidth="2" />
             <text x="96" y="27" fontSize="16" textAnchor="middle" fill="black">
                 <tspan dy="0" style={{ textDecoration: applyBorder(trio[0]) }}>X</tspan>
@@ -102,17 +102,17 @@ function RightUp(x, y, trio) {
 
 export default function Arrange({ M, INPUT }) {
     const LAYOUTS = [
-        [Horizontal(286, 303, INPUT.slice(0,3))],
+        [Horizontal(286, 303, INPUT.slice(0,3), 0)],
 
-        [Horizontal(286, 183, INPUT.slice(0,3)), Horizontal(286, 423, INPUT.slice(3,6))],
+        [Horizontal(286, 183, INPUT.slice(0,3), 0), Horizontal(286, 423, INPUT.slice(3,6), 1)],
 
-        [Vertical(150, 203, INPUT.slice(0,3)), Horizontal(286, 423, INPUT.slice(3,6)), Vertical(586, 203, INPUT.slice(6,9))],
+        [Vertical(150, 203, INPUT.slice(0,3), 0), Horizontal(286, 423, INPUT.slice(3,6), 1), Vertical(586, 203, INPUT.slice(6,9), 2)],
 
-        [Horizontal(286, 123, INPUT.slice(0,3)), Vertical(150, 203, INPUT.slice(3,6)), Horizontal(286, 423, INPUT.slice(6,9)), 
-            Vertical(586, 203, INPUT.slice(9,12))],
+        [Horizontal(286, 123, INPUT.slice(0,3), 0), Vertical(150, 203, INPUT.slice(3,6), 1), Horizontal(286, 423, INPUT.slice(6,9), 2), 
+            Vertical(586, 203, INPUT.slice(9,12), 3)],
 
-        [RightUp(100, 80, INPUT.slice(0,3)), LeftUp(100, 300, INPUT.slice(3,6)), Horizontal(286, 493, INPUT.slice(6,9)), 
-            RightUp(548, 300, INPUT.slice(9,12)), LeftUp(548, 80, INPUT.slice(12,15))]
+        [RightUp(100, 80, INPUT.slice(0,3), 0), LeftUp(100, 300, INPUT.slice(3,6), 1), Horizontal(286, 493, INPUT.slice(6,9), 2), 
+            RightUp(548, 300, INPUT.slice(9,12), 3), LeftUp(548, 80, INPUT.slice(12,15), 4)]
     ]
 
     return (

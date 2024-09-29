@@ -51,8 +51,6 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     let number = 0
     let sampleClique = [] // positions of vertices in sample
 
-    console.log(INPUT)
-
     for (let i = 0; i < 3*M; i+=3) {
       let foundTrue = false
       for (let j = 0; j < 3; ++j) {
@@ -69,8 +67,6 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     if (number != M) {
       falseInstance = true
     }
-
-    console.log(sampleClique)
 
     for (let i = 0; i < 3*M; i+=3) {
       for (let j = 0; j < 3; ++j) {
@@ -90,7 +86,8 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     if (numFrames > 0) {
       sequence.splice(3+numFrames, INPUT.length - numFrames)
     } // WHAT DOES THIS DO AGAIN?? -> I think it's b/c you don't need M*3 steps, i.e. last clause not needed
-
+  
+    let keyIdx = 0; // to resolve duplicate keys
     for (let i = 0; i < 3*M; i+=3) {
         for (let j = 0; j < 3; ++j) {
           for (let k = i+3; k < 3*M; ++k) {
@@ -109,20 +106,23 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
                   && sampleClique[kIdx][0] === x2 && sampleClique[kIdx][1] === y2) {
                   partOfSample = true
                   edges.push(
-                    <Edge key={number} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
+                    <Edge key={keyIdx} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
                     id={LETTERS[clauseIdx].concat((j+1).toString())} inSample={true}/>
                   )
+                  ++keyIdx
                 } else {
                   edges.push(
-                    <Edge key={number} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
+                    <Edge key={keyIdx} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
                     id={LETTERS[clauseIdx].concat((j+1).toString())} inSample={false}/>
                   )
+                  ++keyIdx
                 }
               } else {
                 edges.push(
-                  <Edge key={number} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
+                  <Edge key={keyIdx} x1={x1} y1={y1} x2={x2} y2={y2} color={EDGE_COLORS.get(INPUT[i+j])} index={sequence[currIndex]} 
                     id={LETTERS[clauseIdx].concat((j+1).toString())} inSample={false}/>
                 )
+                ++keyIdx
               }
             }
           }

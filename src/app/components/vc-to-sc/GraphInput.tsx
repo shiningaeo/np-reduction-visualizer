@@ -39,7 +39,6 @@ export default function GraphInput({submit, onDataReceive}) {
 
     useEffect(() => {
         if (submit) {
-          console.log('Submitting data:', { edges, V, k });
           onDataReceive([edges, V, k]);
         }
     }, [submit]);

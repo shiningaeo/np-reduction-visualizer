@@ -37,7 +37,6 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     ++track
   }
   sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
-  console.log(INPUT)
 
   // IMPORTANT STATE VARIABLES
   const [currIndex, setCurrIndex] = useState(0) // State to manage current step
@@ -102,8 +101,6 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
 
     ASSIGNMENT_GROUPS.push(temp1)
   }
-
-  console.log(falseInstances)
 
   let variables = []  // variable gadgets to be rendered
   track = 28

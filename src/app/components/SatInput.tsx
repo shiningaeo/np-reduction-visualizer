@@ -18,7 +18,6 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
 
     useEffect(() => {
         if (submit) {
-          console.log('Submitting data:', { N, M, input, assignment });
           onDataReceive([N, M, input, assignment]);
         }
     }, [submit]);
@@ -45,7 +44,6 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
             setM(newM);
             setInput(prevInput => {
                 const newInput = Array.from({ length: newM * 3 }, () => 1);
-                console.log(newM);
                 return newInput;
             });
         } else if (newM < 1) {
