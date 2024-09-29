@@ -1,13 +1,15 @@
 export default function GraphLayout({visibleSet, index, vMap, V}) {
     const getVisibilityEdge = (id: number) => {
-        let str1 = "b" + vMap[id][0]
-        let str2 = "b" + vMap[id][1]
+        if (id < V*(V-1)/2) {
+            let str1 = "b" + vMap[id][0]
+            let str2 = "b" + vMap[id][1]
 
-        if ((index == str1 || index == str2) && (visibleSet.has(id))) {
-            return ""
-        } else {
-            return "hidden"
-        } 
+            if ((index == str1 || index == str2) && (visibleSet.has(id))) {
+                return ""
+            } else {
+                return "hidden"
+            }   
+        }
     };
 
     const getVisibilityV = (id: number) => {
@@ -121,6 +123,7 @@ export default function GraphLayout({visibleSet, index, vMap, V}) {
             <line visibility={getVisibilityEdge(6)} x1="85" y1="301.5" x2="265" y2="301.5" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
             <line visibility={getVisibilityEdge(7)} x1="262.648" y1="303.154" x2="321.648" y2="139.154" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
             <line visibility={getVisibilityEdge(8)} x1="26.4105" y1="137.936" x2="266.41" y2="301.936" strokeWidth="15" strokeOpacity={0.5} stroke="orange"/>
+            {/* TODO: missing edge */}
 
             {/* edge labels */}
             <path id="line0label" visibility={visibleSet.has(0) ? 'visible' : 'hidden'} d="M86.9574 64.9091V78H85.3722V66.571H85.2955L82.0994 68.6932V67.0824L85.3722 64.9091H86.9574Z" fill="black"/>

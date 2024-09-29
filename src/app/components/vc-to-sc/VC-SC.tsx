@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import WalkthroughTitle from "../WalkThruTitle";
 import ControlMenu from "../ControlMenu";
 import GraphLayout from "./GraphLayout";
@@ -26,13 +26,16 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     sequence.push.apply(sequence, ["b7", "g1", "g2"])
 
     const NUM_EDGES = edges.filter(item => item === "black").length
-    const visibleSet: Set<number> = new Set()
-
-    for (let i = 0; i < edges.length; ++i) {
-        if (edges[i] == "black") {
-            visibleSet.add(i)
+    // Memoize visibleSet and subsets to avoid recomputing them unnecessarily
+    const visibleSet = useMemo(() => {
+        const set = new Set<number>(); // Specify the type as Set<number>
+        for (let i = 0; i < edges.length; ++i) {
+            if (edges[i] === "black") {
+                set.add(i); // i is a number, so this is valid
+            }
         }
-    }
+        return set;
+    }, [edges]);
 
     // circle nums = [V-1][edge#-1]
     const VERTEX_MAP = [
@@ -43,25 +46,40 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     ] // circle numbers for each edge
 
     
-    let subsets = [
-        [], [], [], [], [], []
-    ]
-    let u_subset: number[] = []
-    
+    const subsets = useMemo(() => {
+        const subs: number[][] = Array.from({ length: V }, () => []); // subs is an array of arrays of numbers
+        visibleSet.forEach((item: number) => {
+            subs[VERTEX_MAP[V - 3][item][0] - 1].push(item + 1);
+            subs[VERTEX_MAP[V - 3][item][1] - 1].push(item + 1);
+        });
+        return subs;
+    }, [visibleSet, V]);
 
+    let u_subset: number[] = [];
     for (const item of visibleSet) {
-        subsets[VERTEX_MAP[V-3][item][0]-1].push(item+1)
-        subsets[VERTEX_MAP[V-3][item][1]-1].push(item+1)
-        u_subset.push(item+1)
+        u_subset.push(item + 1);
     }
 
     if (NUM_EDGES == 0) {
         u_subset.push(null)
     }
 
+    // useEffect to call isSetCover when the dependencies change
     useEffect(() => {
-        isSetCover();
-    }, [sequence, currIndex, subsets, visibleSet, k]);
+        const { valid: isValid, tempArray: newTempArray } = isSetCover();
+
+        // Only update the state if the values change
+        if (isValid !== valid) {
+            setValid(isValid);
+        }
+        if (newTempArray.toString() !== tempArray.toString()) {
+            setTempArray(newTempArray);
+        }
+    }, [visibleSet, subsets, V, k]);
+    
+    // useEffect(() => {
+    //     isSetCover();
+    // }, [sequence, currIndex, subsets, visibleSet, k]);
 
     function* combinationN(array, n) {
         if (n === 1) {
@@ -79,7 +97,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
       }
       
     
-      function isSetCover() {
+    function isSetCover() {
         const numbersArray = Array.from({ length: V }, (_, i) => i + 1);
         const combinations = Array.from(combinationN(numbersArray, k));
         let temp = new Set()
@@ -99,12 +117,11 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                 }
                 
                 if (temp.size === visibleSet.size) {
-                    setValid(true);
-                    setTempArray(Array.from(temp1)); // Update tempArray with the elements of temp1
-                    break;
+                    return { valid: true, tempArray: Array.from(temp1) };
                 }
             }
         }
+        return { valid: false, tempArray: [] };
     }
 
     const identifiers = [
@@ -161,7 +178,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                 </div>
 
                 <div className="flex flex-row justify-center items-center" style={{zIndex:1000, marginTop:30, height:500, width:900}}>
-                    <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP} V={V}/>
+                    <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP[V-3]} V={V}/>
 
                     <div style={{width:50}}></div>
                     <div className="flex flex-col justify-start items-center p-3" style={{width:300, height:400, fontSize:22, marginTop:80}}>
