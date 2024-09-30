@@ -22,7 +22,7 @@ export default function SCDetails() {
                     </p>
                     <div className="w-full flex items-center justify-center mb-6">
                         <Image
-                            src="/nextjs-github-pages/set-cover.svg"
+                            src="/set-cover.svg"
                             width={300}
                             height={200}
                             className="hidden md:block"

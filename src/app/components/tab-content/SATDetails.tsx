@@ -22,7 +22,7 @@ export default function SATDetails() {
                 </p>
                 <div className="w-full flex items-center justify-center mb-6">
                     <Image
-                        src="/nextjs-github-pages/formula.png"
+                        src="/formula.png"
                         width={250}
                         height={200}
                         className="hidden md:block"

@@ -28,7 +28,7 @@ export default function NPDetails() {
                     </p>
                     <div className="w-full flex items-center justify-center">
                         <Image
-                            src="/nextjs-github-pages/p-np.svg"
+                            src="/p-np.svg"
                             width={400}
                             height={300}
                             className="hidden md:block"
@@ -76,7 +76,7 @@ export default function NPDetails() {
                         </p>
                         <div className="flex items-center justify-center mt-8">
                             <Image
-                                src="/nextjs-github-pages/mapping.svg"
+                                src="/mapping.svg"
                                 width={500}
                                 height={300}
                                 className="hidden md:block"

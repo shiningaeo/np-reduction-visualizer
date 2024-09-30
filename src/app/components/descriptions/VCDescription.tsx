@@ -12,7 +12,7 @@ export default function VCDescription() {
             </div>
             <div className="w-full flex flex-row justify-center items-center" style={{marginTop:30, marginBottom:-30}}>
                 <Image
-                    src="/nextjs-github-pages/vertex-cover.svg"
+                    src="/vertex-cover.svg"
                     width={400}
                     height={300}
                     className="hidden md:block"
