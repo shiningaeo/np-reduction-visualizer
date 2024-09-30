@@ -1,4 +1,5 @@
-import Image from "next/image";
+import myImage from '/public/p-np.svg';
+import Image from 'next/image';
 
 export default function NPDetails() {
     return (
@@ -27,8 +28,8 @@ export default function NPDetails() {
                         We still don't know the answer.
                     </p>
                     <div className="w-full flex items-center justify-center">
-                        <Image
-                            src="/p-np.svg"
+                        <img
+                            src={myImage}
                             width={400}
                             height={300}
                             className="hidden md:block"
