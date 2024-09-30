@@ -4,7 +4,11 @@ export default function VCDetails() {
     return (
         <div className="w-full h-full bg-white p-5">
             <h1 className="text-2xl font-bold mb-4">Vertex Cover</h1>
-            
+            <p className="mb-2">
+                <span style={{color:"blue"}}><a href="https://eecs376.github.io/notes/complexity.html#vertex-cover" target="_blank" rel="noopener noreferrer">
+                More detailed notes available here
+                </a></span>
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <p className="mb-2">
@@ -21,7 +25,7 @@ export default function VCDetails() {
                             width={300}
                             height={200}
                             className="hidden md:block"
-                            alt="Screenshots of the dashboard project showing desktop version"
+                            alt="Vertex cover example image"
                         />
                     </div>
                     <p className="mb-2">
@@ -29,7 +33,10 @@ export default function VCDetails() {
                     </p>
                     <div>
                         <p className="mb-2">
-                        Despite its complexity, the Vertex Cover problem has practical applications in various fields such as network security, bioinformatics, and logistics. For instance, in network security, a vertex cover can represent a set of crucial monitoring nodes in a network to ensure all communications are observed. While finding an exact solution is computationally challenging, there are approximation algorithms and heuristics that can provide good enough solutions in reasonable time for practical purposes.                        </p>
+                        Despite its complexity, the Vertex Cover problem has practical applications in various fields such as network security, bioinformatics, and logistics.
+                        For instance, in network security, a vertex cover can represent a set of crucial monitoring nodes in a network to ensure all communications are observed.
+                        While finding an exact solution is computationally challenging, there are approximation algorithms and heuristics that can provide good enough solutions in reasonable time for practical purposes.
+                        </p>
                     </div>
                 </div>
                 

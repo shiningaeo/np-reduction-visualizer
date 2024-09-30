@@ -62,6 +62,11 @@ export default function NPDetails() {
                         </p>
                         <h2 className="text-xl font-semibold mb-2">Polynomial-Time Mapping Reductions</h2>
                         <p className="mb-2">
+                            <span style={{color:"blue"}}><a href="https://eecs376.github.io/notes/complexity.html#polynomial-time-mapping-reductions" target="_blank" rel="noopener noreferrer">
+                            More detailed notes available here
+                            </a></span>
+                        </p>
+                        <p className="mb-2">
                            One method used in proving that a prolem is in NP is to construct a method of mapping instances
                            of one NP problem to another. The reduction is successful if we can always map an arbitrary yes instance
                            of one problem to a yes instance of the problem we're trying to prove is in NP, and likewise for false
@@ -75,7 +80,7 @@ export default function NPDetails() {
                                 width={500}
                                 height={300}
                                 className="hidden md:block"
-                                alt="Screenshots of the dashboard project showing desktop version"
+                                alt="Polynomial-time mapping reduction image"
                                 style={{width:"auto", height:"auto"}}
                             />
                         </div>

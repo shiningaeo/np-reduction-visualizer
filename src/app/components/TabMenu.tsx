@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import NPDetails from './tab-content/NPDetails';
 import SATDetails from './tab-content/SATDetails';
 import VCDetails from './tab-content/VCDetails';
+import CLDetails from './tab-content/CLDetails';
+import SCDetails from './tab-content/SCDetails';
+import About from './tab-content/About';
 
 export default function TabMenu() {
   // State to manage the active tab
@@ -36,6 +39,24 @@ export default function TabMenu() {
           >
             Vertex Cover
           </button>
+          <button
+            className={`py-2 px-4 ${activeTab === 'Tab4' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            onClick={() => handleTabClick('Tab4')}
+          >
+            Clique
+          </button>
+          <button
+            className={`py-2 px-4 ${activeTab === 'Tab5' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            onClick={() => handleTabClick('Tab5')}
+          >
+            Set Cover
+          </button>
+          <button
+            className={`py-2 px-4 ${activeTab === 'Tab6' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            onClick={() => handleTabClick('Tab6')}
+          >
+            About
+          </button>
         </div>
 
         {/* Tab content */}
@@ -43,6 +64,9 @@ export default function TabMenu() {
           {activeTab === 'Tab1' && <NPDetails />}
           {activeTab === 'Tab2' && <SATDetails />}
           {activeTab === 'Tab3' && <VCDetails />}
+          {activeTab === 'Tab4' && <CLDetails />}
+          {activeTab === 'Tab5' && <SCDetails />}
+          {activeTab === 'Tab6' && <About />}
         </div>
       </div>
     </div>

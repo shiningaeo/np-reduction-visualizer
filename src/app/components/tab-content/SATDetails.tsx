@@ -4,7 +4,11 @@ export default function SATDetails() {
     return (
         <div className="w-full h-full bg-white p-5">
         <h1 className="text-2xl font-bold mb-4">3-Satisfiability</h1>
-        
+        <p className="mb-2">
+            <span style={{color:"blue"}}><a href="https://eecs376.github.io/notes/complexity.html#sat" target="_blank" rel="noopener noreferrer">
+            More detailed notes available here
+            </a></span>
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <p className="mb-2">
@@ -22,7 +26,7 @@ export default function SATDetails() {
                         width={250}
                         height={200}
                         className="hidden md:block"
-                        alt="Screenshots of the dashboard project showing desktop version"
+                        alt="3SAT example image"
                     />
                 </div>
                 <p className="mb-2">
