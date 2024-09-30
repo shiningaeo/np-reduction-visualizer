@@ -1,4 +1,3 @@
-import myImage from '/public/p-np.svg';
 import Image from 'next/image';
 
 export default function NPDetails() {
@@ -29,7 +28,7 @@ export default function NPDetails() {
                     </p>
                     <div className="w-full flex items-center justify-center">
                         <img
-                            src={myImage}
+                            src={'${process.env.NEXT_PUBLIC_BASE_PATH}/p-np.svg'}
                             width={400}
                             height={300}
                             className="hidden md:block"

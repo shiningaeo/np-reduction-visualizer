@@ -7,7 +7,8 @@ const nextConfig = {
   output: 'export',  // Set output to export for static site generation
   
   // Base path configuration for GitHub Pages
-  basePath: '/np-reduction-visualizer',
+  basePath: isProd ? '/np-reduction-visualizer' : '', // Replace with your repo name
+  assetPrefix: isProd ? '/np-reduction-visualizer/' : '', // Also replace with your repo nam
 
   images: {
     unoptimized: true, // Disable image optimization as it may not work with static export
