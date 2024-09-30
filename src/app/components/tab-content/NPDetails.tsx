@@ -28,7 +28,7 @@ export default function NPDetails() {
                     </p>
                     <div className="w-full flex items-center justify-center">
                         <img
-                            src={'${process.env.NEXT_PUBLIC_BASE_PATH}/p-np.svg'}
+                            src="/np-reduction-visualizer/p-np.svg"
                             width={400}
                             height={300}
                             className="hidden md:block"
@@ -76,7 +76,7 @@ export default function NPDetails() {
                         </p>
                         <div className="flex items-center justify-center mt-8">
                             <Image
-                                src="/mapping.svg"
+                                src="/np-reduction-visualizer/mapping.svg"
                                 width={500}
                                 height={300}
                                 className="hidden md:block"

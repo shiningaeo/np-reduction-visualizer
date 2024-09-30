@@ -21,7 +21,7 @@ export default function CLDetails() {
                     </p>
                     <div className="w-full flex items-center justify-center mb-6">
                         <Image
-                            src="/clique.svg"
+                            src="/np-reduction-visualizer/clique.svg"
                             width={300}
                             height={200}
                             className="hidden md:block"
