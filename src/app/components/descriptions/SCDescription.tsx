@@ -11,7 +11,7 @@ export default function SCDescription() {
             </div>
             <div className="w-full flex flex-row justify-center items-center" style={{marginTop:30, marginBottom:-30}}>
                 <Image
-                    src="/set-cover.svg"
+                    src="/nextjs-github-pages/set-cover.svg"
                     width={400}
                     height={300}
                     className="hidden md:block"
