@@ -106,7 +106,7 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
 
     function AssignmentLine( {num} ) {
         const baseStyle = {
-            fontSize: 12,
+            fontSize: 16,
             marginTop: 25,
             paddingLeft: 10,
             paddingRight: 10,
@@ -116,15 +116,15 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
         return (
             <>
                 <div className="flex flex-row w-full">
-                    <h1 style={{ fontSize:12, marginTop:25, marginRight:10}}>
+                    <h1 style={{ fontSize:16, marginTop:25, marginRight:10}}>
                         X<sub>{num}</sub>
                     </h1>
-                    <h1 style={{fontSize:12, marginTop:25, marginRight:20}}>=</h1>
+                    <h1 style={{fontSize:16, marginTop:25, marginRight:20}}>=</h1>
                     <h1 
                         onClick={() => changeAssignment(num, 1)}
                         style={{
                             ...baseStyle,
-                            marginRight: 55,
+                            marginRight: 25,
                             backgroundColor: assignment[num-1]==1 ? "#b6f0e7" : "transparent",
                         }}
                     >True</h1>
@@ -163,20 +163,20 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
         </div>
         <main className="flex flex-row justify-center w-full" style={{height:440, marginBottom:12, backgroundColor:"#ffffff", marginRight:50}}>
             <div className="flex flex-col" style={{height:440}}>
-                <div style={{minWidth:200, marginTop:130, marginBottom:20, marginLeft:-30}} className="items-center flex flex-row">
-                    <label style={{fontSize: 30, fontWeight: 550, marginRight:20}}> n =&nbsp;
+                <div style={{minWidth:200, marginTop:70, marginBottom:20}} className="items-center flex flex-col">
+                    <label style={{fontSize:22, fontWeight: 550}}> n =&nbsp;
                         <input value={N} onChange={handleChangeN} name="n"
-                                min="1" max="5" style={{fontWeight: "normal", border: "solid"}} type="number"/>
+                                min="1" max="5" style={{fontWeight:"normal", border:"solid", width:42}} type="number"/>
                     </label>
 
-                    <label style={{fontSize:30, fontWeight:550}}> m =&nbsp;
+                    <label style={{fontSize:22, fontWeight:550, marginTop:30, marginRight:5}}> m =&nbsp;
                         <input value={M} onChange={handleChangeM} name="m"
-                                min="1" max="5" style={{fontWeight: "normal", border: "solid"}} type="number"/>
+                                min="1" max="5" style={{fontWeight: "normal", border: "solid", width:42}} type="number"/>
                     </label>
                 </div>
                 {assignments.map(component => component)}
             </div>
-            <div style={{width:20}}></div>
+            <div style={{width:30}}></div>
             <div className="flex flex-col items-center justify-center">
                 {render.map(component => component)}
             </div>

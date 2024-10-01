@@ -25,7 +25,7 @@ export default function Clause({N, base, changeInput, negatives, toggleNegation,
             </div>
             <p style={{display: "inline", fontSize: 30, fontWeight: 550}}>( </p>
             <label style={{fontSize: 30, fontWeight: 550}}>X </label>
-            <input style={{border: "solid"}} value={x1} type="number" min="1" max={N} 
+            <input style={{border:"solid", height:28, width:32}} value={x1} type="number" min="1" max={N} 
               onChange={e => {
                 const newValue = Math.max(1, Math.min(parseInt(e.target.value), N));
                 setX1(newValue);
@@ -41,7 +41,7 @@ export default function Clause({N, base, changeInput, negatives, toggleNegation,
             <p style={{display: "inline", fontSize: 35}}> &#8897; </p>
 
             <label style={{fontSize: 30, fontWeight: 550}}> X </label>
-            <input style={{border: "solid"}} value={x2} type="number" min="1" max={N} 
+            <input style={{border:"solid", height:28, width:32}} value={x2} type="number" min="1" max={N} 
               onChange={e => {
                 const newValue = Math.max(1, Math.min(parseInt(e.target.value), N));
                 setX2(newValue);
@@ -57,7 +57,7 @@ export default function Clause({N, base, changeInput, negatives, toggleNegation,
             <p style={{display: "inline", fontSize: 35}}> &#8897;</p>
 
             <label style={{fontSize: 30, fontWeight: 550}}> X </label>
-            <input style={{border: "solid"}} value={x3} type="number"  min="1" max={N} 
+            <input style={{border:"solid", height:28, width:32}} value={x3} type="number"  min="1" max={N} 
               onChange={e => {
                 const newValue = Math.max(1, Math.min(parseInt(e.target.value), N));
                 setX3(newValue);

@@ -5,6 +5,8 @@ import ControlMenu from "../ControlMenu";
 import GraphLayout from "./GraphLayout";
 import ContentBox from './ContentBox';
 
+// Vertex Cover (VC) -> Set Cover (SC)
+
 export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     function handleReset() {
         setSubmit2(false)
@@ -135,7 +137,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
 
     const spans = []
     for (let i = 0; i < V; ++i) {
-        const { id, label } = identifiers[i];
+        const { id } = identifiers[i];
         spans.push(<span key={id} style={{ backgroundColor: sequence[currIndex] === id ? "#b6f0e7" : "transparent" }}>
           <h1>{"S"}<sub>{id.slice(-1)}</sub> =</h1>
         </span>)
@@ -160,9 +162,9 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     <>
         <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:18}}>
             <WalkthroughTitle leftProblem={"Vertex Cover"} rightProblem={"Set Cover"} handleReset={handleReset}/>
-
+            <div style={{height:30}}></div>
             <div className="flex flex-row justify-center items-center w-full h-full">
-                <div className="flex flex-col w-3/12 items-center justify-center">
+                <div className="flex flex-col w-4/12 items-center justify-center p-8">
                     <div className="flex flex-col h-full items-center justify-center" style={{marginTop:120}}>
                         <div className="p-3 w-full" style={{width:180, textAlign:"left", height:"auto", borderRadius:10, marginTop:-105, backgroundColor:"#b6f0e7"}}>
                             <strong>VERTEX COVER INPUT: </strong><br></br>
@@ -177,7 +179,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                     </div>
                 </div>
 
-                <div className="flex flex-row justify-center items-center" style={{zIndex:1000, marginTop:30, height:500, width:900}}>
+                <div className="relative flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"500px"}}>
                     <GraphLayout visibleSet={visibleSet} index={sequence[currIndex]} vMap={VERTEX_MAP[V-3]} V={V}/>
 
                     <div style={{width:50}}></div>
@@ -201,8 +203,8 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col w-3/12 items-center justify-center">
-                    <div>
+                <div className="flex flex-col w-4/12 items-center justify-center">
+                    <div className="p-8">
                         <div className="w-full" style={{height:150}}></div>
                         <ContentBox id={sequence[currIndex]} valid={valid}/>
                     </div>

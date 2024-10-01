@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "NP Reduction Visualizer",
   description: "Step-by-step walkthroughs of NP-hard reductions",
+  icons: {
+    icon: '/np-reduction-visualizer/favicon.ico', // Adjust the path to your favicon
+  },
 };
 
 export default function RootLayout({

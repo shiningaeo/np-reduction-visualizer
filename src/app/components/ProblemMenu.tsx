@@ -59,7 +59,7 @@ export default function ProblemMenu({ rightIdx, setRightIdx, leftIdx, setLeftIdx
                         {/* VC button */}
                         <div onClick={vcClickLeft} className="flex w-1/2 justify-center items-center" 
                             style={(leftIdx === 1 ? activeStyle : inactiveStyle)}>
-                            <h1 className={`${poppins.className}`} style={{fontSize:22, color:"#396D83"}}>Vertex Cover</h1>
+                            <h1 className={`${poppins.className}`} style={{fontSize:20, color:"#396D83"}}>Vertex Cover</h1>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export default function ProblemMenu({ rightIdx, setRightIdx, leftIdx, setLeftIdx
                         {/* VC button */}
                         <div onClick={vcClickRight} className="flex w-1/3 justify-center items-center"
                             style={(rightIdx === 0 ? activeStyle : inactiveStyle)}>
-                            <h1 className={`${poppins.className}`} style={{fontSize:22, color:"#396D83"}}>Vertex Cover</h1>
+                            <h1 className={`${poppins.className}`} style={{fontSize:20, color:"#396D83"}}>Vertex Cover</h1>
                         </div>
 
                         {/* CL button */}

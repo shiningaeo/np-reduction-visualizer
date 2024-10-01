@@ -15,7 +15,6 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         setSubmit(false)
     }
 
-    // IMPORTANT STATE VARIABLES
     const [currIndex, setCurrIndex] = useState(0) // State to manage current step
 
     let falseInstance = false
@@ -85,7 +84,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     // delete not needed sequence elements
     if (numFrames > 0) {
       sequence.splice(3+numFrames, INPUT.length - numFrames)
-    } // WHAT DOES THIS DO AGAIN?? -> I think it's b/c you don't need M*3 steps, i.e. last clause not needed
+    }
   
     let keyIdx = 0; // to resolve duplicate keys
     for (let i = 0; i < 3*M; i+=3) {
@@ -154,9 +153,9 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
             <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Clique"} handleReset={handleReset}/>
 
             <div className="flex flex-row justify-center items-center w-full h-full" style={{marginTop:-150}}>
-              <div className="flex flex-col w-4/12 h-full items-center justify-center">
+              <div className="flex flex-col w-4/12 h-full items-center justify-center p-8">
                 <div className="w-full" style={{height:150}}></div>
-                <div className="p-3" style={{textAlign:"left", height:"auto", width:"50%", borderRadius:10, marginTop:-105, backgroundColor:"#b6f0e7"}}>
+                <div className="p-3" style={{textAlign:"left", height:"auto", width:180, borderRadius:10, marginTop:-105, backgroundColor:"#b6f0e7"}}>
                   <strong>3-SAT INPUT: </strong><br></br>
                   <strong>n</strong> = {N} variables<br></br>
                   <strong>m</strong> = {M} clauses<br></br>
@@ -168,7 +167,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
                 {AssignmentMessage()}
               </div>
                 
-              <div className="flex" style={{height:580, width:800, marginTop:-50}}>
+              <div className="relative flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"430px"}}>
                   <svg height="650" width="800">
                       {edges.map(edge => edge)}
                       <Arrange M={M} INPUT={INPUT}/>
@@ -176,7 +175,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
               </div>
 
               <div className="flex flex-col w-4/12 h-screen items-center justify-center" style={{padding:30}}>
-                <div>
+                <div className="p-8">
                   <div className="w-full" style={{height:150}}></div>
                   <ContentBox id={sequence[currIndex]} valid={!falseInstance}/>
                 </div>

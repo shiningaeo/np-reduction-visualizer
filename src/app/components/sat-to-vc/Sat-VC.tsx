@@ -38,7 +38,6 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   }
   sequence.push.apply(sequence, ["g1", "g2", "g3", "g4"])
 
-  // IMPORTANT STATE VARIABLES
   const [currIndex, setCurrIndex] = useState(0) // State to manage current step
 
   function handleReset() {
