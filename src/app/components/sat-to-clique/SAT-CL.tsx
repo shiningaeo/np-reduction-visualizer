@@ -167,7 +167,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
                 {AssignmentMessage()}
               </div>
                 
-              <div className="relative flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"430px"}}>
+              <div className="relative flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"650px"}}>
                   <svg height="650" width="800">
                       {edges.map(edge => edge)}
                       <Arrange M={M} INPUT={INPUT}/>
