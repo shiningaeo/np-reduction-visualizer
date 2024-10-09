@@ -16,6 +16,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     const [currIndex, setCurrIndex] = useState(0) // State to manage current step
     const [valid, setValid] = useState(false)
     const [tempArray, setTempArray] = useState([]); // Array to hold the elements of temp
+    const [selectedV, setSelectedV] = useState([])  // Array to hold edges in vertex cover
 
     // initialize *WALKTHROUGH SEQUENCE*
     const LETTERS = ["b"]
@@ -66,7 +67,7 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
 
     // useEffect to call isSetCover when the dependencies change
     useEffect(() => {
-        const { valid: isValid, tempArray: newTempArray } = isSetCover();
+        const { valid: isValid, tempArray: newTempArray, selectedV: newSelectedV } = isSetCover();
 
         // Only update the state if the values change
         if (isValid !== valid) {
@@ -74,6 +75,9 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
         }
         if (newTempArray.toString() !== tempArray.toString()) {
             setTempArray(newTempArray);
+        }
+        if (newSelectedV.toString() !== selectedV.toString()) {
+            setSelectedV(newSelectedV);
         }
     }, [visibleSet, subsets, V, k]);
 
@@ -92,15 +96,17 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
         }
       }
     
-    function isSetCover() {
+    function isSetCover(): { valid: boolean, tempArray: any[], selectedV: number[] } {
         const numbersArray = Array.from({ length: V }, (_, i) => i + 1);
-        const combinations = Array.from(combinationN(numbersArray, k));
+        const combinations: number[][] = Array.from(combinationN(numbersArray, k));
         let temp = new Set()
         let temp1 = new Set()
+        let selected = new Set<number>()
         
         if (subsets.length !== 0) {
             for (let i = 0; i < combinations.length; ++i) {
                 temp = new Set();
+                selected = new Set(combinations[i])
                 for (let j = 0; j < k; ++j) {
                     let v = subsets[combinations[i][j] - 1];
                     for (let z = 0; z < v.length; ++z) {
@@ -112,11 +118,11 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
                 }
                 
                 if (temp.size === visibleSet.size) {
-                    return { valid: true, tempArray: Array.from(temp1) };
+                    return { valid: true, tempArray: Array.from(temp1), selectedV: Array.from(selected) };
                 }
             }
         }
-        return { valid: false, tempArray: [] };
+        return { valid: false, tempArray: [], selectedV: [] };
     }
 
     const identifiers = [
@@ -138,12 +144,13 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
 
     const divs = []
     for (let i = 0; i < V; ++i) {
+        console.log(selectedV)
         const { id, label } = identifiers[i];
         divs.push(
             <div 
           key={id} 
           style={{ 
-            backgroundColor: sequence[currIndex] === id || (sequence[currIndex] >= "g" && tempArray.includes(i)) ? "#b6f0e7" : "transparent" 
+            backgroundColor: sequence[currIndex] === id || (sequence[currIndex] >= "g" && selectedV.includes(i+1)) ? "#b6f0e7" : "transparent" 
           }}
         >
           <h1>{sequence[currIndex] >= id ? `{ ${subsets[i].join(', ')} }` : '{ }'}</h1>
