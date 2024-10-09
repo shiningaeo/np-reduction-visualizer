@@ -22,37 +22,37 @@ export default function TabMenu() {
         {/* Tab menu */}
         <div className="flex border-b">
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab1' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab1' ? 'border-b-2 border-[#396D83] bg-white' : ''}`}
             onClick={() => handleTabClick('Tab1')}
           >
             NP Problems
           </button>
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab2' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab2' ? 'border-b-2 border-[#396D83] bg-white' : ''}`}
             onClick={() => handleTabClick('Tab2')}
           >
             3-SAT
           </button>
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab3' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab3' ? 'border-b-2 border-[#396D83] bg-white' : ''}`}
             onClick={() => handleTabClick('Tab3')}
           >
             Vertex Cover
           </button>
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab4' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab4' ? 'border-b-2 border-[#396D83] bg-white' : ''}`}
             onClick={() => handleTabClick('Tab4')}
           >
             Clique
           </button>
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab5' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab5' ? 'border-b-2 border-[#396D83] bg-white' : ''}`}
             onClick={() => handleTabClick('Tab5')}
           >
             Set Cover
           </button>
           <button
-            className={`py-2 px-4 ${activeTab === 'Tab6' ? 'border-b-2 border-blue-500 bg-white' : ''}`}
+            className={`py-2 px-4 ${activeTab === 'Tab6' ? 'border-b-2 border-[#396D83] bg-white' : ''}`}
             onClick={() => handleTabClick('Tab6')}
           >
             About

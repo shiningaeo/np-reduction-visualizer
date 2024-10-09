@@ -17,7 +17,6 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
     const [valid, setValid] = useState(false)
     const [tempArray, setTempArray] = useState([]); // Array to hold the elements of temp
 
-
     // initialize *WALKTHROUGH SEQUENCE*
     const LETTERS = ["b"]
     let sequence = ["a0", "a1", "a2"] // IMPORTANT: walkthrough sequence
@@ -47,7 +46,6 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
         [[1,5], [1,2], [1,4], [1,3], [1,6], [2,5], [2,3], [2,4], [2,6], [5,6], [4,6], [3,6], [3,4], [4,5], [3,5]]   // V = 6
     ] // circle numbers for each edge
 
-    
     const subsets = useMemo(() => {
         const subs: number[][] = Array.from({ length: V }, () => []); // subs is an array of arrays of numbers
         visibleSet.forEach((item: number) => {
@@ -78,10 +76,6 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
             setTempArray(newTempArray);
         }
     }, [visibleSet, subsets, V, k]);
-    
-    // useEffect(() => {
-    //     isSetCover();
-    // }, [sequence, currIndex, subsets, visibleSet, k]);
 
     function* combinationN(array, n) {
         if (n === 1) {
@@ -97,7 +91,6 @@ export default function VC_SC({setSubmit, setSubmit2, edges, V, k}) {
           }
         }
       }
-      
     
     function isSetCover() {
         const numbersArray = Array.from({ length: V }, (_, i) => i + 1);
