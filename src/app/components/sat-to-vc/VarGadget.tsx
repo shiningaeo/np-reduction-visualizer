@@ -4,19 +4,11 @@ export default function VariableGadget({x, color, num, index, assignment}) {
     let color1 = color
     let color2 = color
     if (index[0] >= "g") {
-        if (assignment[num] == 1) {
-            vis1 = ""
-        } else {
-            vis2 = ""
-        }
+        assignment[num] == 1 ? vis1 = "" : vis2 = ""
     }
 
     if (index >= "g3") {
-        if (vis1 == "") {
-            color2 = "grey"
-        } else {
-            color1 = "grey"
-        }
+        vis1 == "" ? color2 = "grey" : color1 = "grey"
     }
 
     return (

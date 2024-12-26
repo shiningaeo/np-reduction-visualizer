@@ -9,7 +9,7 @@ export default function CLDescription() {
                 <strong> k</strong>, does <strong>G</strong> have a clique of at least size k?
                 </p>
             </div>
-            <div className="w-full flex flex-row justify-center items-center" style={{marginTop:30, marginBottom:-30}}>
+            <div className="w-full flex flex-row justify-center items-center">
                 <Image
                     src="/np-reduction-visualizer/clique.svg"
                     width={400}

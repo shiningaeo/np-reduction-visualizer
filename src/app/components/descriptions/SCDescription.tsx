@@ -9,7 +9,7 @@ export default function SCDescription() {
                 problem asks if, given U, S<sub>n</sub> subsets, and a budget <strong>k</strong>, does there exist a set cover of size k or less?
                 </p>
             </div>
-            <div className="w-full flex flex-row justify-center items-center" style={{marginTop:30, marginBottom:-30}}>
+            <div className="w-full flex flex-row justify-center items-center">
                 <Image
                     src="/np-reduction-visualizer/set-cover.svg"
                     width={400}

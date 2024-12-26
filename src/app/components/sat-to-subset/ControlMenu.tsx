@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx, skipBackIdx, introEnd }) {
+export default function ControlMenu({ currIndex, setCurrIndex, sequence, N, M }) {
     const [nextColor, setNextColor] = useState("green")
     const [backColor, setBackColor] = useState("gray")
     const [skipColor, setSkipColor] = useState("coral")
@@ -43,8 +43,14 @@ export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx
 
     function handleSkipBack() {
       // be careful when doing logic for other proofs ...
-      if (sequence[currIndex][0] < "g" && sequence[currIndex][0] >= "b") {
-        setCurrIndex(skipBackIdx)
+      if (sequence[currIndex][0] == "a" && sequence[currIndex][1] == "1") {
+        handleClickBack()
+      } else if (sequence[currIndex][0] == "b") {
+        handleClickBack()
+      } else if (sequence[currIndex][0] == "c") {
+        setCurrIndex(2)
+      } else if (sequence[currIndex][0] == "d") {
+        setCurrIndex(M+2)
       } else {
         handleClickBack()
       }
@@ -56,8 +62,10 @@ export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx
       }
 
       // be careful when doing logic for other proofs ...
-      if (sequence[currIndex] >= introEnd && sequence[currIndex+1][0] < "g") {
-          setCurrIndex(skipIdx)
+      if (sequence[currIndex][0] == "b") {
+        setCurrIndex(M+2)
+      } else if (sequence[currIndex][0] == "c") {
+        setCurrIndex(M+N+2)
       } else {
           handleClick()
       }

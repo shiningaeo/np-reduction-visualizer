@@ -50,7 +50,7 @@ export default function SCDetails() {
                         <strong>k</strong> = budget
                     </p>
                 </div>
-                <div className="mt-8" style={{height:80}}></div>
+                <div className="mt-8" style={{height:100}}></div>
             </div>
         </div>
     );

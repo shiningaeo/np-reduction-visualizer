@@ -7,6 +7,7 @@ import WalkthroughTitle from '../WalkThruTitle';
 import OrangeBox from './OrangeBox';
 import ContentBox from './ContentBox';
 import ControlMenu from '../ControlMenu';
+import SAT_Info from '../SATInputInfo';
 
 // 3SAT -> Vertex Cover (VC)
 
@@ -56,9 +57,7 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   for (let i = 0; i < INPUT.length; i+=3) {
     let temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
-      if (INPUT[i+j] < 0) {
-          temp1[j] = "black"
-      } 
+      if (INPUT[i+j] < 0) { temp1[j] = "black" } 
     }
     BORDER_GROUPS.push(temp1)
     ++track
@@ -66,11 +65,8 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
 
   // initialize VAR_SPOTS for drawing edges
   for (let i = 0; i < INPUT.length; ++i) {
-    if (INPUT[i] < 0) {
-      VAR_SPOTS.push(FALSE_VAR_SPOTS[-1*INPUT[i]-1]+VAR_OFFSETS)
-    } else {
-      VAR_SPOTS.push(TRUE_VAR_SPOTS[INPUT[i]-1]+VAR_OFFSETS)
-    }
+    (INPUT[i] < 0) ? VAR_SPOTS.push(FALSE_VAR_SPOTS[-1*INPUT[i]-1]+VAR_OFFSETS)
+    : VAR_SPOTS.push(TRUE_VAR_SPOTS[INPUT[i]-1]+VAR_OFFSETS)
   }
 
   // initialize ASSIGNMENT_GROUPS for selecting vertices in cover
@@ -79,15 +75,11 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
   for (let i = 0; i < INPUT.length; i+=3) {
     let temp1 = ["", "", ""]
     for (let j = 0; j < 3; ++j) {
-      if (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 1) {
-        temp1[j] = "False"
-      } else if (INPUT[i+j] > 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) {
-        temp1[j] = "False"
-      } else if (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) {
-        temp1[j] = "True"
-      } else {
-        temp1[j] = "True"
-      }
+      (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 1) ? temp1[j] = "False"
+      : (INPUT[i+j] > 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) ? temp1[j] = "False"
+      : (INPUT[i+j] < 0 && ASSIGNMENT[Math.abs(INPUT[i+j])-1] == 0) ? temp1[j] = "True"
+      : temp1[j] = "True"
+
       if (j == 2) {
         if (JSON.stringify(temp1) === JSON.stringify(["False", "False", "False"])) {
           falseInstances.push("f")
@@ -97,7 +89,6 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         }
       }
     }
-
     ASSIGNMENT_GROUPS.push(temp1)
   }
 
@@ -128,11 +119,11 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     let tempC = true
     if (falseInstances[i/3] == "f") {
         tempB = false
-    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["False", "False", "True"] && uncovered.has(INPUT[i+2]))) {
+    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["False", "False", "True"]) && uncovered.has(INPUT[i+2])) {
       tempC = false
-    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["True", "False", "False"] && uncovered.has(INPUT[i]))) {
+    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["True", "False", "False"]) && uncovered.has(INPUT[i])) {
       tempA = false
-    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["False", "True", "False"] && uncovered.has(INPUT[i+1]))) {
+    } else if (ASSIGNMENT_GROUPS[i] == JSON.stringify(["False", "True", "False"]) && uncovered.has(INPUT[i+1])) {
       tempB = false
     }
     edges.push(<Edge key={i} falseInst={tempA} index={sequence[currIndex]} id={LETTERS[i/3]+"1"} x1={VAR_SPOTS[i]} x2={track+CLAUSE_OFFSETS} y2={362}/>)
@@ -141,47 +132,15 @@ export default function Three_SAT_VC({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     track += 154
   }
 
-  function AssignmentMessage() {
-    const assignmentMessage = [];
-  
-    for (let i = 0; i < N; ++i) {
-      const value = ASSIGNMENT[i] === 1 ? "True" : "False";
-      assignmentMessage.push(
-        <div key={i+1}>
-          X<sub>{i+1}</sub>&nbsp;= {value}
-        </div>
-      );
-    }
-  
-    return (
-      <div className="w-full flex flex-col items-center justify-center" style={{ height:'auto', fontSize:18, marginTop:20, marginBottom:-80 }}>
-        {assignmentMessage}
-      </div>
-    );
-  }
-
   return (
     <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:118}}>
       <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Vertex Cover"} handleReset={handleReset}/>
 
       <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
-        <div className="flex flex-col w-4/12 h-full items-center justify-center" style={{marginTop:120}}>
-          <div className="w-full" style={{height:350}}></div>
-          <div className="p-3" style={{textAlign:"left", height:"auto", width:"70%", borderRadius:10, marginTop:-105, backgroundColor:"#b6f0e7"}}>
-            <strong>3-SAT INPUT: </strong><br></br>
-            <strong>n</strong> = {N} variables<br></br>
-            <strong>m</strong> = {M} clauses<br></br>
-            <strong>k</strong> = n+2m = {N + 2*M}<br></br>
-          </div>
-          <div className="w-full" style={{height:30}}></div>
-          <div className="w-full flex items-center justify-center p-3">
-            <p style={{textAlign:'center'}}>Edges are hoverable</p>
-          </div>
-          {AssignmentMessage()}
-        </div>
+        <SAT_Info M={M} N={N} ASSIGNMENT={ASSIGNMENT} type={0}/>
         
         <div className="flex w-full items-center justify-center" style={{marginTop:100, marginLeft:30}}>
-          <div className="relative flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"430px"}}>
+          <div className="flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"430px"}}>
             <svg style={{ position: 'absolute' }} height="430" width="800">
               {edges.map(edge => edge)}
               {variables.map(v => v)}

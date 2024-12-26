@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "NP Reduction Visualizer",
   description: "Step-by-step walkthroughs of NP-hard reductions",
   icons: {
-    icon: '/np-reduction-visualizer/favicon.ico', // Adjust the path to your favicon
+    icon: '/np-reduction-visualizer/favicon.ico',
   },
 };
 
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-502XLDVDR4"></script>
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-502XLDVDR4"></script> */}
         <script
           dangerouslySetInnerHTML={{
             __html: `

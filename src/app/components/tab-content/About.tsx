@@ -15,7 +15,7 @@ export default function About() {
                         <br /><br />
                         The content of this visualizer is adapted from the course&nbsp;
                         <span style={{color:"blue"}}><a href="https://eecs376.org/">EECS 376: Foundations of Computer Science</a></span>, at the 
-                        University of Michigan – Ann Arbor.
+                        University of Michigan - Ann Arbor.
                         <br /><br />
                     </p>
                 </div>
@@ -27,7 +27,7 @@ export default function About() {
                         <span style={{color:"blue"}}><a href="mailto:rinnyfan@umich.edu">rinnyfan@umich.edu</a></span>
                     </p>
                 </div>
-                <div className="mt-8" style={{height:80}}></div>
+                <div className="mt-8" style={{height:300}}></div>
             </div>
         </div>
     );

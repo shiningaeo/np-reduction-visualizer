@@ -155,10 +155,11 @@ export default function Three_SAT_Input({ submit, onDataReceive }) {
     return (
     <>
         <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36}}>
-            <p>An instance of 3-SAT is comprised of <strong>n</strong> variables, <strong>m</strong> clauses.
-                Each clause contains 3 variables joined by &#8897; , the "or" operator. The clauses are joined by
-                &#8896; , the "and" operator. A valid instance of 3-SAT contains an assignment of variables such that
-                all the clauses evaluate to true.
+            <p>An instance of 3-SAT has <strong>n</strong> variables, <strong>m</strong> clauses.
+                Each clause has 3 variables joined by &#8897; , "or". The clauses are joined by
+                &#8896; , "and". A valid instance of 3-SAT is when all clauses are true.
+                <br />
+                <em>Below: n and m can be adjusted, click on the gray bars to toggle negation</em>
             </p>
         </div>
         <main className="flex flex-row justify-center w-full" style={{height:440, marginBottom:12, backgroundColor:"#ffffff", marginRight:50}}>

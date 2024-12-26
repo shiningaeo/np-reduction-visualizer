@@ -65,16 +65,10 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
     }
 
     if (index >= "g3") {
-        if (trueIdx == -1 || trueIdx == 1) {
-            color2 = "grey"
-        } else if (trueIdx == 0) {
-            color1 = "grey"
-        } else {
-            color3 = "grey"
-        }
+        (trueIdx == -1 || trueIdx == 1) ? color2 = "grey"
+        : trueIdx == 0 ? color1 = "grey"
+        : color3 = "grey"
     }
-
-    // need to do styling for uncovered edges
 
     return (
         <>
