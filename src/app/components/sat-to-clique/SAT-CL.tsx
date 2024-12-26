@@ -6,6 +6,7 @@ import calculatePositions from './edge-positions';
 import Edge from './Edge';
 import ControlMenu from '../ControlMenu';
 import ContentBox from './ContentBox';
+import SAT_Info from '../SATInputInfo';
 
 // 3SAT -> Clique (CL)
 
@@ -15,9 +16,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         setSubmit(false)
     }
 
-    // IMPORTANT STATE VARIABLES
     const [currIndex, setCurrIndex] = useState(0) // State to manage current step
-
     let falseInstance = false
 
     // initialize *WALKTHROUGH SEQUENCE*
@@ -64,9 +63,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         } // sampleClique vertices
       }
     }
-    if (number != M) {
-      falseInstance = true
-    }
+    if (number != M) { falseInstance = true }
 
     for (let i = 0; i < 3*M; i+=3) {
       for (let j = 0; j < 3; ++j) {
@@ -83,9 +80,7 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     }
 
     // delete not needed sequence elements
-    if (numFrames > 0) {
-      sequence.splice(3+numFrames, INPUT.length - numFrames)
-    } // WHAT DOES THIS DO AGAIN?? -> I think it's b/c you don't need M*3 steps, i.e. last clause not needed
+    if (numFrames > 0) { sequence.splice(3+numFrames, INPUT.length - numFrames) }
   
     let keyIdx = 0; // to resolve duplicate keys
     for (let i = 0; i < 3*M; i+=3) {
@@ -129,61 +124,32 @@ export default function Three_SAT_CL({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         }
     }
 
-    function AssignmentMessage() {
-      const assignmentMessage = [];
-    
-      for (let i = 0; i < N; ++i) {
-        const value = ASSIGNMENT[i] === 1 ? "True" : "False";
-        assignmentMessage.push(
-          <div key={i+1}>
-            X<sub>{i+1}</sub>&nbsp;= {value}
-          </div>
-        );
-      }
-    
-      return (
-        <div className="w-full flex flex-col items-center justify-center" style={{ height:'auto', fontSize:18, marginTop:20, marginBottom:-80 }}>
-          {assignmentMessage}
-        </div>
-      );
-    }
-
     return (
     <>
         <main className="flex flex-col items-center justify-between" style={{marginTop:10, marginBottom:18}}>
             <WalkthroughTitle leftProblem={"3SAT"} rightProblem={"Clique"} handleReset={handleReset}/>
 
-            <div className="flex flex-row justify-center items-center w-full h-full" style={{marginTop:-150}}>
-              <div className="flex flex-col w-4/12 h-full items-center justify-center">
-                <div className="w-full" style={{height:150}}></div>
-                <div className="p-3" style={{textAlign:"left", height:"auto", width:"50%", borderRadius:10, marginTop:-105, backgroundColor:"#b6f0e7"}}>
-                  <strong>3-SAT INPUT: </strong><br></br>
-                  <strong>n</strong> = {N} variables<br></br>
-                  <strong>m</strong> = {M} clauses<br></br>
-                </div>
-                <div className="w-full" style={{height:30}}></div>
-                <div className="w-full flex items-center justify-center p-3">
-                  <p style={{textAlign:'center'}}>Edges are hoverable</p>
-                </div>
-                {AssignmentMessage()}
-              </div>
+            <div className="flex flex-row w-full items-center justify-center" style={{height:300, zIndex:100}}>
+              <SAT_Info M={M} N={N} ASSIGNMENT={ASSIGNMENT} type={0}/>
                 
-              <div className="flex" style={{height:580, width:800, marginTop:-50}}>
-                  <svg height="650" width="800">
+              <div className="flex w-4/12 items-center justify-center" style={{marginTop:250, marginRight:-30}}>
+                <div className="flex items-center justify-center overflow-hidden" style={{width:"100%",maxWidth:"800px", height:"430px"}}>
+                  <svg style={{ position:'absolute', zIndex:0}} height="600" width="800">
                       {edges.map(edge => edge)}
                       <Arrange M={M} INPUT={INPUT}/>
                   </svg>
+                </div>
               </div>
 
               <div className="flex flex-col w-4/12 h-screen items-center justify-center" style={{padding:30}}>
-                <div>
-                  <div className="w-full" style={{height:150}}></div>
+                <div className="p-8">
+                  <div className="w-full" style={{height:350}}></div>
                   <ContentBox id={sequence[currIndex]} valid={!falseInstance}/>
                 </div>
               </div>
             </div>
 
-            <div className="w-full h-full flex flex-row justify-center" style={{marginTop:-350, marginBottom:28}}>
+            <div className="w-full h-full flex flex-row justify-center" style={{marginTop:70, marginBottom:30}}>
               <ControlMenu currIndex={currIndex} setCurrIndex={setCurrIndex} sequence={sequence} skipIdx={sequence.indexOf("g1")-1} 
                 introEnd={"a2"} skipBackIdx={2}/>
             </div>

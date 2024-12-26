@@ -21,7 +21,7 @@ export default function VCDetails() {
                     </p>
                     <div className="w-full flex items-center justify-center mb-6">
                         <Image
-                            src="/nextjs-github-pages/vertex-cover.svg"
+                            src="/np-reduction-visualizer/vertex-cover.svg"
                             width={300}
                             height={200}
                             className="hidden md:block"

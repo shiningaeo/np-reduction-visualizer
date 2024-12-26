@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function NPDetails() {
     return (
@@ -27,8 +27,8 @@ export default function NPDetails() {
                         We still don't know the answer.
                     </p>
                     <div className="w-full flex items-center justify-center">
-                        <Image
-                            src="/nextjs-github-pages/p-np.svg"
+                        <img
+                            src="/np-reduction-visualizer/p-np.svg"
                             width={400}
                             height={300}
                             className="hidden md:block"
@@ -76,7 +76,7 @@ export default function NPDetails() {
                         </p>
                         <div className="flex items-center justify-center mt-8">
                             <Image
-                                src="/nextjs-github-pages/mapping.svg"
+                                src="/np-reduction-visualizer/mapping.svg"
                                 width={500}
                                 height={300}
                                 className="hidden md:block"

@@ -66,7 +66,7 @@ export default function ControlMenu({ currIndex, setCurrIndex, sequence, skipIdx
 
     return (
     <>
-        <div className="flex flex-row w-3/12 justify-center items-center p-5" style={{marginTop:180, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>
+        <div className="flex flex-row w-3/12 justify-center items-center p-5" style={{zIndex:1000, marginTop:180, backgroundColor:"#EAF1F2", height:70, borderRadius:10}}>
           <div className="flex flex-col items-center justify-center w-1/4">
             <button onClick={handleSkipBack}>
                 <span style={{color:skipBackColor, fontSize:24}}>&#9664;&#9664;</span>

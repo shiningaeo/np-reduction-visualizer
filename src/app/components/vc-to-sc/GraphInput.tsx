@@ -9,11 +9,7 @@ export default function GraphInput({submit, onDataReceive}) {
     function toggleEdge(i: number) {
         setEdges(prevInput => {
             const nInput = [...prevInput];
-            if (nInput[i] == "#D3D3D3") {
-                nInput[i] = "black"
-            } else {
-                nInput[i] = "#D3D3D3"
-            }
+            nInput[i] == "#D3D3D3" ? nInput[i] = "black" : nInput[i] = "#D3D3D3"
             return nInput;
         });
     }
@@ -62,19 +58,17 @@ export default function GraphInput({submit, onDataReceive}) {
 
     return (
     <>
-        <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36, marginBottom:10}}>
-                <p>A vertex cover instance is a graph with <strong>V</strong> vertices, <strong>E</strong> edges, and
-                a budget of size <strong>k</strong>. In a valid vertex cover instance, there is a subset of the vertices such that 
-                every edge has at least one endpoint in the subset.
-                <br /><br />
-                The values of V and k can be changed, and click on the edges to choose the edges in the graph.
+        <div className="w-full" style={{height:100, zIndex:10, backgroundColor:"#ffffff", padding:10, paddingRight:36, marginBottom:10, textAlign:"center"}}>
+                <p>An instance is a graph with <strong>V</strong> vertices, <strong>E</strong> edges, and budget of size <strong>k</strong>.
+                <br />
+                <em>Below: V and k can be changed, click edges to create the graph.</em>
                 </p>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center" style={{marginTop:-60, marginLeft:30}}>
             <GraphInputLayout edges={edges} toggleEdge={toggleEdge} V={V} />
             <div className="flex flex-row items-center justify-center" style={{marginTop:-83, userSelect:"none"}}>
                 <label style={{fontSize:26, fontWeight:500, marginRight:50}}> V =&nbsp;
-                    <input name="V" value={V} min="3" max="6" style={{fontWeight:"normal", border:"solid"}} type="number"
+                    <input name="V" value={V} min="3" max="6" style={{fontWeight:"normal", border:"solid", width:42}} type="number"
                     onChange={handleChangeV}/>
                 </label>
             </div>

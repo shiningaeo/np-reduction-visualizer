@@ -6,9 +6,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   output: 'export',  // Set output to export for static site generation
   
-  // Base path configuration for GitHub Pages
-  basePath: isProd ? '/np-reduction-visualizer' : '', // Replace with your repo name
-  assetPrefix: isProd ? '/np-reduction-visualizer/' : '', // Also replace with your repo name
+  basePath: '/np-reduction-visualizer',
 
   images: {
     unoptimized: true, // Disable image optimization as it may not work with static export

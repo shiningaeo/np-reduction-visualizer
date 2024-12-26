@@ -27,6 +27,11 @@ body {
   }
 }
 
+/* This will ensure all text stays black, even in dark mode */
+body, * {
+  color: black;
+}
+
 nav {
   background-color: #EAF1F2;
 }

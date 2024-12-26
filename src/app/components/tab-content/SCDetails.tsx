@@ -22,7 +22,7 @@ export default function SCDetails() {
                     </p>
                     <div className="w-full flex items-center justify-center mb-6">
                         <Image
-                            src="/nextjs-github-pages/set-cover.svg"
+                            src="/np-reduction-visualizer/set-cover.svg"
                             width={300}
                             height={200}
                             className="hidden md:block"
@@ -50,7 +50,7 @@ export default function SCDetails() {
                         <strong>k</strong> = budget
                     </p>
                 </div>
-                <div className="mt-8" style={{height:80}}></div>
+                <div className="mt-8" style={{height:100}}></div>
             </div>
         </div>
     );
