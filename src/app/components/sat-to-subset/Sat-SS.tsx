@@ -61,7 +61,7 @@ export default function Three_SAT_SS({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
         }
       }
       formula.push(<div key={(i).toString()+")"}>&#41;</div>)
-      if (i != M-1) { formula.push(<div key={"b"+")"}>&#8896;</div>) }
+      if (i != M-1) { formula.push(<div key={(i).toString()+"zz"}>&#8896;</div>) }
     }
 
     const [currIndex, setCurrIndex] = useState(0) // State to manage current step
@@ -78,10 +78,6 @@ export default function Three_SAT_SS({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
     }
     sequence.push("d0")
     sequence.push.apply(sequence, ["g0"])
-
-    console.log(sequence)
-    console.log(currIndex)
-    console.log(sequence[currIndex])
 
     for (let i = 0; i < 3*M; i+=3) {
       let foundTrue = false
@@ -123,9 +119,17 @@ export default function Three_SAT_SS({N, M, INPUT, setSubmit, setSubmit2, ASSIGN
       // step 2: set last n digits
       for (let i = M; i < M+N; ++i) {
         if (theSum[i] == 0) {
+          let idx = -10
+
+          if (ASSIGNMENT[i-1] == 1) {
+            selectedVars.add((i-M+1))
+            idx = i-M
+          } else {
+            idx = i
+            selectedVars.add(((i-M+1) * -1))
+          }
+
           theSum[i] = 1
-          let idx = i-M
-          selectedVars.add((i-M+1))
           for (let k = 0; k < CLAUSE_MAP[idx].length; ++k) {
             theSum[CLAUSE_MAP[idx][k]] += 1
           }

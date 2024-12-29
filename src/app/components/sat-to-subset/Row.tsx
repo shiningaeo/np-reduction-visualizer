@@ -25,7 +25,7 @@ export default function Row({ M, N, type, place, INPUT, index, id, selected, ASS
             let check = false
             for (let j = 0; j < 3; ++j) {
                 if (INPUT[3*i + j] == varNum) {
-                    if ((varNum > 0 && ASSIGNMENT[varNum-1] == 1) ||(varNum < 0 && ASSIGNMENT[varNum-1] == 0)) { 
+                    if ((varNum > 0 && ASSIGNMENT[varNum-1] == 1) ||(varNum < 0 && ASSIGNMENT[(varNum-1) * -1] == 0)) { 
                         check = true
                         break
                     }
