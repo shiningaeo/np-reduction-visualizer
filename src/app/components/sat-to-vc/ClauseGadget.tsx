@@ -48,6 +48,8 @@ export default function ClauseGadget({x, index, id1, id2, id3, vars, colors, bor
         trueIdx = 1
     } else if (JSON.stringify(assign) === JSON.stringify(["False", "False", "True"])) {
         trueIdx = 2
+    } else if (JSON.stringify(assign) === JSON.stringify(["True", "False", "True"])) {
+        trueIdx = 0
     }
 
     // render selected vertices
